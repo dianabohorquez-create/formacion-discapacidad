@@ -3,6 +3,10 @@
   publish = "public"
   command = "echo 'Sin compilación: se publica la carpeta public'"
 
+# El PIN solo lo usa la función del servidor; nunca se escribe en la web.
+[build.environment]
+  SECRETS_SCAN_OMIT_KEYS = "PRESENTER_PIN"
+
 [[headers]]
   for = "/*"
   [headers.values]
