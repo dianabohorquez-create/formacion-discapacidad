@@ -1,7 +1,8 @@
 # Configuración de Netlify para la formación en discapacidad
 [build]
   publish = "public"
-  command = "echo 'Sin compilación: se publica la carpeta public'"
+  # Descarga la foto libre de Pexels (Cliff Booth) para servirla desde la propia web; si falla, la página la carga de Pexels.
+  command = "curl -fsSL -o public/img/down_lectura.jpg 'https://images.pexels.com/photos/4058218/pexels-photo-4058218.jpeg?auto=compress&cs=tinysrgb&w=1100' || echo 'Foto no descargada: se cargará desde Pexels'"
 
 # El PIN solo lo usa la función del servidor; nunca se escribe en la web.
 [build.environment]

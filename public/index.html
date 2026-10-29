@@ -388,6 +388,7 @@ canvas.confetti{position:absolute;inset:0;width:100%;height:100%;pointer-events:
 .lf-ico{flex:none;width:74px;height:74px;border-radius:18px;background:#fff;border:3px solid var(--navy);display:grid;place-items:center}
 .lf-ico svg{width:48px;height:48px}
 .lf-badge{font-family:var(--display);font-size:14px;color:#7A5200;background:#FFF1C2;border-radius:8px;padding:4px 10px}
+.lf-badge.ok{color:#2E5A00;background:#E6F4CC}
 .sl.pause{background:var(--navy);color:#fff;align-items:center;justify-content:center;text-align:center}
 .pause h2{color:#fff;font-size:56px}
 .bigring{width:330px;height:330px;position:relative;margin:10px auto}
@@ -557,6 +558,29 @@ img.pic{display:block;width:100%;height:100%;object-fit:cover}
 .story.two{grid-template-columns:480px 1fr}
 .story.two .avs img.st{width:230px;height:300px}
 
+/* Bloqueo de la vista de presentadora y PDF del móvil */
+body.locked .top,body.locked #main,body.locked .skip{display:none!important}
+#lock{position:fixed;inset:0;z-index:60;display:grid;place-items:center;padding:16px;background:#EEF3E8;overflow:auto}
+.lockcard{box-sizing:border-box;background:#fff;border-radius:20px;padding:32px 28px;max-width:440px;width:100%;box-shadow:0 10px 40px rgba(20,35,44,.12);display:flex;flex-direction:column;gap:14px}
+.lockcard h1{font-family:var(--display);font-size:26px;margin:0;color:#14232C}
+.lockcard p{margin:0;color:#3A4A52}
+.lockcard .field{display:flex;flex-direction:column;gap:6px}
+.lockcard input{box-sizing:border-box;width:100%;font:inherit;font-size:20px;padding:10px 12px;border:2px solid #9AA6AB;border-radius:10px}
+.lockcard input:focus-visible{outline:3px solid #1F8A99;outline-offset:2px}
+.lockcard .btn{align-self:flex-start}
+.lockpart{display:block;margin-top:6px;padding:12px 14px;border-radius:12px;background:#E6F4CC;color:#2E5A00;font-weight:700;text-decoration:none;text-align:center}
+.lockpart:focus-visible,.lockpart:hover{outline:3px solid #2E5A00}
+.ppdf{display:flex;flex-direction:column;gap:6px;margin:14px 0 4px;padding:14px;border-radius:14px;background:#F2F7EA}
+.ppdf label{font-size:.85em;color:#3A4A52}
+.ppdf input{box-sizing:border-box;width:100%;font:inherit;padding:10px 12px;border:2px solid #9AA6AB;border-radius:10px;background:#fff;color:#14232C}
+body.hc .ppdf{background:#111}
+body.hc .ppdf label{color:#fff}
+
+/* Foto completa en las diapositivas de necesidades (sin recortar a la persona) */
+.need-ph{height:262px;flex:none}
+.need-ph .photo{min-height:0;background:#E9EEE6}
+.need-ph .photo img,.need-ph .photo img.pic{object-fit:contain;animation:none}
+
 </style>
 </head>
 <body>
@@ -654,11 +678,11 @@ const TEAMS = [
 ];
 const DAYS = {
   1: { title: "Entender", lead: "Qué es la discapacidad, por qué la inclusión es una obligación y cómo nos influyen los sesgos.",
-       agenda: [["9:00", "Bienvenida, accesibilidad de la sesión y presentación de Lucía y Andrés", 0], ["9:20", "Diversidad, equidad e inclusión · Empleo público y cupo de reserva", 1], ["10:15", "Impacto de la inclusión en la calidad del servicio", 1], ["10:50", "Pausa", -1], ["11:00", "Sesgos inconscientes", 1], ["12:00", "Tipologías de discapacidad y necesidades en el trabajo", 2], ["13:45", "Cierre del día y clasificación", 0]] },
+       agenda: [["9:00", "Bienvenida, accesibilidad de la sesión y presentación de Lucía y Andrés", 0], ["9:20", "Diversidad, equidad e inclusión · Empleo público y cupo de reserva", 1], ["10:15", "Impacto de la inclusión en la calidad del servicio", 1], ["10:50", "Pausa (15 min)", -1], ["11:05", "Sesgos inconscientes", 1], ["12:00", "Tipologías de discapacidad y necesidades en el trabajo", 2], ["13:45", "Cierre del día y clasificación", 0]] },
   2: { title: "Detectar", lead: "Mitos, testimonios, barreras, accesibilidad, ajustes razonables y lenguaje inclusivo.",
-       agenda: [["9:00", "Repaso: ¿qué les pasó ayer a Lucía y a Andrés?", 0], ["9:10", "Mitos y realidades · Testimonios", 2], ["10:10", "Barreras", 3], ["11:00", "Pausa", -1], ["11:10", "Accesibilidad universal y cognitiva · Lectura fácil y lenguaje claro", 3], ["12:05", "Diseño inclusivo: auditoría de un trámite", 3], ["12:40", "Ajustes razonables y papel de los mandos", 3], ["13:10", "Lenguaje inclusivo y no discriminatorio", 4], ["13:50", "Cierre del día y clasificación", 0]] },
+       agenda: [["9:00", "Repaso: ¿qué les pasó ayer a Lucía y a Andrés?", 0], ["9:10", "Mitos y realidades · Testimonios", 2], ["10:10", "Barreras", 3], ["11:00", "Pausa (15 min)", -1], ["11:15", "Accesibilidad universal y cognitiva · Lectura fácil y lenguaje claro", 3], ["12:05", "Diseño inclusivo: auditoría de un trámite", 3], ["12:40", "Ajustes razonables y papel de los mandos", 3], ["13:10", "Lenguaje inclusivo y no discriminatorio", 4], ["13:50", "Cierre del día y clasificación", 0]] },
   3: { title: "Actuar", lead: "Pautas de interacción, situaciones complejas, marco legal y tu plan de acción.",
-       agenda: [["9:00", "Repaso", 0], ["9:10", "Pautas de interacción", 4], ["10:00", "Situaciones complejas", 4], ["11:00", "Pausa", -1], ["11:10", "Marco legal, derechos, grado de discapacidad y responsabilidad de la Administración", 5], ["12:45", "Aplicación práctica y plan de acción individual", 6], ["13:45", "Final de la historia, compromisos y cierre", 0]] }
+       agenda: [["9:00", "Repaso", 0], ["9:10", "Pautas de interacción", 4], ["10:00", "Situaciones complejas", 4], ["11:00", "Pausa (15 min)", -1], ["11:15", "Marco legal, derechos, grado de discapacidad y responsabilidad de la Administración", 5], ["12:45", "Aplicación práctica y plan de acción individual", 6], ["13:45", "Final de la historia, compromisos y cierre", 0]] }
 };
 
 /* ======================= Constructor de diapositivas ======================= */
@@ -700,9 +724,9 @@ S({ t: "table", min: 4, title: "Tres maneras de mirar la discapacidad", fs: 21, 
   ["Médico", "En la condición de salud, la deficiencia o el tratamiento y la rehabilitación.", "«¿Qué le pasa a esta persona?»"],
   ["Social", "En cómo las barreras físicas, comunicativas, tecnológicas y actitudinales restringen la participación.", "«¿Qué le impide participar?»"],
   ["Derechos humanos", "En las personas con discapacidad como titulares de derechos, con autonomía y dignidad.", "«¿Qué derecho tiene y cómo garantizamos que lo ejerza?»"]] });
-S({ t: "concept", min: 3, title: "Qué dice la ley", lead: "Discapacidad: situación que resulta de la interacción entre las personas con deficiencias previsiblemente permanentes y cualquier tipo de barreras que limiten o impidan su participación plena y efectiva, en igualdad de condiciones.",
+S({ t: "concept", min: 3, title: "Qué dice la ley", lead: "Discapacidad: situación que resulta de la interacción entre las personas con limitaciones o condiciones previsiblemente permanentes y cualquier tipo de barreras que limiten o impidan su participación plena y efectiva, en igualdad de condiciones.",
   cards: [["Sin certificado también", "La condición de persona con discapacidad (LGD, art. 4.1) no depende de tener un certificado."], ["Para medidas concretas", "Para el cupo de reserva y otras medidas sí hay que acreditar un grado ≥ 33 % o una situación equiparada (art. 4.2)."]],
-  note: "Fuente: Ley General de derechos de las personas con discapacidad (RDL 1/2013, en adelante LGD), art. 2.a." });
+  note: "Fuente: Ley General de derechos de las personas con discapacidad (RDL 1/2013, en adelante LGD), art. 2.a (redacción adaptada)." });
 S({ t: "act", min: 2, kind: "Encuesta de predicción", title: "¿Cuántas personas con discapacidad crees que hay en España?",
   ix: { mode: "choice", viz: "bars", score: true, options: ["1 millón", "2,5 millones", "Más de 4 millones"], correct: 2 }, secs: 30,
   explain: "<b>Más de 4 millones:</b> 4,38 millones viven en hogares, el 9,5 % de la población (INE, EDAD 2020)." });
@@ -774,9 +798,9 @@ S({ t: "act", min: 4, kind: "Dinámica · Tira y afloja", title: "Si publicamos 
   ix: { mode: "choice", viz: "tug", options: ["👍 Sí", "👎 No", "🤔 Depende"], correct: null }, secs: 40,
   explain: "Publicar es necesario, pero no suficiente. Comunicar es que la persona pueda <b>encontrar, comprender y usar</b> la información.",
   notes: "Comenta sobre todo los «depende»." });
-S({ t: "pause", min: 10 });
+S({ t: "pause", min: 15 });
 
-S({ t: "section", min: 0, title: "Sesgos inconscientes", lead: "Todas las personas tenemos sesgos. El objetivo es detectarlos para que no se conviertan en trato desigual.", time: "11:00 · 60 min" });
+S({ t: "section", min: 0, title: "Sesgos inconscientes", lead: "Todas las personas tenemos sesgos. El objetivo es detectarlos para que no se conviertan en trato desigual.", time: "11:05 · 55 min" });
 S({ t: "videoph", min: 6, kind: "pizarra", title: "Sesgos inconscientes en la atención ciudadana" });
 S({ t: "vsum", min: 4, title: "Sesgos inconscientes en la atención", diagram: "sesgo", stack: true, points: [
   "Clasificamos a las personas en segundos y les atribuimos rasgos sin comprobarlos. Aparece con prisa, cansancio y carga de trabajo.",
@@ -968,15 +992,15 @@ S({ t: "act", min: 5, kind: "Vive la barrera · Cognitiva", notice: true, title:
   notes: "La notificación se ve 60 segundos y después se oculta. Pulsa «Mostrar notificación» para empezar." });
 S({ t: "act", min: 3, kind: "Una palabra", title: "¿Qué has sentido?", ix: { mode: "words", viz: "cloud" }, secs: 45,
   explain: "Frustración, prisa, inseguridad… Esa emoción es la que lleva a muchas personas a la ventanilla." });
-S({ t: "pause", min: 10 });
+S({ t: "pause", min: 15 });
 
-S({ t: "section", min: 0, title: "Accesibilidad universal y cognitiva", lead: "Que todo se pueda usar… y también entender.", time: "11:10 · 55 min" });
+S({ t: "section", min: 0, title: "Accesibilidad universal y cognitiva", lead: "Que todo se pueda usar… y también entender.", time: "11:15 · 50 min" });
 S({ t: "capsula", min: 5, title: "¿Qué es la accesibilidad universal?", status: "Vídeo de #MaratonEmpleo.", points: ["Comprensible, utilizable y practicable por todas las personas.", "Con seguridad, comodidad y la mayor autonomía posible."],
   links: [["¿Qué es la accesibilidad universal? | #MaratonEmpleo", "https://www.youtube.com/watch?v=L2zilQjbTa0"]] });
 S({ t: "concept", min: 3, title: "El camino y el resultado", layout: "full", diagram: "audu", lead: "La LGD (art. 2) distingue los dos conceptos." });
 S({ t: "concept", min: 3, title: "Accesibilidad cognitiva: que se pueda entender", lead: "Desde la Ley 6/2022 forma parte de la accesibilidad universal: lenguaje claro, lectura fácil, pictogramas, señalización comprensible, comunicación aumentativa y apoyos humanos.",
   bullets: ["Beneficia a personas mayores, con poca formación, que no dominan el castellano, con daño cerebral… y a quien lee con prisa o estrés.", "RD 707/2026 (desde el 2-1-2027): formularios, solicitudes y guías en lectura fácil, apoyos y trámites electrónicos comprensibles."],
-  photo: "cognitiva", photoHint: ["Disabledandhere-038-takingnotes.jpg", "Persona con discapacidad tomando notas"] });
+  photo: "cognitiva", photoHint: ["https://images.pexels.com/photos/4058218/pexels-photo-4058218.jpeg?auto=compress&cs=tinysrgb&w=900", "Joven con síndrome de Down leyendo en su ordenador portátil", "", "Foto: Cliff Booth / Pexels", "img/down_lectura.jpg"] });
 S({ t: "videoph", min: 7, kind: "pizarra", title: "Lectura fácil y lenguaje claro" });
 S({ t: "vsum", min: 4, title: "Lectura fácil y lenguaje claro", points: [
   "<b>Lectura fácil</b> (UNE 153101 EX): metodología para personas con dificultades de comprensión. Validación obligatoria con personas lectoras. Complementa al original.",
@@ -1143,7 +1167,7 @@ Q("En una situación tensa, la primera clave es…", ["Explicar la norma", "Paus
 Q("Un joven con discapacidad intelectual viene con su madre. ¿Quién decide?", ["La madre", "El joven, con los apoyos que elija", "La funcionaria"], 1, "Ley 8/2021: la persona decide, con apoyos.");
 S({ t: "podium", min: 3, scope: "theme", title: "Podio del Tema 4" });
 S({ t: "qa", min: 6, title: "Preguntas y dudas del Tema 4" });
-S({ t: "pause", min: 10 });
+S({ t: "pause", min: 15 });
 
 /* ---------- TEMA 5 ---------- */
 TH(5);
@@ -1514,7 +1538,7 @@ const foot = s => `<div class="foot"><span><b>${s.th ? "Tema " + s.th : "Jornada
 const bullets = a => `<ul class="b">${a.map(x => `<li>${x}</li>`).join("")}</ul>`;
 const IMG_ALT = { lucia_amable: "Lucía, sonriente en su cocina", andres_amable: "Andrés, sonriente en la oficina", lucia_carta: "Lucía lee preocupada una carta del servicio de empleo", lucia_cita: "Lucía intenta pedir cita previa con el móvil", lucia_notif: "Lucía, abrumada ante una notificación que no entiende", lucia_ventana: "Lucía mira por la ventana, pensativa", andres_concentrado: "Andrés trabaja concentrado en su ordenador", andres_interrumpido: "Andrés levanta la vista, interrumpido por un compañero", andres_instrucciones: "Andrés compara dos documentos con instrucciones distintas", andres_sobrecarga: "Andrés, saturado frente a la pantalla", andres_miradas: "Andrés mira de reojo a sus compañeros" };
 const pic = (n, cls = "") => `<img class="pic ${cls}" src="${IMGS[n]}" alt="${esc(IMG_ALT[n] || "")}">`;
-const photo = (ph) => typeof ph === "string" ? `<div class="photo filled">${pic(ph)}</div>` : ph ? `<div class="photo" data-src="${esc(phUrl(ph[0]))}" data-alt="${esc(ph[1])}" data-credit="${esc("Foto: " + (ph[2] ? ph[2] + " / " : "") + "Disabled And Here · CC BY 4.0")}"><div class="ph-empty" aria-hidden="true">${ico("people", 1.3).replace("<svg", '<svg width="120" height="120"')}</div><span class="ph-credit"></span></div>` : "";
+const photo = (ph) => typeof ph === "string" ? `<div class="photo filled">${pic(ph)}</div>` : ph ? `<div class="photo" data-src="${esc(ph[4] || (/^https:/.test(ph[0]) ? ph[0] : phUrl(ph[0])))}"${ph[4] ? ` data-fb="${esc(ph[0])}"` : ""} data-alt="${esc(ph[1])}" data-credit="${esc(ph[3] || ("Foto: " + (ph[2] ? ph[2] + " / " : "") + "Disabled And Here · CC BY 4.0"))}"><div class="ph-empty" aria-hidden="true">${ico("people", 1.3).replace("<svg", '<svg width="120" height="120"')}</div><span class="ph-credit"></span></div>` : "";
 const qrBox = () => `<aside class="qrbox" aria-label="Participa desde el móvil o el ordenador"><div class="qr" data-qr></div><small>Escanea con la cámara</small><div class="pc" data-pclink></div><div class="live-n" data-n>0 respuestas</div></aside>`;
 const teamChip = t => `<span class="tcard" style="color:${TEAMS[t].color}">${TEAMS[t].shape} ${TEAMS[t].name}</span>`;
 const isOk = (s, k) => Array.isArray(s.ix.correct) ? s.ix.correct.includes(k) : s.ix.correct === k;
@@ -1603,7 +1627,7 @@ function renderSlide(s) {
       const who = s.who === "both" ? ["lucia", "andres"] : [s.who];
       h = `${kick("Hilo conductor")}<h2>${s.title}</h2><div class="story ${Array.isArray(s.img) ? "two" : ""}"><div class="avs">${s.img ? [].concat(s.img).map(n => pic(n, "st")).join("") : who.map(w => AV[w]).join("")}<b>${who.map(w => w === "lucia" ? "Lucía" : "Andrés").join(" y ")}</b></div><div><div class="bubble">${s.text}</div>${s.ask ? `<div class="ask">${s.ask}</div>` : ""}</div></div>${s.note ? `<div class="note">${s.note}</div>` : ""}${foot(s)}`; break; }
     case "need":
-      h = `${kick("Necesidades en el trabajo · " + s.kicker)}<h2>${s.title}</h2><div class="need"><div class="bar-col"><div class="barr"><div class="tagline">Barreras habituales</div><ul>${s.barreras.map(b => `<li>${b}</li>`).join("")}</ul></div><div class="sup"><div class="tagline">Apoyos que se pueden valorar</div><p>${s.apoyos}</p></div></div><div class="bar-col">${s.photo ? `<div style="height:200px">${photo(s.photo)}</div>` : ""}<div class="ej"><div class="tagline" style="color:var(--accent-ink)">Ejemplo</div><p>${s.ejemplo}</p></div><div class="quote">«${s.quote}»</div></div></div>${foot(s)}`; break;
+      h = `${kick("Necesidades en el trabajo · " + s.kicker)}<h2>${s.title}</h2><div class="need"><div class="bar-col"><div class="barr"><div class="tagline">Barreras habituales</div><ul>${s.barreras.map(b => `<li>${b}</li>`).join("")}</ul></div><div class="sup"><div class="tagline">Apoyos que se pueden valorar</div><p>${s.apoyos}</p></div></div><div class="bar-col">${s.photo ? `<div class="need-ph">${photo(s.photo)}</div>` : ""}<div class="ej"><div class="tagline" style="color:var(--accent-ink)">Ejemplo</div><p>${s.ejemplo}</p></div><div class="quote">«${s.quote}»</div></div></div>${foot(s)}`; break;
     case "videoph": {
       cls = "dark"; const url = (window.VIDEO_URLS && VIDEO_URLS[s.vid]) || s.video || "";
       const yt = url.match(/(?:youtu\.be\/|v=|embed\/)([\w-]{11})/);
@@ -1626,7 +1650,7 @@ function renderSlide(s) {
       break; }
     case "podium":
       cls = "act";
-      h = `${kick(s.scope === "day" ? "Clasificación del día" : s.scope === "course" ? "Clasificación final" : "Competición por equipos")}<h2>${s.title}</h2><div class="podium" data-podium>${[1, 0, 2].map(p => `<div class="pcol p${p + 1}" data-place="${p}"><div class="who"></div><div class="pts"></div><div class="blk">${p + 1}</div></div>`).join("")}</div><div class="podium-foot" data-pfoot></div><div class="act-bar"><button class="sbtn primary" type="button" data-reveal>🏆 Revelar podio</button></div>`; break;
+      h = `${kick(s.scope === "day" ? "Clasificación del día" : s.scope === "course" ? "Clasificación final" : "Competición por equipos")}<h2>${s.title}</h2><div class="podium" data-podium>${[1, 0, 2].map(p => `<div class="pcol p${p + 1}" data-place="${p}"><div class="who"></div><div class="pts"></div><div class="blk">${p + 1}</div></div>`).join("")}</div><div class="podium-foot" data-pfoot></div><div class="act-bar"><button class="sbtn primary" type="button" data-reveal>🏆 Revelar podio</button><button class="sbtn" type="button" data-reset title="Pone a cero los puntos de las actividades que cuentan para este podio">↺ Reiniciar podio</button></div>`; break;
     case "qa":
       cls = "act";
       h = `${actHead("Preguntas del Tema " + s.th)}<h2>${s.title}</h2><div class="qa"><div class="act-main"><p class="lead" style="font-size:21px;margin-bottom:10px">Escribe tus preguntas desde el móvil (hasta 3). Las agrupamos por similitud y contestamos las 5 más repetidas.</p><div class="vizbox viz-live" data-viz>${vizSkeleton(s)}</div><div class="act-bar"><button class="sbtn" type="button" data-hideres>Ocultar resultados</button><button class="sbtn" type="button" data-reset>↺ Reiniciar</button></div></div>${qrBox()}</div>`; break;
@@ -1638,7 +1662,7 @@ function renderSlide(s) {
       h = `${kick("Mi compromiso con la discapacidad")}<h2>${s.title}</h2><div class="muro" data-muro></div><p class="hint" style="font-size:16px;margin:8px 0 0">Las 10 conductas más elegidas. Tamaño según las veces que fueron el primer compromiso.</p>`; break;
     case "lf":
       cls = "lf";
-      h = `${kick("Resumen en lectura fácil · Tema " + s.th)}<h2 style="font-size:42px">${s.title}</h2><ul class="lf-list">${s.items.map(it => `<li><span class="lf-ico">${ico(it[0], 2.2)}</span><span>${it[1]}</span></li>`).join("")}</ul><div class="foot"><span><b>Tema ${s.th}</b> · Lectura fácil</span><span class="lf-badge">Borrador · pendiente de validación con personas lectoras</span></div>`; break;
+      h = `${kick("Resumen en lectura fácil · Tema " + s.th)}<h2 style="font-size:42px">${s.title}</h2><ul class="lf-list">${s.items.map(it => `<li><span class="lf-ico">${ico(it[0], 2.2)}</span><span>${it[1]}</span></li>`).join("")}</ul><div class="foot"><span><b>Tema ${s.th}</b> · Lectura fácil</span><span class="lf-badge ok">✓ Lectura fácil validada con personas lectoras</span></div>`; break;
     case "ideas":
       h = `${kick(s.block)}<h2>${s.title}</h2><div class="ideas ${s.ten ? "ten" : ""}" style="${s.ten ? "" : `grid-template-columns:repeat(${Math.min(s.items.length, 3)},1fr)`}">${s.items.map((c, k) => `<div class="card" style="animation-delay:${k * .1}s">${s.ten ? "" : `<span class="tag">Idea ${k + 1}</span>`}<h3 style="margin-top:8px">${c[0]}</h3><p>${c[1]}</p></div>`).join("")}</div>${foot(s)}`; break;
     case "pause":
@@ -1697,10 +1721,10 @@ function liveTotals(filter) {
 }
 function scopeTotals(s) {
   let tot;
-  if (s.scope === "theme") { tot = liveTotals(x => x.th === s.th); Object.entries(STORED).forEach(([k, v]) => { const m = k.match(/^d(\d)t(\d)$/); if (m && +m[1] !== s.day && +m[2] === s.th) v.forEach((x, j) => tot[j] += x); }); }
+  if (s.scope === "theme") { tot = liveTotals(x => x.th === s.th); Object.entries(STORED).forEach(([k, v]) => { const m = k.match(/^d(\d)t(\d)$/); if (v && m && +m[1] !== s.day && +m[2] === s.th) v.forEach((x, j) => tot[j] += x); }); }
   else if (s.scope === "day") tot = liveTotals(() => true);
   else if (s.scope === "since") { let a = s.i; while (a > 0 && S_[a].t !== "section") a--; tot = liveTotals(x => x.i > a && x.i < s.i); }
-  else { tot = liveTotals(() => true); Object.entries(STORED).forEach(([k, v]) => { const m = k.match(/^d(\d)t\d$/); if (m && +m[1] !== s.day) v.forEach((x, j) => tot[j] += x); }); }
+  else { tot = liveTotals(() => true); Object.entries(STORED).forEach(([k, v]) => { const m = k.match(/^d(\d)t\d$/); if (v && m && +m[1] !== s.day) v.forEach((x, j) => tot[j] += x); }); }
   return tot.map((p, team) => ({ team, pts: Math.round(p) })).sort((a, b) => b.pts - a.pts);
 }
 function dayThemePartials(day) {
@@ -1739,7 +1763,7 @@ const VIZ = {
   cloud(el, s, arr) { drawCloud($("[data-cloud]", el), arr, $("[data-top]", el)); },
   compare(el, s, arr) { drawCloud($("[data-cloud]", el), arr); const src = KEY[s.compare] ? S_[KEY[s.compare][0]] : null; if (src) { window.LIVE?.fetchSlide?.(src.sid); drawCloud($("[data-cloud1]", el), answersOf(src.sid)); } },
   cascade(el, s, arr) {
-    const box = el.closest(".sl"), go = box.dataset.ya === "1", texts = arr.filter(a => typeof a.v === "string");
+    const box = el.closest(".sl"), go = box.dataset.released === "1", texts = arr.filter(a => typeof a.v === "string");
     $("[data-pn]", el).textContent = texts.length; $("[data-pile]", el).hidden = go; $("[data-wall]", el).hidden = !go;
     if (go) drawWall($("[data-wall]", el), texts, true);
   },
@@ -1896,7 +1920,7 @@ function renderNotes() {
   box.innerHTML = `<h3>Notas · ${s.min || 0} min · ${esc(s.block)}</h3>${s.notes ? `<p>${s.notes}</p>` : ""}${s.ix ? `<p><b>Interacción:</b> ${{ choice: "opción única", multi: "opción múltiple", words: "palabras (nube)", open: "respuesta abierta", items: "votación por ítems", pick: "elegir y ordenar" }[s.ix.mode] || s.ix.mode} · visualización «${s.ix.viz}»${s.score ? " · puntúa para los equipos" : ""}.</p>` : ""}${s.explain ? `<p><b>Cierre:</b> ${s.explain}</p>` : ""}${!s.notes && !s.ix ? `<p class="hint">Sin notas.</p>` : ""}`;
 }
 document.addEventListener("keydown", e => {
-  if ($("#v-pres").hidden || /INPUT|SELECT|TEXTAREA/.test(e.target.tagName)) return;
+  if (IS_PART || document.body.classList.contains("locked") || $("#v-pres").hidden || /INPUT|SELECT|TEXTAREA/.test(e.target.tagName)) return;
   const k = e.key.toLowerCase();
   if (["arrowright", "pagedown"].includes(k) || (e.key === " " && e.target === document.body)) { e.preventDefault(); go(cur + 1); }
   else if (["arrowleft", "pageup"].includes(k)) { e.preventDefault(); go(cur - 1); }
@@ -1928,20 +1952,31 @@ stage.addEventListener("click", e => {
   if (e.target.closest("[data-reveal]")) { const on = sl.classList.toggle("revealed"); window.LIVE?.onReveal?.(s, on); $("#live").textContent = on ? "Respuesta revelada" : "Respuesta oculta"; if (on && s.t === "podium") setTimeout(() => confetti(sl), 500); return; }
   if (e.target.closest("[data-timer]")) { if (tId && s.t !== "pause") { stopTimer(); window.LIVE?.onTimer?.(0); return; } startTimer(sl, +e.target.closest("[data-timer]").dataset.timer); return; }
   if (e.target.closest("[data-hideres]")) { const on = sl.classList.toggle("noresults"); e.target.closest("[data-hideres]").textContent = on ? "Mostrar resultados" : "Ocultar resultados"; return; }
-  if (e.target.closest("[data-ya]")) { sl.dataset.ya = "1"; renderLive(s.i); return; }
+  if (e.target.closest("[data-ya]")) { sl.dataset.released = "1"; renderLive(s.i); return; }
   const rb = e.target.closest("[data-reset]");
   if (rb) { if (rb.dataset.armed !== "1") { rb.dataset.armed = "1"; rb.textContent = "¿Seguro? Pulsa otra vez"; setTimeout(() => { if (rb.isConnected) { rb.dataset.armed = ""; rb.textContent = "↺ Reiniciar"; } }, 3500); return; } resetSlide(s); return; }
   if (e.target.closest("[data-shownotice]")) { const n = $("[data-notice]", sl), c = $("[data-ncount]", sl); n.hidden = false; let left = 60; c.textContent = left; const iv = setInterval(() => { left--; c.textContent = left; if (left <= 0 || n.hidden) { clearInterval(iv); n.hidden = true; } }, 1000); n.onclick = () => { n.hidden = true; }; return; }
   const q = e.target.closest("[data-q]"); if (q && s.t === "qa") { const el = $("[data-viz]", sl), done = el._done || (el._done = new Set()); done.has(q.dataset.q) ? done.delete(q.dataset.q) : done.add(q.dataset.q); q.classList.toggle("done"); return; }
   const del = e.target.closest("[data-del]"); if (del) window.LIVE?.hide?.(del.dataset.del);
 });
+function podiumFeed(s) {
+  if (s.scope === "theme") return S_.filter(x => x.score && x.day === s.day && x.th === s.th);
+  if (s.scope === "since") { let a = s.i; while (a > 0 && S_[a].t !== "section") a--; return S_.filter(x => x.score && x.i > a && x.i < s.i); }
+  return S_.filter(x => x.score && x.day === s.day);
+}
+function resetPodium(s) {
+  podiumFeed(s).forEach(x => resetSlide(x));
+  const drop = Object.keys(STORED).filter(k => { const m = k.match(/^d(\d)t(\d)$/); return m && +m[1] !== s.day && (s.scope === "course" || (s.scope === "theme" && +m[2] === s.th)); });
+  drop.forEach(k => delete STORED[k]); if (drop.length) window.LIVE?.dropScores?.(drop);
+}
 function resetSlide(s) {
+  if (s.t === "podium") resetPodium(s);
   delete DEMO[s.sid]; if (ANS[s.sid]) ANS[s.sid].clear(); delete OPEN_AT[s.sid];
   stopTimer(); window.LIVE?.onReset?.(s);
   const old = slides[s.i], tmp = document.createElement("div"); tmp.innerHTML = renderSlide(s);
   const fresh = tmp.firstElementChild; old.replaceWith(fresh); slides[s.i] = fresh;
   if (s.i === cur) { fresh.hidden = false; fillQR(fresh); loadPhotos(fresh); renderLive(cur); if (s.t === "quiz") startTimer(fresh, s.secs || 25, true); }
-  $("#live").textContent = "Actividad reiniciada";
+  $("#live").textContent = s.t === "podium" ? "Podio reiniciado" : "Actividad reiniciada";
 }
 function confetti(sl) {
   if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
@@ -1957,6 +1992,7 @@ function loadPhotos(root) {
     if (p._done) return; p._done = true;
     const im = new Image(); im.alt = p.dataset.alt; im.referrerPolicy = "no-referrer";
     im.onload = () => { p.prepend(im); p.classList.add("filled"); $(".ph-credit", p).textContent = p.dataset.credit; };
+    im.onerror = () => { if (p.dataset.fb && im.src !== p.dataset.fb) im.src = p.dataset.fb; };
     im.src = p.dataset.src;
   });
 }
@@ -2088,13 +2124,21 @@ async function initPresenter() {
   go(cur);
   // ¿Hay servidor? (en la vista previa de Claude no lo hay)
   try { await api("state"); } catch (e) { if (!e.status || e.status === 404) { setChip("Modo demostración (sin servidor)", "demo"); buildSession(null); return; } }
+  let closed = false;
+  const lockEl = el("div", { id: "lock", role: "dialog", "aria-modal": "true", "aria-labelledby": "lockT" });
+  lockEl.innerHTML = `<div class="lockcard"><div class="brand-mark" aria-hidden="true"><span></span></div><h1 id="lockT">Formación en discapacidad</h1><p>Esta pantalla es solo para la persona formadora.</p>
+    <form id="lockForm" class="field"><label for="lockPin">PIN de presentadora</label><input id="lockPin" type="password" inputmode="numeric" autocomplete="current-password" maxlength="40" required><button class="btn" type="submit">Entrar</button></form>
+    <a class="lockpart" href="${esc(window.PART_URL)}">¿Vienes a participar? Entra aquí</a></div>`;
+  const lock = on => { document.body.classList.toggle("locked", on); $(".top").inert = on; $("#main").inert = on; if (on) { if (!lockEl.isConnected) document.body.append(lockEl); setTimeout(() => $("#lockPin")?.focus(), 50); } else lockEl.remove(); };
+  lockEl.querySelector("#lockForm").onsubmit = async e => { e.preventDefault(); const b = e.target.querySelector("button"); b.disabled = true; await login($("#lockPin").value.trim()); b.disabled = false; };
+  lock(true);
   let pin = sstore.get("fd-pin"), isAdmin = false, lastKey = null, lastScores = "", since = Date.now(), pollT = null, fullAt = 0;
   LIVE_ADMIN = () => isAdmin;
   let raf = 0; const schedule = () => { if (!raf) raf = requestAnimationFrame(() => { raf = 0; renderLive(cur); }); };
   let queue = Promise.resolve();
   const push = (patch, extra = {}) => { if (!isAdmin) return queue; queue = queue.then(() => api("admin", { method: "POST", pin, body: { op: "state", patch, ...extra } })).then(d => applyState(d.state)).catch(e => toast("No se ha podido sincronizar con los móviles (" + e.message + ").", 5000)); return queue; };
   const admin = body => api("admin", { method: "POST", pin, body });
-  function applyState(st) { st = st || {}; OPEN_AT = { ...(st.openAt || {}) }; STORED = st.scores || {}; window._resets = st.resets || {}; }
+  function applyState(st) { st = st || {}; OPEN_AT = { ...(st.openAt || {}) }; STORED = st.scores || {}; window._resets = st.resets || {}; const c = !!st.closed; if (c !== closed) { closed = c; buildSession(ctx); } }
   function sidsToPoll() {
     const s = S_[cur], set = new Set();
     if (s.ix) set.add(s.sid);
@@ -2115,9 +2159,9 @@ async function initPresenter() {
       applyState(d.state);
       sids.forEach(sid => { const m = new Map(); (d.answers[sid] || []).forEach(a => m.set(a.id, { v: a.v, k: a.k, dev: a.id.split("_")[1], t: a.t })); ANS[sid] = m; });
       d.reactions.forEach(r => { since = Math.max(since, r.t); floatEmoji(r.e); });
-      setChip("En directo · " + SESSION, "on");
+      setChip(closed ? "Sesión cerrada · " + SESSION : "En directo · " + SESSION, closed ? "off" : "on");
       schedule();
-    } catch (e) { if (e.status === 401) { isAdmin = false; pin = null; sstore.set("fd-pin", null); setChip("PIN incorrecto: vuelve a entrar", "off"); buildSession(ctx); return; } setChip("Reconectando…", "off"); }
+    } catch (e) { if (e.status === 401) { isAdmin = false; pin = null; sstore.set("fd-pin", null); setChip("PIN incorrecto: vuelve a entrar", "off"); buildSession(ctx); lock(true); return; } setChip("Reconectando…", "off"); }
     pollT = setTimeout(poll, 2000);
   }
   window.LIVE = {
@@ -2127,6 +2171,7 @@ async function initPresenter() {
     onDay() {},
     onPodium(s, rows) { if (!isAdmin) return; const sc = dayThemePartials(s.day), j = JSON.stringify(sc) + JSON.stringify(rows); if (j !== lastScores) { lastScores = j; push({ scores: sc, rank: { [s.sid]: rows } }); } },
     fetchSlide() {},
+    dropScores(keys) { lastScores = ""; push({ scores: Object.fromEntries(keys.map(k => [k, null])) }); },
     async onReset(s) {
       lastKey = null; const n = ((window._resets || {})[s.sid] || 0) + 1; (window._resets = window._resets || {})[s.sid] = n;
       push({ resets: { [s.sid]: n }, reveal: { [s.sid]: false }, ...(s.t === "quiz" ? {} : { timerEnd: null }) }, s.score ? { openAtNow: s.sid } : {});
@@ -2137,10 +2182,11 @@ async function initPresenter() {
   };
   function floatEmoji(e) { if (!EMOJIS.includes(e)) return; const f = el("div", { class: "floatemo", "aria-hidden": "true", text: e }); f.style.left = (8 + Math.random() * 84) + "%"; wrap.append(f); setTimeout(() => f.remove(), 3200); }
   async function login(p) {
-    try { await api("poll", { pin: p, params: { sids: "" } }); pin = p; sstore.set("fd-pin", p); isAdmin = true; lastKey = null; buildSession(ctx); LIVE.onGo(cur); poll(); return true; }
+    try { const d = await api("poll", { pin: p, params: { sids: "" } }); pin = p; sstore.set("fd-pin", p); isAdmin = true; lastKey = null; lock(false); applyState(d.state); buildSession(ctx); LIVE.onGo(cur); poll(); if (closed) toast("La sesión «" + SESSION + "» está cerrada. Para que los móviles puedan participar, ábrela en «Sesión en directo».", 7000); return true; }
     catch (e) { toast(e.status === 401 ? "PIN incorrecto." : e.status === 503 ? "Falta configurar el PIN en Netlify (variable PRESENTER_PIN)." : "No se ha podido conectar.", 5000); return false; }
   }
-  const ctx = { get isAdmin() { return isAdmin; }, login, logout: () => { isAdmin = false; pin = null; sstore.set("fd-pin", null); clearTimeout(pollT); setChip("Conectar móviles (PIN)", "off"); buildSession(ctx); },
+  const ctx = { get isAdmin() { return isAdmin; }, get closed() { return closed; }, login, logout: () => { isAdmin = false; pin = null; sstore.set("fd-pin", null); clearTimeout(pollT); setChip("Conectar móviles (PIN)", "off"); buildSession(ctx); lock(true); },
+    setClosed: async on => { await push({ closed: on, timerEnd: null }); setChip(on ? "Sesión cerrada · " + SESSION : "En directo · " + SESSION, on ? "off" : "on"); },
     clear: async all => { await admin(all ? { op: "clear" } : { op: "clear", day: curDay() }); if (all) await push({ scores: {}, openAt: {}, rank: {}, reveal: {}, resets: {} }); Object.keys(ANS).forEach(k => delete ANS[k]); $$("[data-k]", stage).forEach(x => delete x.dataset.k); schedule(); } };
   chip.onclick = () => { if (isAdmin) return; $("#tab-qr").click(); setTimeout(() => $("#lvPin")?.focus(), 50); };
   setChip("Conectar móviles (PIN)", "off"); buildSession(ctx);
@@ -2148,11 +2194,13 @@ async function initPresenter() {
 }
 function buildSession(ctx) {
   const v = $("#v-qr"), ok = !!ctx, admin = ctx && ctx.isAdmin;
-  v.innerHTML = `<div class="guide"><nav class="toc" aria-label="Índice"><a href="#l-ses">Sesión</a><a href="#l-link">Enlaces</a><a href="#l-del">Borrar respuestas</a><a href="#l-help">Si algo falla</a></nav><div>
+  v.innerHTML = `<div class="guide"><nav class="toc" aria-label="Índice"><a href="#l-ses">Sesión</a>${admin ? '<a href="#l-close">Cerrar sesión</a>' : ""}<a href="#l-link">Enlaces</a><a href="#l-del">Borrar respuestas</a><a href="#l-help">Si algo falla</a></nav><div>
    <section class="gsec" id="l-ses"><h2>Sesión en directo</h2><p>Estado: <b>${!ok ? "sin servidor: la presentación y el modo demostración funcionan, pero los móviles no se sincronizan (normal en la vista previa)" : admin ? "dirigiendo la sesión «" + esc(SESSION) + "»" : "sin conectar"}</b></p>
     ${ok && !admin ? `<form id="lvPinForm" class="field"><label for="lvPin">PIN de presentadora</label><input id="lvPin" type="password" inputmode="numeric" autocomplete="current-password" maxlength="40"><button class="btn" type="submit" style="margin-top:6px;align-self:flex-start">Conectar móviles</button></form>` : ""}${admin ? `<button class="btn ghost" type="button" id="lvLogout">Desconectar</button>` : ""}
     <h3>Código de sesión</h3><p>Usa un código por grupo y mantenlo los tres días (por ejemplo <code>grupo-a</code>): así se acumulan los puntos de la clasificación final.</p>
     <form id="lvForm" class="field"><label for="lvS">Código</label><input id="lvS" value="${esc(SESSION)}" maxlength="40"><button class="btn" type="submit" style="margin-top:6px;align-self:flex-start">Cambiar de sesión</button></form></section>
+   ${admin ? `<section class="gsec" id="l-close"><h2>${ctx.closed ? "La sesión está cerrada" : "Cerrar la sesión"}</h2><p>${ctx.closed ? "Los móviles muestran «La sesión ha terminado» y no se aceptan respuestas. Ábrela de nuevo al empezar la siguiente jornada." : "Al terminar, cierra la sesión: la web de participación se desactiva en todos los móviles y deja de aceptar respuestas."}</p>
+    <button class="btn" type="button" id="lvClose">${ctx.closed ? "Abrir la sesión de nuevo" : "Cerrar la sesión para los participantes"}</button> <span class="hint" id="lvCloseMsg" role="status"></span></section>` : ""}
    <section class="gsec" id="l-link"><h2>Enlace para participar desde el ordenador</h2><p>Para personas con discapacidad visual o sin cámara: es la misma página que abre el QR, compatible con lector de pantalla y con botones de texto grande y alto contraste. Pégalo en el chat de Teams al empezar cada jornada.</p><p style="word-break:break-all"><code id="lvUrl">${esc(window.PART_URL)}</code></p><button class="btn ghost" type="button" id="lvCopy">Copiar enlace</button> <span class="hint" id="lvMsg" role="status"></span></section>
    <section class="gsec" id="l-del"><h2>Borrar las respuestas</h2><p>Por privacidad, borra las respuestas al terminar con cada grupo. No se puede deshacer.</p>
     <button class="btn" type="button" id="lvClearDay" ${admin ? "" : "disabled"}>Borrar respuestas de hoy</button> <button class="btn" type="button" id="lvClearAll" ${admin ? "" : "disabled"}>Borrar toda la sesión «${esc(SESSION)}»</button> <span class="hint" id="lvClrMsg" role="status"></span></section>
@@ -2162,6 +2210,10 @@ function buildSession(ctx) {
     <li><b>Sin conexión</b>: usa «Simular» para ensayar y recoge respuestas en voz alta o en el chat.</li></ul></section></div></div>`;
   $("#lvPinForm") && ($("#lvPinForm").onsubmit = e => { e.preventDefault(); const p = $("#lvPin").value.trim(); if (p) ctx.login(p); });
   $("#lvLogout") && ($("#lvLogout").onclick = ctx.logout);
+  let closeArmed = false;
+  $("#lvClose") && ($("#lvClose").onclick = async () => {
+    if (!ctx.closed && !closeArmed) { closeArmed = true; $("#lvCloseMsg").textContent = "Pulsa otra vez para confirmar."; setTimeout(() => { closeArmed = false; }, 4000); return; }
+    closeArmed = false; $("#lvCloseMsg").textContent = "Un momento…"; try { await ctx.setClosed(!ctx.closed); } catch (e) { $("#lvCloseMsg").textContent = "No se ha podido cambiar."; } });
   $("#lvForm").onsubmit = e => { e.preventDefault(); const s = $("#lvS").value.trim().toLowerCase().replace(/[^a-z0-9-]/g, ""); if (s) location.search = "?s=" + encodeURIComponent(s); };
   $("#lvCopy").onclick = () => navigator.clipboard.writeText(window.PART_URL).then(() => $("#lvMsg").textContent = "Copiado.", () => $("#lvMsg").textContent = "Selecciona el enlace y cópialo.");
   const armed = {};
@@ -2170,10 +2222,54 @@ function buildSession(ctx) {
     armed[id] = false; $("#lvClrMsg").textContent = "Borrando…"; try { await ctx.clear(all); $("#lvClrMsg").textContent = "Respuestas borradas."; } catch (e) { $("#lvClrMsg").textContent = "No se ha podido borrar."; } }; });
 }
 
+/* ---------- PDF «Mi compromiso» (se genera en el dispositivo; no se envía nada) ---------- */
+function commitPDF(items, name) {
+  const W1252 = { "€": 128, "‚": 130, "„": 132, "…": 133, "‘": 145, "’": 146, "“": 147, "”": 148, "•": 149, "–": 150, "—": 151 };
+  const enc = t => [...String(t)].map(ch => { const c = ch.charCodeAt(0); const b = c < 256 ? c : (W1252[ch] || 63); const s = String.fromCharCode(b); return s === "(" || s === ")" || s === "\\" ? "\\" + s : s; }).join("");
+  const wrapT = (t, size, maxW, bold) => { const cw = size * (bold ? .56 : .51), max = Math.floor(maxW / cw), out = []; let line = ""; String(t).split(/\s+/).forEach(w => { if ((line + " " + w).trim().length > max) { if (line) out.push(line); line = w; } else line = (line + " " + w).trim(); }); if (line) out.push(line); return out; };
+  const ops = []; const txt = (x, y, size, t, bold, rgb = "0.078 0.137 0.173") => ops.push(`BT /${bold ? "F2" : "F1"} ${size} Tf ${rgb} rg ${x} ${y} Td (${enc(t)}) Tj ET`);
+  const rect = (x, y, w, h, rgb, stroke) => ops.push(`${rgb} rg ${stroke ? stroke + " RG 1.5 w " : ""}${x} ${y} ${w} ${h} re ${stroke ? "B" : "f"}`);
+  rect(0, 712, 595, 130, "0.518 0.741 0");
+  rect(0, 704, 595, 8, "0.122 0.541 0.6");
+  txt(56, 796, 11, "FORMACIÓN EN DISCAPACIDAD · ADMINISTRACIÓN PÚBLICA", true, "1 1 1");
+  txt(56, 752, 28, "Mi compromiso con la discapacidad", true, "1 1 1");
+  let y = 650;
+  if (name) { txt(56, y, 14, "Nombre: " + name, false); y -= 40; }
+  txt(56, y, 15, "A partir de mañana, me comprometo a:", false); y -= 22;
+  const l1 = wrapT(items[0], 22, 455, true), bh = 34 + l1.length * 28;
+  rect(56, y - bh, 483, bh, "0.902 0.957 0.8", "0.518 0.741 0");
+  l1.forEach((l, k) => txt(76, y - 38 - k * 28, 22, l, true, "0.18 0.353 0"));
+  y -= bh + 46;
+  if (items.length > 1) {
+    txt(56, y, 14, "Y además:", true); y -= 30;
+    items.slice(1).forEach((it, k) => { wrapT((k + 2) + ". " + it, 14, 480, false).forEach((l, j) => { txt(j ? 74 : 56, y, 14, l, false); y -= 21; }); y -= 8; });
+  }
+  y = Math.min(y - 30, 260);
+  txt(56, y, 12, "Lo que me ayuda a cumplirlo:", true); y -= 20;
+  ["Pregunto en lugar de suponer.", "Hablo con la persona y respeto sus decisiones.", "Si veo una barrera, aviso a quien corresponde.", "Compruebo que la solución funciona."].forEach(t => { txt(66, y, 11, "• " + t, false, "0.3 0.36 0.4"); y -= 16; });
+  const d = new Date(), fecha = String(d.getDate()).padStart(2, "0") + "/" + String(d.getMonth() + 1).padStart(2, "0") + "/" + d.getFullYear();
+  txt(56, 120, 12, "Fecha: " + fecha, false); txt(300, 120, 12, "Firma: ______________________", false);
+  rect(56, 82, 483, 1, "0.122 0.541 0.6");
+  txt(56, 64, 9, "Formación en discapacidad · 3 jornadas · Administración Pública", false, "0.35 0.42 0.44");
+  txt(56, 50, 9, "Documento creado en tu dispositivo. No se ha enviado ni guardado ningún dato personal.", false, "0.35 0.42 0.44");
+  const content = ops.join("\n");
+  const objs = ["<< /Type /Catalog /Pages 2 0 R >>", "<< /Type /Pages /Kids [3 0 R] /Count 1 >>",
+    "<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 4 0 R /F2 5 0 R >> >> /Contents 6 0 R >>",
+    "<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>", "<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding >>",
+    `<< /Length ${content.length} >>\nstream\n${content}\nendstream`, "<< /Title (" + enc("Mi compromiso con la discapacidad") + ") /Producer (Formacion en discapacidad) >>"];
+  let out = "%PDF-1.4\n%\xE2\xE3\xCF\xD3\n"; const off = [];
+  objs.forEach((o, k) => { off.push(out.length); out += `${k + 1} 0 obj\n${o}\nendobj\n`; });
+  const xref = out.length;
+  out += `xref\n0 ${objs.length + 1}\n0000000000 65535 f \n` + off.map(o => String(o).padStart(10, "0") + " 00000 n \n").join("") + `trailer\n<< /Size ${objs.length + 1} /Root 1 0 R /Info 7 0 R >>\nstartxref\n${xref}\n%%EOF`;
+  return new Blob([Uint8Array.from(out, c => c.charCodeAt(0) & 255)], { type: "application/pdf" });
+}
+function downloadBlob(blob, fname) { const u = URL.createObjectURL(blob), a = document.createElement("a"); a.href = u; a.download = fname; document.body.append(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(u), 60000); }
+
 /* ---------------------------------------------------------------- PARTICIPANTES */
 async function initParticipant() {
   document.title = "Participa · Formación en discapacidad";
   document.body.classList.add("pmode");
+  document.querySelectorAll(".top, #main, .skip").forEach(n => n.remove()); // el móvil nunca carga los controles de la presentadora
   const P = { big: store.get("big", false), hc: store.get("hc", false) };
   const applyP = () => { document.body.classList.toggle("big", P.big); document.body.classList.toggle("hc", P.hc); };
   applyP();
@@ -2218,10 +2314,10 @@ async function initParticipant() {
     if (document.hidden) { pollT = setTimeout(pollState, 5000); return; }
     try {
       const d = await api("state"); skew = d.now - Date.now(); state = d.state; fails = 0;
-      if (!online) { online = true; root.append(bar); }
+      if (!online && !(state && state.closed)) { online = true; root.append(bar); }
       if (busy) pending = true; else render();
     } catch (e) { if (++fails === 3) show(card(0, el("div", { class: "eyebrow", text: "Sin conexión" }), el("h1", { text: "No podemos conectar" }), el("p", { text: "Seguimos intentándolo. Mientras, responde en el chat de Teams o en voz alta." }))); }
-    pollT = setTimeout(pollState, 3000 + Math.random() * 600);
+    pollT = setTimeout(pollState, (state && state.closed ? 20000 : 3000) + Math.random() * 600);
   }
   document.addEventListener("visibilitychange", () => { if (!document.hidden) pollState(); });
   pollState();
@@ -2229,6 +2325,9 @@ async function initParticipant() {
   function render() {
     pending = false;
     if (team == null) return pickTeam(false);
+    const pl = root.querySelector(".plive"); if (pl) pl.hidden = !!(state && state.closed);
+    if (state && state.closed) { if (rendered !== "closed") { rendered = "closed"; timerEl = null; bar.remove(); online = false; const c = myCommit();
+      show(card(0, el("div", { class: "eyebrow", text: "Sesión cerrada" }), el("h1", { text: "La sesión ha terminado" }), el("p", { text: "Gracias por participar. Ya no se recogen respuestas. Puedes cerrar esta página." }), c ? el("p", { text: "Antes de irte, puedes descargar tu compromiso:" }) : null, c ? pdfBox(c) : null)); } return; }
     if (!state || state.current == null) { if (rendered !== "wait") { rendered = "wait"; timerEl = null; show(card(0, el("div", { class: "eyebrow", text: "Un momento" }), el("h1", { text: "La sesión aún no ha empezado" }), el("p", { text: "Esta página se actualizará sola. No hace falta que hagas nada." }))); } return; }
     const i = clamp(state.current | 0, 0, S_.length - 1), s = S_[i], rev = !!(state.reveal && state.reveal[s.sid]), lock = s.t === "quiz" && tLeft() === 0;
     const rc = (state.resets || {})[s.sid] || 0;
@@ -2248,6 +2347,12 @@ async function initParticipant() {
   const head = s => [el("div", { class: "eyebrow", text: s.t === "quiz" ? `Quiz del Tema ${s.th} · ${s.qn} de 5` : s.t === "qa" ? "Preguntas y dudas" : (s.score ? "🏆 " : "") + (s.kind || "") }), s.scene ? el("p", { class: "psitu" }, el("b", { text: s.scene.perfil + ". " }), s.scene.contexto) : null, s.situ ? el("p", { class: "psitu", text: strip(s.situ) }) : null, el("h1", { text: strip(s.title) }), timerEl];
   const explainBox = (s, rev) => rev && s.explain ? el("div", { class: "pexplain", html: s.explain }) : null;
   const status = () => el("p", { class: "pstatus", role: "status" });
+  function pdfBox(items) {
+    const nid = "pdfName", inp = el("input", { id: nid, maxlength: 60, autocomplete: "off" });
+    const b = el("button", { type: "button", class: "pbtn", onclick: () => { downloadBlob(commitPDF(items, inp.value.trim()), "mi-compromiso.pdf"); say("PDF descargado"); } }, "⬇ Descargar mi compromiso (PDF)");
+    return el("div", { class: "ppdf" }, el("label", { for: nid, text: "Tu nombre (opcional: solo aparece en tu PDF, no se envía)" }), inp, b);
+  }
+  const myCommit = () => { const cs = S_.find(x => x.key === "commit" || (x.ix && x.ix.viz === "commit")); const v = cs && mine[cs.sid]; return Array.isArray(v) && v.length ? v.map(x => cs.ix.groups.flatMap(g => g[1])[x]) : null; };
 
   function renderQ(s, rev, lock) {
     const id0 = s.sid + "_" + DEV, md = s.ix.mode, my = mine[s.sid], th = s.th;
@@ -2272,7 +2377,7 @@ async function initParticipant() {
       const groups = md === "pick" ? s.ix.groups : [["", s.ix.options]]; let idx = 0;
       if (md === "pick" && Array.isArray(my) && my.length) {
         const opts = s.ix.groups.flatMap(g => g[1]);
-        return show(card(th, ...head(s), el("p", { text: "Tu compromiso:" }), el("ol", { class: "plf" }, my.map((x, k) => el("li", { html: k === 0 ? "<b>" + esc(opts[x]) + "</b>" : esc(opts[x]) }))), el("button", { type: "button", class: "pbtn", style: "background:#5A6A70", onclick: () => { delete mine[s.sid]; saveMine(); rendered = ""; render(); } }, "Cambiar"), explainBox(s, rev)));
+        return show(card(th, ...head(s), el("p", { text: "Tu compromiso:" }), el("ol", { class: "plf" }, my.map((x, k) => el("li", { html: k === 0 ? "<b>" + esc(opts[x]) + "</b>" : esc(opts[x]) }))), pdfBox(my.map(x => opts[x])), el("button", { type: "button", class: "pbtn", style: "background:#5A6A70", onclick: () => { delete mine[s.sid]; saveMine(); rendered = ""; render(); } }, "Cambiar"), explainBox(s, rev)));
       }
       const wrapG = el("div", {}, groups.map(g => el("div", { class: "pgroup" }, g[0] ? el("h2", { text: g[0] }) : null, g[1].map(o => { const k = idx++; const id = "c" + s.sid + "_" + k;
         const inp = el("input", { type: "checkbox", id, checked: sel.has(k) ? true : null, onchange: e => { if (e.target.checked) { if (sel.size >= limit) { e.target.checked = false; st.textContent = "Ya has elegido " + limit + "."; return; } sel.add(k); } else sel.delete(k); btn.disabled = md === "pick" ? sel.size !== limit : sel.size === 0; st.textContent = md === "pick" ? sel.size + " de " + limit + " elegidas" : ""; } });

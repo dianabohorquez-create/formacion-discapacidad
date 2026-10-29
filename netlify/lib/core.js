@@ -63,6 +63,11 @@ export async function handle(req, store, PIN, now = Date.now()) {
     const st = await store.get(stateKey, { type: "json" });
     return json({ now, state: st || null });
   }
+  // ---- Si la persona formadora ha cerrado la sesión, no se aceptan respuestas ni reacciones
+  if ((route === "answer" || route === "react") && req.method === "POST") {
+    const st = await store.get(stateKey, { type: "json" });
+    if (st && st.closed) return json({ error: "La sesión está cerrada" }, 403);
+  }
   // ---- Público: enviar una respuesta anónima
   if (route === "answer" && req.method === "POST") {
     const { slide, id, v, k } = body;

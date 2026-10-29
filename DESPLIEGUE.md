@@ -58,7 +58,7 @@ Si no viste la opción de variables en el paso 6, publica igualmente y luego:
 ## Paso 5 · Ensayo con dos dispositivos
 
 1. En el ordenador, abre la dirección con un código de sesión, por ejemplo `https://TU-PROYECTO.netlify.app/?s=prueba`.
-2. Pulsa el botón verde **Conectar móviles (PIN)**, escribe tu PIN y pulsa **Conectar móviles**. El botón pasará a **En directo · prueba**.
+2. La pantalla pide el **PIN de presentadora** (los participantes no pueden entrar aquí; ven un enlace «¿Vienes a participar?»). Escribe tu PIN y pulsa **Entrar**. La etiqueta verde dirá **En directo · prueba**.
 3. Ve a **Presentar** y avanza hasta una dinámica (por ejemplo, la nube de palabras del Día 1).
 4. Con el móvil, escanea el QR de la diapositiva, elige equipo y responde.
 5. En unos 2 segundos la respuesta aparece en la pantalla.
@@ -70,7 +70,8 @@ Si no viste la opción de variables en el paso 6, publica igualmente y luego:
 - Usa un código distinto para cada grupo, por ejemplo `?s=grupo-a` o `?s=dgt-noviembre`. Las respuestas de cada código están separadas.
 - Abre la presentación en el ordenador que compartes en Teams y conecta con el PIN.
 - Pega en el chat de Teams el **enlace para participar desde el ordenador** (pestaña **Sesión en directo** → **Copiar enlace**). Es para quien use lector de pantalla o no tenga cámara.
-- Al final de cada jornada, pulsa **Borrar respuestas de hoy**. Al acabar el curso, pulsa **Borrar toda la sesión**.
+- Al terminar cada jornada, en **Sesión en directo** pulsa **Cerrar la sesión para los participantes**: los móviles muestran «La sesión ha terminado» y no se aceptan más respuestas. Al día siguiente pulsa **Abrir la sesión de nuevo**.
+- Al acabar el curso, pulsa **Borrar toda la sesión**.
 
 ## Cambios futuros (vídeos, textos)
 
