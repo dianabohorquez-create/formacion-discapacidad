@@ -1,0 +1,9 @@
+{
+  "name": "formacion-discapacidad",
+  "private": true,
+  "type": "module",
+  "description": "Formación en discapacidad · 3 jornadas con interacción por QR (Netlify)",
+  "dependencies": {
+    "@netlify/blobs": "11.1.4"
+  }
+}

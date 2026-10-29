@@ -1,0 +1,17 @@
+# Configuración de Netlify para la formación en discapacidad
+[build]
+  publish = "public"
+  command = "echo 'Sin compilación: se publica la carpeta public'"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+    X-Robots-Tag = "noindex"
+
+[[headers]]
+  for = "/index.html"
+  [headers.values]
+    Cache-Control = "no-cache"
