@@ -581,6 +581,14 @@ body.hc .ppdf label{color:#fff}
 .need-ph .photo{min-height:0;background:#E9EEE6}
 .need-ph .photo img,.need-ph .photo img.pic{object-fit:contain;animation:none}
 
+/* Cápsulas con vídeo propio */
+.capv{flex:1;min-height:0;display:grid;grid-template-columns:1.75fr 1fr;gap:26px}
+.capside{display:flex;flex-direction:column;gap:12px;color:#DCE8DE;font-size:20px}
+.capside p{margin:0}.capside ul{margin:0}
+.vtabs{display:flex;flex-direction:column;gap:8px;margin-top:6px}
+.vtabs .sbtn{justify-content:flex-start;text-align:left}
+.livechip[data-state="follow"]{background:#FFF1C2;border-color:#B87500;color:#5A3A00;cursor:pointer}
+
 </style>
 </head>
 <body>
@@ -633,19 +641,20 @@ body.hc .ppdf label{color:#fff}
 const IMGS = {"andres_amable": "img/andres_amable.jpg", "andres_concentrado": "img/andres_concentrado.jpg", "andres_instrucciones": "img/andres_instrucciones.jpg", "andres_interrumpido": "img/andres_interrumpido.jpg", "andres_miradas": "img/andres_miradas.jpg", "andres_sobrecarga": "img/andres_sobrecarga.jpg", "lucia_amable": "img/lucia_amable.jpg", "lucia_carta": "img/lucia_carta.jpg", "lucia_cita": "img/lucia_cita.jpg", "lucia_notif": "img/lucia_notif.jpg", "lucia_ventana": "img/lucia_ventana.jpg"};
 /* ===================== Configuración (editar aquí) ===================== */
 /* Las respuestas en directo las gestiona la API de Netlify (/api/*). El PIN de presentadora se configura en Netlify (variable PRESENTER_PIN). */
-/* Vídeos: pon aquí el enlace de YouTube o el nombre del archivo .mp4 de cada hueco (ver Guía → Vídeos pendientes). */
+/* Vídeos (carpeta public/videos). Si un vídeo tiene subtítulos, sube un .vtt con el mismo nombre (por ejemplo videos/pizarra-normativa.vtt).
+   Vídeos: pon aquí el enlace de YouTube o el nombre del archivo .mp4 de cada hueco (ver Guía → Vídeos pendientes). */
 window.VIDEO_URLS = {
-  "v1-1": "", // Jornada 1 · Vídeo pizarra · Diversidad, equidad e inclusión
+  "v1-1": "videos/pizarra-diversidad.mp4", // Jornada 1 · Vídeo pizarra · Diversidad, equidad e inclusión
   "v1-2": "", // Jornada 1 · Vídeo pizarra · Sesgos inconscientes
   "v1-3": "", // Jornada 1 · Necesidades específicas en el entorno laboral
-  "v2-1": "", // Jornada 2 · Testimonio 1
-  "v2-2": "", // Jornada 2 · Testimonio 2
+  "v2-1": "videos/testimonio-asperger.mp4", // Jornada 2 · Testimonio 1
+  "v2-2": "videos/testimonio-experiencias.mp4", // Jornada 2 · Testimonio 2
   "v2-3": "", // Jornada 2 · Simulación barrera auditiva (vídeo sin sonido)
-  "v2-4": "", // Jornada 2 · Vídeo pizarra · Lectura fácil y lenguaje claro
-  "v2-5": "", // Jornada 2 · Vídeo pizarra · Lenguaje inclusivo
-  "v3-1": "", // Jornada 3 · Vídeo pizarra · Pautas de interacción
-  "v3-2": "", // Jornada 3 · Vídeo pizarra · Normativa
-  "v3-3": ""  // Jornada 3 · Incapacidad laboral y certificado de discapacidad
+  "v2-4": "videos/pizarra-lectura-facil.mp4", // Jornada 2 · Vídeo pizarra · Lectura fácil y lenguaje claro
+  "v2-5": "videos/pizarra-lenguaje-inclusivo.mp4", // Jornada 2 · Vídeo pizarra · Lenguaje inclusivo
+  "v3-1": "videos/pizarra-pautas-interaccion.mp4", // Jornada 3 · Vídeo pizarra · Pautas de interacción
+  "v3-2": "videos/pizarra-normativa.mp4", // Jornada 3 · Vídeo pizarra · Normativa
+  "v3-3": "videos/incapacidad-vs-certificado.mp4"  // Jornada 3 · Incapacidad laboral y certificado de discapacidad
 };
 
 /* ===================== Parámetros de sesión ===================== */
@@ -772,7 +781,7 @@ S({ t: "table", min: 3, title: "El marco normativo del empleo público", fs: 18,
   ["LOPJ (art. 482.5)", "Reserva en la Administración de Justicia (10 % en las ofertas actuales)."]] });
 S({ t: "concept", min: 3, title: "Una brecha de empleo importante", layout: "full", diagram: "empleo",
   note: "1.941.500 personas con discapacidad reconocida en edad de trabajar. El 20,8 % de las ocupadas trabaja como asalariada en el sector público. La brecha no tiene una única causa." });
-S({ t: "capsula", min: 8, title: "Selección inclusiva y ofertas de empleo inclusivas", status: "Dos vídeos breves de #MaratonEmpleo.",
+S({ t: "capsula", min: 8, title: "Selección inclusiva y ofertas de empleo inclusivas", status: "Dos vídeos breves de #MaratonEmpleo.", videos: [["Selección inclusiva", "videos/seleccion-inclusiva.mp4"], ["Cómo redactar ofertas inclusivas", "videos/ofertas-inclusivas.mp4"]],
   points: ["Claves para una selección inclusiva.", "Cómo redactar ofertas que no excluyen."],
   links: [["Selección inclusiva: claves y consejos", "https://www.youtube.com/watch?v=UGNMva8lijQ"], ["Cómo redactar ofertas de empleo inclusivas", "https://www.youtube.com/watch?v=ibdghhDGnUk"]] });
 S({ t: "act", min: 4, kind: "Dinámica · La balanza", title: "¿Esta Administración es inclusiva?",
@@ -943,11 +952,11 @@ S({ t: "podium", min: 2, scope: "since", since: "mitos", title: "¿Qué equipo h
 S({ t: "concept", min: 2, title: "Ni todo es posible siempre, ni nada es imposible", lead: "No se trata de pensar que cualquier persona puede hacerlo todo, ni de asumir que no puede. Se trata de valorar cada situación con criterios objetivos, identificar las barreras y ofrecer los apoyos adecuados.",
   photo: "mitos", photoHint: ["Magnification app - Sherm for Disabled And Here.png", "Persona usando una aplicación de ampliación en el móvil", "Sherm"] });
 S({ t: "section", min: 0, title: "Testimonios en primera persona", lead: "Mirar las condiciones que permiten trabajar, no las historias de «superación».", time: "≈ 25 min" });
-S({ t: "videoph", min: 6, kind: "testimonio", title: "Testimonio 1" });
-S({ t: "videoph", min: 6, kind: "testimonio", title: "Testimonio 2" });
+S({ t: "videoph", min: 6, kind: "testimonio", title: "Testimonio: trabajar con síndrome de Asperger" });
+S({ t: "videoph", min: 9, kind: "testimonio", title: "Experiencias de personas con discapacidad" });
 S({ t: "act", min: 4, kind: "Dinámica · Antes pensaba / ahora pienso", title: "Después de los testimonios, ¿qué idea has cambiado? (una o dos palabras)",
   ix: { mode: "words", viz: "cloud" }, secs: 60, explain: "Fíjate en si la nube habla de <b>barreras y apoyos</b> o de <b>héroes</b>.", notes: "Prototipo 52 del Excel." });
-S({ t: "capsula", min: 6, title: "«Un día normal»", status: "Vídeo de cierre sobre inserción laboral, discapacidad y sus tópicos.", points: ["Cuenta los tópicos que aparecen.", "¿Cuáles has escuchado en tu entorno?"],
+S({ t: "capsula", min: 6, title: "«Un día normal»", videos: [["Un día normal", "videos/un-dia-normal.mp4"]], status: "Vídeo de cierre sobre inserción laboral, discapacidad y sus tópicos.", points: ["Cuenta los tópicos que aparecen.", "¿Cuáles has escuchado en tu entorno?"],
   links: [["UN DÍA NORMAL · Inserción laboral, discapacidad y sus tópicos", "https://www.youtube.com/watch?v=QENxnvdouB8"]] });
 S({ t: "ideas", min: 2, title: "Cierre del Tema 2", items: [
   ["Pregunta por la necesidad", "No por el diagnóstico."], ["Muchas no se ven", "Y pueden variar de un día a otro."], ["Los apoyos son individuales", "Necesidad, solución y preferencia."]] });
@@ -995,7 +1004,7 @@ S({ t: "act", min: 3, kind: "Una palabra", title: "¿Qué has sentido?", ix: { m
 S({ t: "pause", min: 15 });
 
 S({ t: "section", min: 0, title: "Accesibilidad universal y cognitiva", lead: "Que todo se pueda usar… y también entender.", time: "11:15 · 50 min" });
-S({ t: "capsula", min: 5, title: "¿Qué es la accesibilidad universal?", status: "Vídeo de #MaratonEmpleo.", points: ["Comprensible, utilizable y practicable por todas las personas.", "Con seguridad, comodidad y la mayor autonomía posible."],
+S({ t: "capsula", min: 5, title: "¿Qué es la accesibilidad universal?", videos: [["¿Qué es la accesibilidad universal?", "videos/accesibilidad-universal.mp4"]], status: "Vídeo de #MaratonEmpleo.", points: ["Comprensible, utilizable y practicable por todas las personas.", "Con seguridad, comodidad y la mayor autonomía posible."],
   links: [["¿Qué es la accesibilidad universal? | #MaratonEmpleo", "https://www.youtube.com/watch?v=L2zilQjbTa0"]] });
 S({ t: "concept", min: 3, title: "El camino y el resultado", layout: "full", diagram: "audu", lead: "La LGD (art. 2) distingue los dos conceptos." });
 S({ t: "concept", min: 3, title: "Accesibilidad cognitiva: que se pueda entender", lead: "Desde la Ley 6/2022 forma parte de la accesibilidad universal: lenguaje claro, lectura fácil, pictogramas, señalización comprensible, comunicación aumentativa y apoyos humanos.",
@@ -1153,7 +1162,7 @@ ESCENA(4, "La llamada · problemas de salud mental (reserva)", "Por teléfono, u
   [["Mujer", "No puedo más, no tengo para pagar el alquiler…"]],
   ["Pedirle que llame cuando esté más tranquila", "Dejarla hablar, reconocer lo difícil, resumir con calma sus opciones y ofrecer enviarlas por escrito", "Explicarle con detalle la normativa de la denegación"], 1,
   "Reconocer la emoción no es dar la razón. Si expresa ideas de hacerse daño: protocolo del servicio y Línea 024 (gratuita, 24 horas). Riesgo inmediato: 112.");
-S({ t: "capsula", min: 6, title: "«Lo incorrecto»", status: "Una nueva mirada hacia la discapacidad (Fundación Prevent). Comprueba duración y subtítulos.", points: ["Antes de verlo: cuenta cuántas situaciones incorrectas detectas."],
+S({ t: "capsula", min: 6, title: "«Lo incorrecto»", videos: [["Lo incorrecto", "videos/lo-incorrecto.mp4"]], status: "Una nueva mirada hacia la discapacidad (Fundación Prevent).", points: ["Antes de verlo: cuenta cuántas situaciones incorrectas detectas."],
   links: [["LO INCORRECTO · Una nueva mirada hacia la discapacidad", "https://www.youtube.com/watch?v=SBLiBLb23ZA"]] });
 S({ t: "act", min: 3, kind: "Dinámica · ¿Cuántas has contado?", title: "¿Cuántas situaciones incorrectas has detectado en el vídeo?", ix: { mode: "choice", viz: "bars", options: ["Menos de 3", "Entre 3 y 5", "Más de 5"], correct: null }, secs: 25,
   explain: "Comenta las que más se repiten y las que casi nadie vio." });
@@ -1172,7 +1181,7 @@ S({ t: "pause", min: 15 });
 /* ---------- TEMA 5 ---------- */
 TH(5);
 S({ t: "theme", min: 1 });
-S({ t: "videoph", min: 8, kind: "pizarra", title: "Normativa: de proteger a la persona a eliminar barreras" });
+S({ t: "videoph", min: 10, kind: "pizarra", title: "Normativa: de proteger a la persona a eliminar barreras" });
 S({ t: "vsum", min: 5, title: "Veinte años de normativa", diagram: "timeline", points: [] });
 S({ t: "concept", min: 3, title: "Lo que llega y lo que está en camino", bullets: [
   "<b>RD 707/2026</b> (accesibilidad cognitiva), en vigor el 2 de enero de 2027: formularios y guías en lectura fácil, apoyos para comprender los trámites y formación del personal.",
@@ -1199,7 +1208,7 @@ S({ t: "grid", min: 3, title: "No es lo mismo", cols: 3, cards: [
   ["Dependencia", "Valora la necesidad de apoyo para las actividades básicas de la vida diaria.", "people"],
   ["Incapacidad laboral", "Permanente total, absoluta o gran invalidez. La reconoce el INSS.", "law"]],
   note: "Una persona puede solicitar discapacidad, dependencia o ambas. Son figuras distintas, con efectos diferentes." });
-S({ t: "videoph", min: 4, kind: "video", title: "Diferencias entre incapacidad laboral y certificado de discapacidad", hint: "Comprueba que está actualizado tras la Ley 3/2023 y la Ley 2/2025." });
+S({ t: "videoph", min: 4, kind: "video", title: "Diferencias entre incapacidad laboral y certificado de discapacidad" });
 S({ t: "concept", min: 4, title: "El procedimiento en cinco pasos", layout: "full", diagram: "grado",
   note: "Urgente por salud, esperanza de vida, violencia de género o razones humanitarias (plazos a la mitad). Revisión si la situación cambia. Los pensionistas de incapacidad permanente se equiparan al 33 %; desde 2027 lo acreditan con su resolución." });
 S({ t: "table", min: 3, title: "Dónde se solicita", fs: 15, cols: ["Comunidad", "Organismo", "Comunidad", "Organismo"], rows: [
@@ -1539,6 +1548,7 @@ const bullets = a => `<ul class="b">${a.map(x => `<li>${x}</li>`).join("")}</ul>
 const IMG_ALT = { lucia_amable: "Lucía, sonriente en su cocina", andres_amable: "Andrés, sonriente en la oficina", lucia_carta: "Lucía lee preocupada una carta del servicio de empleo", lucia_cita: "Lucía intenta pedir cita previa con el móvil", lucia_notif: "Lucía, abrumada ante una notificación que no entiende", lucia_ventana: "Lucía mira por la ventana, pensativa", andres_concentrado: "Andrés trabaja concentrado en su ordenador", andres_interrumpido: "Andrés levanta la vista, interrumpido por un compañero", andres_instrucciones: "Andrés compara dos documentos con instrucciones distintas", andres_sobrecarga: "Andrés, saturado frente a la pantalla", andres_miradas: "Andrés mira de reojo a sus compañeros" };
 const pic = (n, cls = "") => `<img class="pic ${cls}" src="${IMGS[n]}" alt="${esc(IMG_ALT[n] || "")}">`;
 const photo = (ph) => typeof ph === "string" ? `<div class="photo filled">${pic(ph)}</div>` : ph ? `<div class="photo" data-src="${esc(ph[4] || (/^https:/.test(ph[0]) ? ph[0] : phUrl(ph[0])))}"${ph[4] ? ` data-fb="${esc(ph[0])}"` : ""} data-alt="${esc(ph[1])}" data-credit="${esc(ph[3] || ("Foto: " + (ph[2] ? ph[2] + " / " : "") + "Disabled And Here · CC BY 4.0"))}"><div class="ph-empty" aria-hidden="true">${ico("people", 1.3).replace("<svg", '<svg width="120" height="120"')}</div><span class="ph-credit"></span></div>` : "";
+const vtag = (src, title) => `<video src="${esc(src)}#t=1" controls preload="metadata" playsinline aria-label="${esc(strip(title))}"><track kind="captions" srclang="es" label="Español" src="${esc(src.replace(/\.(mp4|webm)$/i, ".vtt"))}" default></video>`;
 const qrBox = () => `<aside class="qrbox" aria-label="Participa desde el móvil o el ordenador"><div class="qr" data-qr></div><small>Escanea con la cámara</small><div class="pc" data-pclink></div><div class="live-n" data-n>0 respuestas</div></aside>`;
 const teamChip = t => `<span class="tcard" style="color:${TEAMS[t].color}">${TEAMS[t].shape} ${TEAMS[t].name}</span>`;
 const isOk = (s, k) => Array.isArray(s.ix.correct) ? s.ix.correct.includes(k) : s.ix.correct === k;
@@ -1631,12 +1641,13 @@ function renderSlide(s) {
     case "videoph": {
       cls = "dark"; const url = (window.VIDEO_URLS && VIDEO_URLS[s.vid]) || s.video || "";
       const yt = url.match(/(?:youtu\.be\/|v=|embed\/)([\w-]{11})/);
-      const media = yt ? `<iframe src="https://www.youtube-nocookie.com/embed/${yt[1]}?cc_load_policy=1&hl=es" title="${esc(s.title)}" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>` : /\.(mp4|webm)(\?|$)/i.test(url) ? `<video src="${esc(url)}" controls preload="metadata"></video>` : url ? `<div class="vph"><a class="sbtn primary" href="${esc(url)}" target="_blank" rel="noopener">Abrir vídeo</a></div>` : `<div class="vph"><div class="play">${ico("play").replace('stroke="currentColor"', 'stroke="#fff"').replace('fill="currentColor"', 'fill="#fff"')}</div><div class="vtag">${s.kind === "pizarra" ? "Vídeo pizarra" : s.kind === "testimonio" ? "Testimonio en vídeo" : "Vídeo"}</div><div class="vt">${s.title}</div><p style="margin:0;font-size:18px">${s.hint || "Espacio reservado: el vídeo se incorporará aquí (código " + s.vid + ")."}</p></div>`;
+      const media = yt ? `<iframe src="https://www.youtube-nocookie.com/embed/${yt[1]}?cc_load_policy=1&hl=es" title="${esc(s.title)}" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>` : /\.(mp4|webm)(\?|$)/i.test(url) ? vtag(url, s.title) : url ? `<div class="vph"><a class="sbtn primary" href="${esc(url)}" target="_blank" rel="noopener">Abrir vídeo</a></div>` : `<div class="vph"><div class="play">${ico("play").replace('stroke="currentColor"', 'stroke="#fff"').replace('fill="currentColor"', 'fill="#fff"')}</div><div class="vtag">${s.kind === "pizarra" ? "Vídeo pizarra" : s.kind === "testimonio" ? "Testimonio en vídeo" : "Vídeo"}</div><div class="vt">${s.title}</div><p style="margin:0;font-size:18px">${s.hint || "Espacio reservado: el vídeo se incorporará aquí (código " + s.vid + ")."}</p></div>`;
       h = `${kick((s.kind === "pizarra" ? "Vídeo pizarra" : s.kind === "testimonio" ? "Testimonio" : "Vídeo") + " · " + s.min + " min")}<h2 style="font-size:34px">${s.title}</h2><div class="vid">${media}</div>`; break; }
     case "vsum":
       h = `${kick("Resumen del vídeo pizarra")}<h2>${s.title}</h2><div class="vsum ${s.diagram && s.points.length ? "" : "nodiag"} ${s.cards ? "cardsum" : ""} ${s.stack ? "vstack" : ""}">${s.points.length ? `<ol>${s.points.map((p, k) => `<li style="animation-delay:${k * .25}s"><span>${p}</span></li>`).join("")}</ol>` : ""}${s.diagram ? `<div class="diagram">${DIAG[s.diagram]()}</div>` : ""}</div>${foot(s)}`; break;
     case "capsula":
       cls = "dark";
+      if (s.videos && !window.NO_LOCAL_VIDEO) { h = `${kick("Vídeo · " + s.min + " min")}<h2>${s.title}</h2><div class="capv"><div class="vid" data-capv>${vtag(s.videos[0][1], s.videos[0][0])}</div><div class="capside"><p>${s.status}</p>${bullets(s.points)}${s.videos.length > 1 ? `<div class="vtabs" role="group" aria-label="Vídeos">${s.videos.map((v, k) => `<button type="button" class="sbtn${k ? "" : " primary"}" data-vsrc="${esc(v[1])}" data-vtitle="${esc(v[0])}" aria-pressed="${!k}">${k + 1}. ${esc(v[0])}</button>`).join("")}</div>` : ""}<p class="hint" style="color:#C9D8DE">En Teams: comparte con «Incluir sonido del ordenador».</p></div></div>`; break; }
       h = `${kick("Vídeo · " + s.min + " min")}<h2>${s.title}</h2><div class="vid" style="display:grid;grid-template-columns:220px 1fr;gap:30px;padding:30px 40px;align-items:center;place-items:center start"><div class="play" style="width:170px;height:170px;border-radius:50%;background:var(--accent);display:grid;place-items:center;justify-self:center">${ico("play").replace('stroke="currentColor"', 'stroke="#fff"').replace('fill="currentColor"', 'fill="#fff"').replace("<svg", '<svg width="70" height="70"')}</div><div><p style="margin:0 0 10px;font-size:22px;color:#DCE8DE">${s.status}</p>${bullets(s.points)}<div class="links">${(s.links || []).map(l => `<a href="${l[1]}" target="_blank" rel="noopener">${l[0]} ↗</a>`).join("")}</div></div></div><p style="font-size:17px;color:#C9D8DE;margin:10px 0 0">En Teams: comparte la ventana del vídeo con «Incluir sonido del ordenador» y activa los subtítulos.</p>`; break;
     case "act": case "quiz": {
       cls = "act";
@@ -1893,7 +1904,7 @@ new ResizeObserver(fit).observe(wrap); document.addEventListener("fullscreenchan
 let lastDay = null;
 function go(i) {
   i = clamp(i, 0, S_.length - 1);
-  slides[cur].hidden = true; stopTimer();
+  slides[cur].hidden = true; stopTimer(); $$("video", slides[cur]).forEach(v => v.pause());
   cur = i; const el = slides[cur], s = S_[cur]; el.hidden = false;
   if (s.day !== lastDay) { lastDay = s.day; fillJump(); window.LIVE?.onDay?.(s.day); }
   fillQR(el); loadPhotos(el);
@@ -1953,6 +1964,7 @@ stage.addEventListener("click", e => {
   if (e.target.closest("[data-timer]")) { if (tId && s.t !== "pause") { stopTimer(); window.LIVE?.onTimer?.(0); return; } startTimer(sl, +e.target.closest("[data-timer]").dataset.timer); return; }
   if (e.target.closest("[data-hideres]")) { const on = sl.classList.toggle("noresults"); e.target.closest("[data-hideres]").textContent = on ? "Mostrar resultados" : "Ocultar resultados"; return; }
   if (e.target.closest("[data-ya]")) { sl.dataset.released = "1"; renderLive(s.i); return; }
+  const vb = e.target.closest("[data-vsrc]"); if (vb) { const box = $("[data-capv]", sl); box.innerHTML = vtag(vb.dataset.vsrc, vb.dataset.vtitle); $$("[data-vsrc]", sl).forEach(x => { const on = x === vb; x.classList.toggle("primary", on); x.setAttribute("aria-pressed", on); }); $("video", box).play().catch(() => {}); return; }
   const rb = e.target.closest("[data-reset]");
   if (rb) { if (rb.dataset.armed !== "1") { rb.dataset.armed = "1"; rb.textContent = "¿Seguro? Pulsa otra vez"; setTimeout(() => { if (rb.isConnected) { rb.dataset.armed = ""; rb.textContent = "↺ Reiniciar"; } }, 3500); return; } resetSlide(s); return; }
   if (e.target.closest("[data-shownotice]")) { const n = $("[data-notice]", sl), c = $("[data-ncount]", sl); n.hidden = false; let left = 60; c.textContent = left; const iv = setInterval(() => { left--; c.textContent = left; if (left <= 0 || n.hidden) { clearInterval(iv); n.hidden = true; } }, 1000); n.onclick = () => { n.hidden = true; }; return; }
@@ -2074,7 +2086,7 @@ function buildGuide() {
     <li><b>Muro de compromisos:</b> cada persona elige 4 conductas y las ordena; se proyectan las 10 más elegidas.</li>
     <li><b>Ensayo:</b> el botón «Simular» (D) genera respuestas ficticias en la diapositiva actual, solo en tu pantalla, para ver las animaciones.</li></ul></section>
    <section class="gsec" id="g-vid"><h2>Vídeos pendientes</h2><p>Los vídeos pizarra y los testimonios tienen su hueco. Tras cada vídeo pizarra hay una diapositiva con el resumen. Para incrustar un vídeo, edita <code>VIDEO_URLS</code> al principio de <code>index.html</code> con el código del hueco y su enlace (YouTube) o el nombre del archivo <code>.mp4</code> subido junto a la web.</p><ul>${vids}</ul></section>
-   <section class="gsec" id="g-foto"><h2>Fotos</h2><p>Fotos reales de personas con discapacidad de la colección <a href="https://www.affecttheverb.com/collection" target="_blank" rel="noopener">Disabled And Here</a> (CC BY 4.0), servidas desde Wikimedia Commons, con su crédito en pantalla. Si una red bloquea Commons, el hueco muestra un panel de color con un pictograma.</p></section>
+   <section class="gsec" id="g-foto"><h2>Fotos</h2><p>Las fotos de Lucía y Andrés son propias de la formación. Las demás son fotos reales de personas con discapacidad de la colección <a href="https://www.affecttheverb.com/collection" target="_blank" rel="noopener">Disabled And Here</a> (CC BY 4.0, servidas desde Wikimedia Commons) y de Pexels (licencia libre), con su crédito en pantalla. Si una red bloquea alguna, el hueco muestra un panel de color con un pictograma.</p></section>
   </div></div>`;
 }
 function buildTeams() {
@@ -2091,6 +2103,7 @@ function buildTeams() {
   <section class="gsec" id="t-guion"><h2>Texto para leer al inicio de cada jornada</h2><p style="font-size:18px;line-height:1.6">«Vamos a participar mucho desde el móvil. Escanea el código QR; si usas lector de pantalla o no tienes cámara, abre el enlace que pongo en el chat. No hace falta instalar nada ni registrarse, y no pedimos tu nombre ni tu correo. Elige un equipo: los quiz suman puntos y habrá podio. No compartas información sobre tu salud ni la de otras personas. La sesión no se graba. Tenemos los subtítulos en directo disponibles».</p></section></div></div>`;
 }
 buildGuide(); buildTeams();
+window.FD = { S_, THEMES, DAYS, strip }; // datos de solo lectura para generar las guías imprimibles
 
 /* ===================== Interacción en directo (API de Netlify) ===================== */
 const el = (tag, attrs = {}, ...kids) => {
@@ -2126,19 +2139,35 @@ async function initPresenter() {
   try { await api("state"); } catch (e) { if (!e.status || e.status === 404) { setChip("Modo demostración (sin servidor)", "demo"); buildSession(null); return; } }
   let closed = false;
   const lockEl = el("div", { id: "lock", role: "dialog", "aria-modal": "true", "aria-labelledby": "lockT" });
-  lockEl.innerHTML = `<div class="lockcard"><div class="brand-mark" aria-hidden="true"><span></span></div><h1 id="lockT">Formación en discapacidad</h1><p>Esta pantalla es solo para la persona formadora.</p>
-    <form id="lockForm" class="field"><label for="lockPin">PIN de presentadora</label><input id="lockPin" type="password" inputmode="numeric" autocomplete="current-password" maxlength="40" required><button class="btn" type="submit">Entrar</button></form>
+  lockEl.innerHTML = `<div class="lockcard"><div class="brand-mark" aria-hidden="true"><span></span></div><h1 id="lockT">Formación en discapacidad</h1><p>Esta pantalla es solo para las personas que presentan. Escribe tu clave personal.</p>
+    <form id="lockForm" class="field"><label for="lockPin">Clave de presentador/a</label><input id="lockPin" type="password" autocomplete="current-password" maxlength="60" required><button class="btn" type="submit">Entrar</button></form>
     <a class="lockpart" href="${esc(window.PART_URL)}">¿Vienes a participar? Entra aquí</a></div>`;
   const lock = on => { document.body.classList.toggle("locked", on); $(".top").inert = on; $("#main").inert = on; if (on) { if (!lockEl.isConnected) document.body.append(lockEl); setTimeout(() => $("#lockPin")?.focus(), 50); } else lockEl.remove(); };
   lockEl.querySelector("#lockForm").onsubmit = async e => { e.preventDefault(); const b = e.target.querySelector("button"); b.disabled = true; await login($("#lockPin").value.trim()); b.disabled = false; };
   lock(true);
   let pin = sstore.get("fd-pin"), isAdmin = false, lastKey = null, lastScores = "", since = Date.now(), pollT = null, fullAt = 0;
+  if (/^#clave=/.test(location.hash)) { try { pin = decodeURIComponent(location.hash.slice(7)); } catch (e) {} history.replaceState(null, "", location.pathname + location.search); }
+  let TAB = sstore.get("fd-tab"); if (!TAB) { TAB = Math.random().toString(36).slice(2, 12); sstore.set("fd-tab", TAB); }
+  let me = "", driver = null, alive = false, isDriver = false, follow = true, skewP = 0, lastBeat = 0;
+  const NAVK = ["current", "key", "day", "timerSecs", "timerEnd"];
+  const canDrive = () => isDriver || !alive;
+  const updChip = () => { if (!isAdmin) return; if (closed) return setChip("Sesión cerrada · " + SESSION, "off"); if (alive && !isDriver) return setChip("Controla " + driver.name + " · Tomar el control", "follow"); setChip("En directo · " + SESSION + (me ? " · " + me : ""), "on"); };
   LIVE_ADMIN = () => isAdmin;
   let raf = 0; const schedule = () => { if (!raf) raf = requestAnimationFrame(() => { raf = 0; renderLive(cur); }); };
   let queue = Promise.resolve();
-  const push = (patch, extra = {}) => { if (!isAdmin) return queue; queue = queue.then(() => api("admin", { method: "POST", pin, body: { op: "state", patch, ...extra } })).then(d => applyState(d.state)).catch(e => toast("No se ha podido sincronizar con los móviles (" + e.message + ").", 5000)); return queue; };
-  const admin = body => api("admin", { method: "POST", pin, body });
-  function applyState(st) { st = st || {}; OPEN_AT = { ...(st.openAt || {}) }; STORED = st.scores || {}; window._resets = st.resets || {}; const c = !!st.closed; if (c !== closed) { closed = c; buildSession(ctx); } }
+  const push = (patch, extra = {}) => { if (!isAdmin) return queue; const nav = extra.take || extra.openAtNow || NAVK.some(k => k in patch); if (nav && !canDrive() && !extra.take) return queue;
+    queue = queue.then(() => api("admin", { method: "POST", pin, body: { op: "state", dev: TAB, patch, ...extra } })).then(d => applyState(d.state, d.now)).catch(e => { if (e.status === 409) { alive = true; isDriver = false; updChip(); toast("Otra persona tiene el control. Pulsa «Tomar el control» si te toca presentar.", 5000); return; } toast("No se ha podido sincronizar con los móviles (" + e.message + ").", 5000); }); return queue; };
+  const admin = body => api("admin", { method: "POST", pin, body: { dev: TAB, ...body } });
+  function applyState(st, now) {
+    st = st || {}; OPEN_AT = { ...(st.openAt || {}) }; STORED = st.scores || {}; window._resets = st.resets || {};
+    if (now) skewP = now - Date.now();
+    const was = isDriver, prevName = driver && driver.name; driver = st.driver || null; alive = !!(driver && (Date.now() + skewP) - driver.at < 45000); isDriver = alive && driver.id === TAB;
+    if (was && !isDriver && alive) toast(driver.name + " ha tomado el control. Tu pantalla sigue su presentación.", 6000);
+    if (alive && !isDriver && follow && Number.isInteger(st.current) && st.current !== cur) { go(st.current); }
+    if (alive && !isDriver && follow) { const sid = S_[cur].sid; slides[cur].classList.toggle("revealed", !!(st.reveal && st.reveal[sid])); }
+    const c = !!st.closed; if (c !== closed || prevName !== (driver && driver.name)) { closed = c; buildSession(ctx); }
+    updChip();
+  }
   function sidsToPoll() {
     const s = S_[cur], set = new Set();
     if (s.ix) set.add(s.sid);
@@ -2156,16 +2185,16 @@ async function initPresenter() {
     try {
       const sids = sidsToPoll();
       const d = await api("poll", { pin, params: { sids: sids.join(","), since } });
-      applyState(d.state);
+      me = d.me || me; applyState(d.state, d.now);
+      if (isDriver && Date.now() - lastBeat > 15000) { lastBeat = Date.now(); admin({ op: "beat" }).catch(() => {}); }
       sids.forEach(sid => { const m = new Map(); (d.answers[sid] || []).forEach(a => m.set(a.id, { v: a.v, k: a.k, dev: a.id.split("_")[1], t: a.t })); ANS[sid] = m; });
       d.reactions.forEach(r => { since = Math.max(since, r.t); floatEmoji(r.e); });
-      setChip(closed ? "Sesión cerrada · " + SESSION : "En directo · " + SESSION, closed ? "off" : "on");
       schedule();
-    } catch (e) { if (e.status === 401) { isAdmin = false; pin = null; sstore.set("fd-pin", null); setChip("PIN incorrecto: vuelve a entrar", "off"); buildSession(ctx); lock(true); return; } setChip("Reconectando…", "off"); }
-    pollT = setTimeout(poll, 2000);
+    } catch (e) { if (e.status === 401) { isAdmin = false; pin = null; sstore.set("fd-pin", null); setChip("Clave incorrecta: vuelve a entrar", "off"); buildSession(ctx); lock(true); return; } setChip("Reconectando…", "off"); }
+    clearTimeout(pollT); pollT = setTimeout(poll, 2000);
   }
   window.LIVE = {
-    onGo(i) { const s = S_[i], k = phoneKey(s); if (k !== lastKey) { lastKey = k; push({ current: i, key: k, day: s.day, timerEnd: null }); } if (s.score && !OPEN_AT[s.sid]) push({}, { openAtNow: s.sid }); clearTimeout(pollT); pollT = setTimeout(poll, 300); },
+    onGo(i) { const s = S_[i], k = phoneKey(s); if (k !== lastKey) { lastKey = k; push({ current: i, key: k, day: s.day, timerEnd: null }); } else if (alive && canDrive()) push({ current: i }); if (s.score && !OPEN_AT[s.sid]) push({}, { openAtNow: s.sid }); clearTimeout(pollT); pollT = setTimeout(poll, 300); },
     onReveal(s, on) { push({ reveal: { [s.sid]: on } }); },
     onTimer(secs) { push({ timerSecs: secs || 0 }); },
     onDay() {},
@@ -2182,21 +2211,27 @@ async function initPresenter() {
   };
   function floatEmoji(e) { if (!EMOJIS.includes(e)) return; const f = el("div", { class: "floatemo", "aria-hidden": "true", text: e }); f.style.left = (8 + Math.random() * 84) + "%"; wrap.append(f); setTimeout(() => f.remove(), 3200); }
   async function login(p) {
-    try { const d = await api("poll", { pin: p, params: { sids: "" } }); pin = p; sstore.set("fd-pin", p); isAdmin = true; lastKey = null; lock(false); applyState(d.state); buildSession(ctx); LIVE.onGo(cur); poll(); if (closed) toast("La sesión «" + SESSION + "» está cerrada. Para que los móviles puedan participar, ábrela en «Sesión en directo».", 7000); return true; }
-    catch (e) { toast(e.status === 401 ? "PIN incorrecto." : e.status === 503 ? "Falta configurar el PIN en Netlify (variable PRESENTER_PIN)." : "No se ha podido conectar.", 5000); return false; }
+    try { const d = await api("poll", { pin: p, params: { sids: "" } }); pin = p; sstore.set("fd-pin", p); isAdmin = true; me = d.me || ""; lastKey = null; lock(false); applyState(d.state, d.now); buildSession(ctx); if (alive && !isDriver && driver.name === me) take(); else if (alive && !isDriver) toast("Hola, " + me + ". " + driver.name + " tiene el control: tu pantalla sigue su presentación.", 6000); else LIVE.onGo(cur); poll(); if (closed) toast("La sesión «" + SESSION + "» está cerrada. Para que los móviles puedan participar, ábrela en «Sesión en directo».", 7000); return true; }
+    catch (e) { toast(e.status === 401 ? "Clave incorrecta." : e.status === 503 ? "Faltan las claves en Netlify (variable PRESENTER_KEYS)." : "No se ha podido conectar.", 5000); return false; }
   }
-  const ctx = { get isAdmin() { return isAdmin; }, get closed() { return closed; }, login, logout: () => { isAdmin = false; pin = null; sstore.set("fd-pin", null); clearTimeout(pollT); setChip("Conectar móviles (PIN)", "off"); buildSession(ctx); lock(true); },
-    setClosed: async on => { await push({ closed: on, timerEnd: null }); setChip(on ? "Sesión cerrada · " + SESSION : "En directo · " + SESSION, on ? "off" : "on"); },
+  const take = () => push({ current: cur, key: phoneKey(S_[cur]), day: S_[cur].day, timerEnd: null }, { take: true }).then(() => { lastKey = phoneKey(S_[cur]); if (isDriver) toast("Ahora controlas tú la presentación y los móviles.", 4000); });
+  const ctx = { get isAdmin() { return isAdmin; }, get closed() { return closed; }, get me() { return me; }, get driver() { return alive ? driver.name : ""; }, get isDriver() { return isDriver; }, get follow() { return follow; },
+    setFollow: on => { follow = on; }, take, release: async () => { await admin({ op: "release" }).then(d => applyState(d.state, d.now)).catch(() => {}); },
+    login, logout: async () => { if (isDriver) await admin({ op: "release" }).catch(() => {}); isAdmin = false; pin = null; sstore.set("fd-pin", null); clearTimeout(pollT); setChip("Conectar móviles (clave)", "off"); buildSession(ctx); lock(true); },
+    setClosed: async on => { await push({ closed: on }); updChip(); },
     clear: async all => { await admin(all ? { op: "clear" } : { op: "clear", day: curDay() }); if (all) await push({ scores: {}, openAt: {}, rank: {}, reveal: {}, resets: {} }); Object.keys(ANS).forEach(k => delete ANS[k]); $$("[data-k]", stage).forEach(x => delete x.dataset.k); schedule(); } };
-  chip.onclick = () => { if (isAdmin) return; $("#tab-qr").click(); setTimeout(() => $("#lvPin")?.focus(), 50); };
-  setChip("Conectar móviles (PIN)", "off"); buildSession(ctx);
+  chip.onclick = () => { if (isAdmin) { if (alive && !isDriver) take(); return; } $("#tab-qr").click(); setTimeout(() => $("#lvPin")?.focus(), 50); };
+  setChip("Conectar móviles (clave)", "off"); buildSession(ctx);
   if (pin) login(pin);
 }
 function buildSession(ctx) {
   const v = $("#v-qr"), ok = !!ctx, admin = ctx && ctx.isAdmin;
   v.innerHTML = `<div class="guide"><nav class="toc" aria-label="Índice"><a href="#l-ses">Sesión</a>${admin ? '<a href="#l-close">Cerrar sesión</a>' : ""}<a href="#l-link">Enlaces</a><a href="#l-del">Borrar respuestas</a><a href="#l-help">Si algo falla</a></nav><div>
-   <section class="gsec" id="l-ses"><h2>Sesión en directo</h2><p>Estado: <b>${!ok ? "sin servidor: la presentación y el modo demostración funcionan, pero los móviles no se sincronizan (normal en la vista previa)" : admin ? "dirigiendo la sesión «" + esc(SESSION) + "»" : "sin conectar"}</b></p>
-    ${ok && !admin ? `<form id="lvPinForm" class="field"><label for="lvPin">PIN de presentadora</label><input id="lvPin" type="password" inputmode="numeric" autocomplete="current-password" maxlength="40"><button class="btn" type="submit" style="margin-top:6px;align-self:flex-start">Conectar móviles</button></form>` : ""}${admin ? `<button class="btn ghost" type="button" id="lvLogout">Desconectar</button>` : ""}
+   <section class="gsec" id="l-ses"><h2>Sesión en directo</h2><p>Estado: <b>${!ok ? "sin servidor: la presentación y el modo demostración funcionan, pero los móviles no se sincronizan (normal en la vista previa)" : admin ? "conectada a la sesión «" + esc(SESSION) + "» como " + esc(ctx.me) : "sin conectar"}</b></p>
+    ${admin ? `<p>${ctx.isDriver ? "<b>Tú controlas</b> la presentación: tus cambios de diapositiva llegan a los móviles." : ctx.driver ? "Controla la presentación: <b>" + esc(ctx.driver) + "</b>. Tus cambios de diapositiva no llegan a los móviles." : "Nadie controla la presentación ahora: la primera persona que avance la toma."}</p>
+     ${ctx.driver && !ctx.isDriver ? `<button class="btn" type="button" id="lvTake">Tomar el control</button> ` : ""}${ctx.isDriver ? `<button class="btn ghost" type="button" id="lvRelease">Ceder el control</button> ` : ""}
+     <label class="pchk" style="display:flex;gap:8px;align-items:center;margin:10px 0"><input type="checkbox" id="lvFollow" ${ctx.follow ? "checked" : ""}> Seguir la diapositiva de quien controla</label>` : ""}
+    ${ok && !admin ? `<form id="lvPinForm" class="field"><label for="lvPin">Clave de presentador/a</label><input id="lvPin" type="password" autocomplete="current-password" maxlength="60"><button class="btn" type="submit" style="margin-top:6px;align-self:flex-start">Conectar móviles</button></form>` : ""}${admin ? `<button class="btn ghost" type="button" id="lvLogout">Desconectar</button>` : ""}
     <h3>Código de sesión</h3><p>Usa un código por grupo y mantenlo los tres días (por ejemplo <code>grupo-a</code>): así se acumulan los puntos de la clasificación final.</p>
     <form id="lvForm" class="field"><label for="lvS">Código</label><input id="lvS" value="${esc(SESSION)}" maxlength="40"><button class="btn" type="submit" style="margin-top:6px;align-self:flex-start">Cambiar de sesión</button></form></section>
    ${admin ? `<section class="gsec" id="l-close"><h2>${ctx.closed ? "La sesión está cerrada" : "Cerrar la sesión"}</h2><p>${ctx.closed ? "Los móviles muestran «La sesión ha terminado» y no se aceptan respuestas. Ábrela de nuevo al empezar la siguiente jornada." : "Al terminar, cierra la sesión: la web de participación se desactiva en todos los móviles y deja de aceptar respuestas."}</p>
@@ -2205,11 +2240,15 @@ function buildSession(ctx) {
    <section class="gsec" id="l-del"><h2>Borrar las respuestas</h2><p>Por privacidad, borra las respuestas al terminar con cada grupo. No se puede deshacer.</p>
     <button class="btn" type="button" id="lvClearDay" ${admin ? "" : "disabled"}>Borrar respuestas de hoy</button> <button class="btn" type="button" id="lvClearAll" ${admin ? "" : "disabled"}>Borrar toda la sesión «${esc(SESSION)}»</button> <span class="hint" id="lvClrMsg" role="status"></span></section>
    <section class="gsec" id="l-help"><h2>Si algo falla</h2><ul>
-    <li><b>«Falta configurar el PIN»</b>: en Netlify, Project configuration → Environment variables → añade <code>PRESENTER_PIN</code> y vuelve a publicar.</li>
+    <li><b>«Faltan las claves»</b>: en Netlify, Project configuration → Environment variables → añade <code>PRESENTER_KEYS</code> (por ejemplo <code>Ana=clave-ana; Luis=clave-luis</code>) y vuelve a publicar.</li>
+    <li><b>Varias personas presentan</b>: cada una entra con su clave desde su ordenador. Solo una controla los móviles; las demás ven «Controla … · Tomar el control» y su pantalla sigue la presentación.</li>
     <li><b>Los móviles no cambian de diapositiva</b>: comprueba la etiqueta verde «En directo».</li>
     <li><b>Sin conexión</b>: usa «Simular» para ensayar y recoge respuestas en voz alta o en el chat.</li></ul></section></div></div>`;
   $("#lvPinForm") && ($("#lvPinForm").onsubmit = e => { e.preventDefault(); const p = $("#lvPin").value.trim(); if (p) ctx.login(p); });
   $("#lvLogout") && ($("#lvLogout").onclick = ctx.logout);
+  $("#lvTake") && ($("#lvTake").onclick = ctx.take);
+  $("#lvRelease") && ($("#lvRelease").onclick = ctx.release);
+  $("#lvFollow") && ($("#lvFollow").onchange = e => ctx.setFollow(e.target.checked));
   let closeArmed = false;
   $("#lvClose") && ($("#lvClose").onclick = async () => {
     if (!ctx.closed && !closeArmed) { closeArmed = true; $("#lvCloseMsg").textContent = "Pulsa otra vez para confirmar."; setTimeout(() => { closeArmed = false; }, 4000); return; }

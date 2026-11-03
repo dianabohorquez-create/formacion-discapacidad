@@ -110,10 +110,41 @@ Puedes ver el consumo real en Netlify → **Usage & billing**.
 - **El botón dice «sin servidor»**: el despliegue no incluyó la API.
   1. Revisa que la carpeta `netlify` está en GitHub en primer nivel.
   2. Revisa que el despliegue muestra «1 edge function».
-- **«Falta configurar el PIN»**: añade la variable `PRESENTER_PIN` (paso 3) y vuelve a publicar.
-- **«PIN incorrecto»**: comprueba el valor en **Environment variables**. Si lo cambias, vuelve a publicar.
+- **«Faltan las claves»**: añade la variable `PRESENTER_KEYS` (ver «Varias personas presentadoras») y vuelve a publicar.
+- **«Clave incorrecta»**: comprueba el valor en **Environment variables**. Si lo cambias, vuelve a publicar.
 - **Los móviles no ven el cambio de diapositiva**: comprueba que el ordenador muestra **En directo · código** y que el móvil abrió el QR de ese mismo código.
 - **El despliegue falla en «Installing dependencies»**:
   1. Abre el registro del despliegue.
   2. Copia las últimas líneas.
   3. Envíamelas para revisarlo.
+
+
+---
+
+## Varias personas presentadoras (cada una con su clave)
+
+Cada speaker entra a la misma web desde su ordenador con **su propia clave**.
+
+1. En Netlify, **Project configuration → Environment variables → Add a variable**:
+   - **Key:** `PRESENTER_KEYS`
+   - **Value:** nombre y clave de cada persona, separados por punto y coma. Ejemplo:
+     `Ana=verde-7421; Luis=azul-3388; Marta=ambar-9054`
+   - Usa claves largas y distintas para cada persona. Si alguien deja de presentar, borra su parte y vuelve a publicar.
+2. Vuelve a publicar: **Deploys → Trigger deploy → Deploy project**.
+3. Envía a cada persona **el enlace del grupo** (por ejemplo `https://TU-PROYECTO.netlify.app/?s=grupo-a`) y, **por otro canal**, su clave.
+   - Opcional: enlace directo que entra sin escribir la clave: `https://TU-PROYECTO.netlify.app/?s=grupo-a#clave=verde-7421`. Es cómodo, pero quien tenga el enlace puede entrar: no lo reenvíes.
+
+### Cómo se reparten el control
+
+- Solo **una persona controla** a la vez: sus cambios de diapositiva, temporizadores y «Revelar» llegan a los móviles.
+- Las demás ven la etiqueta amarilla **«Controla Ana · Tomar el control»** y su pantalla **sigue** la diapositiva de quien controla (se puede desactivar en «Sesión en directo»).
+- Cuando te toque presentar, pulsa **Tomar el control**. La otra persona recibe un aviso y pasa a seguir la presentación.
+- Si quien controla cierra el navegador, al minuto la siguiente persona que avance toma el control sola.
+- Cualquiera con clave puede reiniciar actividades, cerrar la sesión o borrar respuestas.
+- El antiguo `PRESENTER_PIN` sigue funcionando como clave común («Persona formadora»), pero es mejor una clave por persona.
+
+## Vídeos
+
+Los vídeos están en la carpeta `public/videos` y se reproducen dentro de la presentación (solo los descargan los ordenadores de quien presenta, no los móviles).
+- En Teams comparte la **ventana** del navegador con **«Incluir sonido del ordenador»**.
+- Subtítulos: si tienes el archivo `.vtt` de un vídeo, súbelo a `public/videos` con el mismo nombre (por ejemplo `pizarra-normativa.vtt`) y aparecerá el botón de subtítulos.

@@ -49,7 +49,18 @@ async function readAnswers(store, s, sid) {
   }).filter(Boolean);
 }
 
-export async function handle(req, store, PIN, now = Date.now()) {
+// Claves de las personas presentadoras: PRESENTER_KEYS = "Ana=clave1; Luis=clave2" (y/o PRESENTER_PIN = una clave común).
+export function parseKeys(keys, pin) {
+  const out = [];
+  String(keys || "").split(/[;\n,]+/).forEach(x => { const i = x.indexOf("="); if (i > 0) { const n = x.slice(0, i).trim().slice(0, 40), k = x.slice(i + 1).trim(); if (n && k) out.push([n, k]); } });
+  if (pin) out.push(["Persona formadora", String(pin)]);
+  return out;
+}
+const NAV = ["current", "key", "day", "timerSecs", "timerEnd"];
+const LEASE = 45000;
+
+export async function handle(req, store, auth, now = Date.now()) {
+  const KEYS = typeof auth === "string" ? parseKeys("", auth) : parseKeys(auth && auth.keys, auth && auth.pin);
   const url = new URL(req.url);
   const route = url.pathname.replace(/^\/api\/?/, "");
   let body = {};
@@ -88,9 +99,11 @@ export async function handle(req, store, PIN, now = Date.now()) {
   }
 
   // ---- Presentadora (requiere PIN)
-  if (!PIN) return json({ error: "Falta configurar PRESENTER_PIN en Netlify" }, 503);
+  if (!KEYS.length) return json({ error: "Falta configurar PRESENTER_KEYS (o PRESENTER_PIN) en Netlify" }, 503);
   const pin = req.headers.get("x-pin") || "";
-  if (!safeEqual(pin, PIN)) return json({ error: "PIN incorrecto" }, 401);
+  let me = null; for (const [n, k] of KEYS) if (safeEqual(pin, k)) me = n;
+  if (!me) return json({ error: "Clave incorrecta" }, 401);
+  const dev = typeof body.dev === "string" ? body.dev.slice(0, 32) : "";
 
   if (route === "poll" && req.method === "GET") {
     const sids = (url.searchParams.get("sids") || "").split(",").filter(x => SLIDE.test(x)).slice(0, 80);
@@ -104,17 +117,23 @@ export async function handle(req, store, PIN, now = Date.now()) {
     const reactions = [], old = [];
     rkeys.forEach(key => { const [t, , e] = key.split("/").pop().split("-"); if (+t > since) reactions.push({ t: +t, e: EMO[+e] }); if (now - +t > 60000) old.push(key); });
     if (old.length) await Promise.all(old.slice(0, 50).map(k => store.delete(k)));
-    return json({ now, state: state || null, answers, reactions });
+    return json({ now, me, state: state || null, answers, reactions });
   }
   if (route === "admin" && req.method === "POST") {
-    if (body.op === "state") {
+    if (body.op === "state" || body.op === "beat" || body.op === "release") {
       const st = (await store.get(stateKey, { type: "json" })) || {};
+      const d = st.driver, alive = d && now - d.at < LEASE, mine = alive && d.id === dev;
+      if (body.op === "beat") { if (mine) { st.driver = { ...d, at: now }; await store.setJSON(stateKey, st); } return json({ ok: true, now, me, state: st }); }
+      if (body.op === "release") { if (mine) { st.driver = null; await store.setJSON(stateKey, st); } return json({ ok: true, now, me, state: st }); }
       const patch = { ...(body.patch || {}) };
+      const nav = body.take || body.openAtNow || NAV.some(k => k in patch);
+      if (nav && alive && !mine && !body.take) return json({ error: "Otra persona tiene el control", driver: d.name, state: st }, 409);
+      if (nav && dev) patch.driver = { name: me, id: dev, at: now };
       if (patch.timerSecs !== undefined) { patch.timerEnd = patch.timerSecs ? now + patch.timerSecs * 1000 : null; delete patch.timerSecs; }
       if (body.openAtNow && SLIDE.test(body.openAtNow)) patch.openAt = { ...(patch.openAt || {}), [body.openAtNow]: now };
       const next = merge(st, patch); next.updatedAt = now;
       await store.setJSON(stateKey, next);
-      return json({ ok: true, now, state: next });
+      return json({ ok: true, now, me, state: next });
     }
     if (body.op === "reset" && SLIDE.test(body.slide || "")) return json({ ok: true, deleted: await delPrefix(store, `s/${s}/a/${body.slide}/`) });
     if (body.op === "hide" && SLIDE.test(body.slide || "") && typeof body.id === "string") return json({ ok: true, deleted: await delPrefix(store, `s/${s}/a/${body.slide}/${body.id}/`) });
