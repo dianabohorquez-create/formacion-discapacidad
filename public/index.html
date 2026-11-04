@@ -646,9 +646,8 @@ const IMGS = {"andres_amable": "img/andres_amable.jpg", "andres_concentrado": "i
 /* Vídeos (carpeta public/videos). Si un vídeo tiene subtítulos, sube un .vtt con el mismo nombre (por ejemplo videos/pizarra-normativa.vtt).
    Vídeos: pon aquí el enlace de YouTube o el nombre del archivo .mp4 de cada hueco (ver Guía → Vídeos pendientes). */
 window.VIDEO_URLS = {
-  "v1-1": "videos/pizarra-diversidad.mp4", // Jornada 1 · Vídeo pizarra · Diversidad, equidad e inclusión
+  "v1-1": "videos/pizarra-diversidad-v2.mp4", // Jornada 1 · Vídeo pizarra · Diversidad, equidad e inclusión
   "v1-2": "videos/pizarra-sesgos.mp4", // Jornada 1 · Vídeo pizarra · Sesgos inconscientes
-  "v1-3": "", // Jornada 1 · Necesidades específicas en el entorno laboral
   "v2-1": "videos/testimonio-asperger.mp4", // Jornada 2 · Testimonio 1
   "v2-2": "videos/testimonio-experiencias.mp4", // Jornada 2 · Testimonio 2
   "v2-3": "", // Jornada 2 · Simulación barrera auditiva (vídeo sin sonido)
@@ -876,7 +875,6 @@ S({ t: "concept", min: 3, title: "Lo que se ve y lo que no", layout: "full", dia
   note: "<b>Intelectual ≠ psicosocial.</b> Las discapacidades pueden ser <b>variables</b>. Puede haber varias a la vez y factores que se suman (ser mujer, la edad, el medio rural): discriminación múltiple o interseccional (Ley 15/2022)." });
 S({ t: "story", min: 2, who: "both", img: ["lucia_amable", "andres_amable"], title: "Lucía y Andrés, en dos filas distintas", text: "Lucía (hipoacusia) y Andrés (TDAH) están en dos filas distintas de la tabla, pero tienen algo en común: nadie «lo ve» a primera vista.",
   note: "¿Cuántas personas así atendemos cada día sin saberlo?" });
-S({ t: "videoph", min: 8, kind: "video", title: "Necesidades específicas en el entorno laboral" });
 const NEED = (kicker, title, barreras, apoyos, ejemplo, quote, photo) => S({ t: "need", min: 4, kicker, title, barreras, apoyos, ejemplo, quote, photo });
 NEED("Física", "La accesibilidad física es organización del trabajo", ["Escalones sin alternativa, puertas pesadas, pasos estrechos.", "Mostradores y puestos a una altura que no se puede usar.", "Desplazarse entre plantas o edificios sin necesidad."],
   "Itinerarios accesibles · ergonomía · periféricos adaptados · menos desplazamientos · puesto cerca del ascensor · software de dictado",
