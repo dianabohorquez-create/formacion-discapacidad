@@ -6,7 +6,7 @@
 
 # El PIN solo lo usa la función del servidor; nunca se escribe en la web.
 [build.environment]
-  SECRETS_SCAN_OMIT_KEYS = "PRESENTER_PIN,PRESENTER_KEYS"
+  SECRETS_SCAN_OMIT_KEYS = "PRESENTER_PIN,PRESENTER_KEYS,PRESENTER_KEY"
 
 [[headers]]
   for = "/*"

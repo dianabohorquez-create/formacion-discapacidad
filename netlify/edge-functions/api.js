@@ -5,7 +5,7 @@ import { handle } from "../lib/core.js";
 export default async (request) => {
   const store = getStore({ name: "formacion", consistency: "strong" });
   try {
-    return await handle(request, store, { keys: Netlify.env.get("PRESENTER_KEYS"), pin: Netlify.env.get("PRESENTER_PIN") });
+    return await handle(request, store, { keys: Netlify.env.get("PRESENTER_KEYS") || Netlify.env.get("PRESENTER_KEY"), pin: Netlify.env.get("PRESENTER_PIN") });
   } catch (e) {
     return new Response(JSON.stringify({ error: "Error del servidor" }), { status: 500, headers: { "content-type": "application/json" } });
   }
