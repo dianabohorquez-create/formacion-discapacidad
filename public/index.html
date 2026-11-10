@@ -645,6 +645,20 @@ body.hc .ppdf label{color:#fff}
 .plab{font-size:.85em;font-weight:700;margin-top:2px}
 .pitem input{min-height:46px;border:2px solid #C9D6BD;border-radius:12px;padding:6px 10px;font:inherit}
 
+.rgal{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;flex:1;min-height:0}
+.rg{background:#fff;border:2px solid #DCE5D3;border-top:6px solid var(--cc,#1F8A99);border-radius:14px;padding:10px 12px;display:flex;gap:10px;align-items:flex-start;min-height:0;overflow:hidden}
+.rg.c0{--cc:#1F8A99}.rg.c1{--cc:#E69A00}.rg.c2{--cc:#84BD00}.rg.c3{--cc:#9A5FC2}.rg.c4{--cc:#E0604A}
+.rgph{position:relative;flex:0 0 86px;height:86px;border-radius:50%;background:color-mix(in srgb,var(--cc) 18%,#fff);display:grid;place-items:center;overflow:hidden}
+.rgph span{font-family:var(--display);font-weight:800;font-size:26px;color:color-mix(in srgb,var(--cc) 70%,#1B3A4B)}
+.rgph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.rgtx{min-width:0}.rgcat{font-size:12px;font-weight:700;letter-spacing:.02em;color:color-mix(in srgb,var(--cc) 70%,#1B3A4B);text-transform:uppercase}
+.rg h3{margin:2px 0 3px;font-size:19px;line-height:1.1}.rg p{margin:0;font-size:15.5px;line-height:1.3;color:#33454D}
+.vis{display:grid;grid-template-columns:1fr 1fr;gap:22px;flex:1;min-height:0}
+.vcol{border-radius:16px;padding:16px 20px}.vcol.pro{background:#EEF6E3;border:2px solid #CFE3B4}.vcol.con{background:#FCEFEA;border:2px solid #F1CBBE}
+.vcol ul{margin:12px 0 0;padding-left:22px;display:flex;flex-direction:column;gap:16px;font-size:22px;line-height:1.35}
+.vcol.pro .tagline{color:#3F6A0B}.vcol.con .tagline{color:#A3361F}
+.vq{margin-top:14px;background:#1B3A4B;color:#fff;border-radius:16px;padding:16px 22px;font-family:var(--display);font-weight:700;font-size:22px;line-height:1.35}
+
 </style>
 </head>
 <body>
@@ -924,18 +938,6 @@ S({ t: "table", min: 6, title: "Seis tipologías, un mismo enfoque", fs: 18, col
   ["Psicosocial", "Barreras que encuentran personas con problemas de salud mental.", "Esquizofrenia, trastorno bipolar, depresión mayor, TOC.", "No."],
   ["Neurodivergencia", "Funcionamiento neurológico distinto. No es categoría legal.", "Autismo, TDAH, dislexia, Tourette.", "No."],
   ["Orgánica", "Pérdida de función de órganos internos; dolor y fatiga variables.", "Renal, cardiopatías, EPOC, Crohn, diabetes, lupus, cáncer.", "No."]] });
-S({ t: "act", min: 8, kind: "Dinámica · Conecta y nombra", title: "Une cada tipo de discapacidad con su categoría y escribe el referente más famoso que conozcas",
-  ix: { mode: "refs", viz: "refs", cats: ["Física", "Sensorial", "Intelectual", "Psicosocial", "Neurodesarrollo"], types: [
-    { name: "Movilidad", ex: "lesión medular, parálisis cerebral, amputación", cat: 0, demo: ["Teresa Perales", "Stephen Hawking", "Frida Kahlo"] },
-    { name: "Órganos internos", ex: "renal, cardiopatía, Crohn, diabetes", cat: 0, demo: ["Selena Gomez", "Sonia Sotomayor"] },
-    { name: "Visual", ex: "ceguera, baja visión", cat: 1, demo: ["Stevie Wonder", "Ray Charles", "Andrea Bocelli"] },
-    { name: "Auditiva", ex: "sordera, hipoacusia", cat: 1, demo: ["Beethoven", "Marlee Matlin"] },
-    { name: "Sordoceguera", ex: "pérdida visual y auditiva a la vez", cat: 1, demo: ["Helen Keller"] },
-    { name: "Del desarrollo intelectual", ex: "síndrome de Down y otras causas", cat: 2, demo: ["Pablo Pineda"] },
-    { name: "Salud mental", ex: "esquizofrenia, trastorno bipolar, depresión", cat: 3, demo: ["Simone Biles", "Carrie Fisher"] },
-    { name: "Autismo, TDAH, dislexia", ex: "neurodivergencia", cat: 4, demo: ["Greta Thunberg", "Temple Grandin", "Michael Phelps"] }] }, secs: 240,
-  explain: "<b>Física</b> incluye la orgánica, que casi nunca se ve. <b>Neurodesarrollo</b> no es una categoría legal. ¿Cuántos referentes son famosos del pasado o del deporte? ¿Y cuántos de nuestro entorno?",
-  notes: "Dinámica nueva. En el móvil, cada fila tiene la categoría (botones) y un campo para el referente; no hace falta rellenarlas todas. En pantalla salen, por tipo, la categoría más votada y los 3 referentes más repetidos. Pulsa «Revelar respuesta» para marcar la categoría correcta. Ideas para el debate: muchos referentes son «personas que superan» o famosos del pasado (sesgo de la inspiración); casi nadie nombra a alguien con discapacidad orgánica o de salud mental porque no se ve o no se cuenta; contarlo es una decisión personal. Si salen nombres de ficción o de personas que nunca han hablado de su discapacidad, coméntalo con respeto. Sobre neurodesarrollo: muchas personas autistas o con TDAH tienen la discapacidad reconocida como intelectual o psicosocial, y otras no la tienen reconocida." });
 S({ t: "concept", min: 3, title: "Lo que se ve y lo que no", layout: "full", diagram: "iceberg",
   note: "<b>Intelectual ≠ psicosocial.</b> Las discapacidades pueden ser <b>variables</b>. Puede haber varias a la vez y factores que se suman (ser mujer, la edad, el medio rural): discriminación múltiple o interseccional (Ley 15/2022)." });
 S({ t: "story", min: 2, who: "both", img: ["lucia_amable", "andres_amable"], title: "Lucía y Andrés, en dos filas distintas", text: "Lucía (hipoacusia) y Andrés (TDAH) están en dos filas distintas de la tabla, pero tienen algo en común: nadie «lo ve» a primera vista.",
@@ -1002,6 +1004,34 @@ S({ t: "act", min: 3, kind: "Repaso · ¿Qué les pasó ayer?", story: "andres",
 
 /* ---------- TEMA 2 (segunda parte) ---------- */
 TH(2);
+S({ t: "act", min: 8, kind: "Dinámica · Conecta y nombra", title: "¿Qué personaje famoso conoces con cada tipo de discapacidad? Escribe su nombre y elige la categoría",
+  ix: { mode: "refs", viz: "refs", label: "Nombre del personaje", cats: ["Física", "Sensorial", "Intelectual", "Psicosocial", "Neurodesarrollo"], types: [
+    { name: "Movilidad", ex: "lesión medular, parálisis cerebral, amputación", cat: 0, demo: ["Teresa Perales", "Stephen Hawking", "Frida Kahlo"] },
+    { name: "Órganos internos", ex: "renal, cardiopatía, Crohn, diabetes", cat: 0, demo: ["Selena Gomez", "Sonia Sotomayor"] },
+    { name: "Visual", ex: "ceguera, baja visión", cat: 1, demo: ["Stevie Wonder", "Ray Charles", "Andrea Bocelli"] },
+    { name: "Auditiva", ex: "sordera, hipoacusia", cat: 1, demo: ["Beethoven", "Marlee Matlin"] },
+    { name: "Sordoceguera", ex: "pérdida visual y auditiva a la vez", cat: 1, demo: ["Helen Keller"] },
+    { name: "Del desarrollo intelectual", ex: "síndrome de Down y otras causas", cat: 2, demo: ["Pablo Pineda"] },
+    { name: "Salud mental", ex: "esquizofrenia, trastorno bipolar, depresión", cat: 3, demo: ["Simone Biles", "Carrie Fisher"] },
+    { name: "Autismo, TDAH, dislexia", ex: "neurodivergencia", cat: 4, demo: ["Greta Thunberg", "Temple Grandin", "Michael Phelps"] }] }, secs: 240,
+  explain: "Mira los nombres que más se repiten: ¿cuántos son deportistas, artistas o figuras del pasado? ¿Cuántos son personas de nuestro entorno? ¿Para qué tipos casi nadie ha escrito un nombre?",
+  notes: "En el móvil, cada fila tiene un campo para escribir el nombre del personaje y los botones de categoría; no hace falta rellenarlas todas. En pantalla salen, por tipo, la categoría más votada y los 3 referentes más repetidos. Pulsa «Revelar respuesta» para marcar la categoría correcta. Ideas para el debate: muchos referentes son «personas que superan» o famosos del pasado (sesgo de la inspiración); casi nadie nombra a alguien con discapacidad orgánica o de salud mental porque no se ve o no se cuenta; contarlo es una decisión personal. Si salen nombres de ficción o de personas que nunca han hablado de su discapacidad, coméntalo con respeto. Sobre neurodesarrollo: muchas personas autistas o con TDAH tienen la discapacidad reconocida como intelectual o psicosocial, y otras no la tienen reconocida." });
+S({ t: "refgal", min: 4, title: "Algunos personajes conocidos, por categoría", cards: [
+  { name: "Teresa Perales", type: "Movilidad", cat: 0, slug: "teresa-perales", txt: "Nadadora paralímpica española, una de las deportistas con más medallas de la historia de España." },
+  { name: "Selena Gomez", type: "Órganos internos", cat: 0, slug: "selena-gomez", txt: "Cantante y actriz. Ha hablado en público de su lupus y de su trasplante de riñón." },
+  { name: "Andrea Bocelli", type: "Visual", cat: 1, slug: "andrea-bocelli", txt: "Tenor italiano. Es ciego desde los 12 años." },
+  { name: "Marlee Matlin", type: "Auditiva", cat: 1, slug: "marlee-matlin", txt: "Actriz sorda. Ganó el Óscar a la mejor actriz en 1987." },
+  { name: "Helen Keller", type: "Sordoceguera", cat: 1, slug: "helen-keller", txt: "Escritora y activista. Primera persona sordociega en licenciarse en la universidad." },
+  { name: "Pablo Pineda", type: "Síndrome de Down", cat: 2, slug: "pablo-pineda", txt: "Maestro y conferenciante malagueño con síndrome de Down, diplomado en Magisterio." },
+  { name: "Simone Biles", type: "Salud mental", cat: 3, slug: "simone-biles", txt: "Gimnasta. En Tokio 2020 se retiró de varias finales para cuidar su salud mental." },
+  { name: "Greta Thunberg", type: "Autismo", cat: 4, slug: "greta-thunberg", txt: "Activista por el clima. Ha contado en público que es autista (síndrome de Asperger)." }],
+  note: "Casi todas son famosas por algo extraordinario. ¿Qué imagen de la discapacidad transmite eso?",
+  notes: "Compara con lo que ha escrito la sala. Todas estas personas han hablado en público de su discapacidad: contarlo es una decisión personal. Fotos: si tienes fotos con permiso de uso, guárdalas en public/img/referentes con el nombre de cada tarjeta (por ejemplo teresa-perales.jpg) y aparecerán solas; mientras tanto se ven las iniciales." });
+S({ t: "visib", min: 4, kicker: "Conclusión de la actividad", title: "La visibilidad tiene dos caras",
+  pros: ["Menos miedo y menos silencio ante la discapacidad.", "Referentes en los que verse, sobre todo para niñas y niños.", "Más conversación pública sobre derechos, accesibilidad y salud mental."],
+  cons: ["<b>El superhéroe:</b> solo «cuenta» quien logra algo extraordinario (sesgo de la inspiración).", "<b>«Si quiere, puede»:</b> el éxito parece depender del esfuerzo, no de las barreras y los apoyos.", "<b>«Si no se ve, no existe»:</b> la discapacidad orgánica y la psicosocial apenas aparecen.", "<b>Genio o tragedia:</b> como si cada persona fuera un talento excepcional o una historia triste."],
+  quote: "La visibilidad de la discapacidad ha ayudado a que la sociedad tenga menos miedo, pero también ha fomentado mitos y sesgos. Por eso, ahora vamos a poner a prueba esos mitos.",
+  notes: "Esta es la conclusión de la dinámica. Enlaza directamente con «Mitos y realidades»: los mitos que vamos a votar nacen, en parte, de cómo se ha mostrado la discapacidad." });
 S({ t: "section", min: 0, title: "Mitos y realidades", lead: "Primero votas, después ves el resultado de la sala y por último revelamos el dato.", time: "9:10 · 60 min" });
 const MITO = (n, text, correct, explain) => S({ t: "act", min: 2.5, kind: "Tira y afloja · Mito " + n + " de 8", title: text,
   ix: { mode: "choice", viz: "tug", score: true, options: ["Verdadero", "Falso"], correct }, secs: 25, explain });
@@ -1619,6 +1649,7 @@ const foot = s => `<div class="foot"><span><b>${s.th ? "Tema " + s.th : "Jornada
 const bullets = a => `<ul class="b">${a.map(x => `<li>${x}</li>`).join("")}</ul>`;
 const IMG_ALT = { pdf_escaneado: "Página escaneada de la guía de cita previa", pdf_accesible: "Página de la guía de cita previa con texto real", lucia_amable: "Lucía, sonriente en su cocina", andres_amable: "Andrés, sonriente en la oficina", lucia_carta: "Lucía lee preocupada una carta del servicio de empleo", lucia_cita: "Lucía intenta pedir cita previa con el móvil", lucia_notif: "Lucía, abrumada ante una notificación que no entiende", lucia_ventana: "Lucía mira por la ventana, pensativa", andres_concentrado: "Andrés trabaja concentrado en su ordenador", andres_interrumpido: "Andrés levanta la vista, interrumpido por un compañero", andres_instrucciones: "Andrés compara dos documentos con instrucciones distintas", andres_sobrecarga: "Andrés, saturado frente a la pantalla", andres_miradas: "Andrés mira de reojo a sus compañeros" };
 const pic = (n, cls = "") => `<img class="pic ${cls}" src="${IMGS[n]}" alt="${esc(IMG_ALT[n] || "")}">`;
+const CATS_REF = ["Física", "Sensorial", "Intelectual", "Psicosocial", "Neurodesarrollo"];
 const photo = (ph) => typeof ph === "string" ? `<div class="photo filled">${pic(ph)}</div>` : ph ? `<div class="photo" data-src="${esc(ph[4] || (/^https:/.test(ph[0]) ? ph[0] : phUrl(ph[0])))}"${ph[4] ? ` data-fb="${esc(ph[0])}"` : ""} data-alt="${esc(ph[1])}" data-credit="${esc(ph[3] || ("Foto: " + (ph[2] ? ph[2] + " / " : "") + "Disabled And Here · CC BY 4.0"))}"><div class="ph-empty" aria-hidden="true">${ico("people", 1.3).replace("<svg", '<svg width="120" height="120"')}</div><span class="ph-credit"></span></div>` : "";
 const vtag = (src, title) => `<video src="${esc(src)}#t=1" controls preload="metadata" playsinline aria-label="${esc(strip(title))}"><track kind="captions" srclang="es" label="Español" src="${esc(src.replace(/\.(mp4|webm)$/i, ".vtt"))}" default></video>`;
 const qrBox = () => `<aside class="qrbox" aria-label="Participa desde el móvil o el ordenador"><div class="qr" data-qr></div><small>Escanea con la cámara</small><div class="pc" data-pclink></div><div class="live-n" data-n>0 respuestas</div></aside>`;
@@ -1686,6 +1717,10 @@ function renderSlide(s) {
         <div class="chips" style="margin-top:20px">${TEAMS.map((t, k) => `<span style="background:${t.color};color:#fff;font-size:24px;padding:10px 22px">${t.shape} ${t.name} · <b data-tn="${k}">0</b></span>`).join("")}</div></div>
         <aside class="qrbox" style="padding:18px"><div class="qr" data-qr style="width:260px;height:260px"></div><div class="pc" data-pclink style="font-size:15px"></div><div class="live-n" data-n>0 conectadas</div></aside></div>${foot(s)}`;
       label = "Escanea el QR y elige tu equipo"; break;
+    case "refgal":
+      h = `${kick(s.kicker || "Ejemplos")}<h2>${s.title}</h2><div class="rgal">${s.cards.map((c, k) => `<div class="rg c${c.cat}" style="animation:in .45s ${k * .06}s both"><div class="rgph"><span aria-hidden="true">${esc(c.name.split(" ").map(w => w[0]).slice(0, 2).join(""))}</span><img src="img/referentes/${c.slug}.jpg" alt="${esc(c.name)}" onerror="this.remove()"></div><div class="rgtx"><div class="rgcat">${esc(c.type)} · ${esc(CATS_REF[c.cat])}</div><h3>${esc(c.name)}</h3><p>${c.txt}</p></div></div>`).join("")}</div>${s.note ? `<div class="note">${s.note}</div>` : ""}${foot(s)}`; break;
+    case "visib":
+      h = `${kick(s.kicker)}<h2>${s.title}</h2><div class="vis"><div class="vcol pro"><div class="tagline">Lo que ha ganado la sociedad</div><ul>${s.pros.map(x => `<li>${x}</li>`).join("")}</ul></div><div class="vcol con"><div class="tagline">Mitos y sesgos que ha fomentado</div><ul>${s.cons.map(x => `<li>${x}</li>`).join("")}</ul></div></div><div class="quote vq">${s.quote}</div>${foot(s)}`; break;
     case "duo":
       h = `${kick("Hilo conductor")}<h2>${s.title}</h2><div class="duo">
         <div class="person">${pic("lucia_amable", "duo")}<div><h3>Lucía</h3><div class="age">52 años · ciudadana</div><p>Ha perdido su empleo tras 20 años. Tiene hipoacusia y usa audífonos; no tiene certificado. Necesita pedir la prestación: le cuesta el teléfono, la cita online le da problemas y no entiende la notificación.</p></div></div>
@@ -2605,11 +2640,11 @@ async function initParticipant() {
     }
     if (md === "refs") {
       const st = status(), prev = (my && typeof my === "object" && !Array.isArray(my)) ? my : {}, vals = s.ix.types.map((_, k) => ({ c: prev[k] ? prev[k].c : -1, t: prev[k] ? prev[k].t : "" }));
-      const rows = s.ix.types.map((ty, k) => { const fid = "r" + s.sid + "_" + k, inp = el("input", { id: fid, maxlength: 60, autocomplete: "off", value: vals[k].t, placeholder: "Nombre del referente" });
+      const rows = s.ix.types.map((ty, k) => { const fid = "r" + s.sid + "_" + k, inp = el("input", { id: fid, maxlength: 60, autocomplete: "off", value: vals[k].t, placeholder: s.ix.label || "Nombre del referente" });
         inp.addEventListener("focus", () => busy = true); inp.addEventListener("blur", () => { busy = false; vals[k].t = inp.value; if (pending) setTimeout(() => !busy && render(), 300); }); inp.addEventListener("input", () => vals[k].t = inp.value);
         return el("div", { class: "pitem", role: "group", "aria-label": ty.name }, el("div", { class: "q", text: ty.name }), el("div", { class: "phint", text: ty.ex }),
           el("div", { class: "row", role: "group", "aria-label": "Categoría de " + ty.name }, s.ix.cats.map((o, j) => { const b = el("button", { type: "button", "aria-pressed": String(vals[k].c === j), onclick: () => { vals[k].c = j; $$("button", b.parentNode).forEach((x, n) => x.setAttribute("aria-pressed", n === j)); } }, o); return b; })),
-          el("label", { for: fid, class: "plab", text: "Referente más famoso" }), inp,
+          el("label", { for: fid, class: "plab", text: s.ix.label || "Referente más famoso" }), inp,
           rev ? el("div", { class: "pstatus", text: "Categoría: " + s.ix.cats[ty.cat] }) : null); });
       const btn = el("button", { type: "button", class: "pbtn", text: Object.keys(prev).length ? "Actualizar mis respuestas" : "Enviar mis respuestas" });
       btn.onclick = async () => {
