@@ -626,6 +626,25 @@ body.hc .ppdf label{color:#fff}
 .sim-foot .sim-say{flex:1;font-size:18px}
 .sim-voice{font-size:16px;display:flex;gap:6px;align-items:center;white-space:nowrap;color:var(--grey)}
 
+/* Conecta y nombra */
+.refs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;flex:1;min-height:0}
+.rcard{background:#fff;border:2px solid #DCE5D3;border-top:6px solid var(--cc,#1F8A99);border-radius:14px;padding:8px 11px;display:flex;flex-direction:column;gap:3px;min-height:0;overflow:hidden}
+.rcard.c0{--cc:#1F8A99}.rcard.c1{--cc:#E69A00}.rcard.c2{--cc:#84BD00}.rcard.c3{--cc:#9A5FC2}.rcard.c4{--cc:#E0604A}
+.rcard .rtype{font-family:var(--display);font-weight:800;font-size:18px;line-height:1.1}
+.rcard .rex{font-size:12.5px;color:#5A6A70;line-height:1.2}
+.rcard .rcat{font-size:13px;color:#33454D;display:flex;flex-wrap:wrap;gap:0 8px}
+.rcard .rok{display:none;font-family:var(--display);font-weight:800;color:var(--cc)}
+.revealed .rcard .rok{display:inline}
+.revealed .rcard .rex{display:none}
+.revealed .rcard li:nth-child(n+3){display:none}
+.rcard ol{list-style:none;margin:2px 0 0;padding:0;display:flex;flex-direction:column;gap:3px}
+.rcard li{display:flex;justify-content:space-between;gap:6px;font-size:15px;background:#F5F7F2;border-radius:8px;padding:3px 7px}
+.rcard li span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.rcard li b{color:var(--cc)}
+.rcard li.w{color:#8A979C;background:none;padding-left:0}
+.plab{font-size:.85em;font-weight:700;margin-top:2px}
+.pitem input{min-height:46px;border:2px solid #C9D6BD;border-radius:12px;padding:6px 10px;font:inherit}
+
 </style>
 </head>
 <body>
@@ -905,6 +924,18 @@ S({ t: "table", min: 6, title: "Seis tipologías, un mismo enfoque", fs: 18, col
   ["Psicosocial", "Barreras que encuentran personas con problemas de salud mental.", "Esquizofrenia, trastorno bipolar, depresión mayor, TOC.", "No."],
   ["Neurodivergencia", "Funcionamiento neurológico distinto. No es categoría legal.", "Autismo, TDAH, dislexia, Tourette.", "No."],
   ["Orgánica", "Pérdida de función de órganos internos; dolor y fatiga variables.", "Renal, cardiopatías, EPOC, Crohn, diabetes, lupus, cáncer.", "No."]] });
+S({ t: "act", min: 8, kind: "Dinámica · Conecta y nombra", title: "Une cada tipo de discapacidad con su categoría y escribe el referente más famoso que conozcas",
+  ix: { mode: "refs", viz: "refs", cats: ["Física", "Sensorial", "Intelectual", "Psicosocial", "Neurodesarrollo"], types: [
+    { name: "Movilidad", ex: "lesión medular, parálisis cerebral, amputación", cat: 0, demo: ["Teresa Perales", "Stephen Hawking", "Frida Kahlo"] },
+    { name: "Órganos internos", ex: "renal, cardiopatía, Crohn, diabetes", cat: 0, demo: ["Selena Gomez", "Sonia Sotomayor"] },
+    { name: "Visual", ex: "ceguera, baja visión", cat: 1, demo: ["Stevie Wonder", "Ray Charles", "Andrea Bocelli"] },
+    { name: "Auditiva", ex: "sordera, hipoacusia", cat: 1, demo: ["Beethoven", "Marlee Matlin"] },
+    { name: "Sordoceguera", ex: "pérdida visual y auditiva a la vez", cat: 1, demo: ["Helen Keller"] },
+    { name: "Del desarrollo intelectual", ex: "síndrome de Down y otras causas", cat: 2, demo: ["Pablo Pineda"] },
+    { name: "Salud mental", ex: "esquizofrenia, trastorno bipolar, depresión", cat: 3, demo: ["Simone Biles", "Carrie Fisher"] },
+    { name: "Autismo, TDAH, dislexia", ex: "neurodivergencia", cat: 4, demo: ["Greta Thunberg", "Temple Grandin", "Michael Phelps"] }] }, secs: 240,
+  explain: "<b>Física</b> incluye la orgánica, que casi nunca se ve. <b>Neurodesarrollo</b> no es una categoría legal. ¿Cuántos referentes son famosos del pasado o del deporte? ¿Y cuántos de nuestro entorno?",
+  notes: "Dinámica nueva. En el móvil, cada fila tiene la categoría (botones) y un campo para el referente; no hace falta rellenarlas todas. En pantalla salen, por tipo, la categoría más votada y los 3 referentes más repetidos. Pulsa «Revelar respuesta» para marcar la categoría correcta. Ideas para el debate: muchos referentes son «personas que superan» o famosos del pasado (sesgo de la inspiración); casi nadie nombra a alguien con discapacidad orgánica o de salud mental porque no se ve o no se cuenta; contarlo es una decisión personal. Si salen nombres de ficción o de personas que nunca han hablado de su discapacidad, coméntalo con respeto. Sobre neurodesarrollo: muchas personas autistas o con TDAH tienen la discapacidad reconocida como intelectual o psicosocial, y otras no la tienen reconocida." });
 S({ t: "concept", min: 3, title: "Lo que se ve y lo que no", layout: "full", diagram: "iceberg",
   note: "<b>Intelectual ≠ psicosocial.</b> Las discapacidades pueden ser <b>variables</b>. Puede haber varias a la vez y factores que se suman (ser mujer, la edad, el medio rural): discriminación múltiple o interseccional (Ley 15/2022)." });
 S({ t: "story", min: 2, who: "both", img: ["lucia_amable", "andres_amable"], title: "Lucía y Andrés, en dos filas distintas", text: "Lucía (hipoacusia) y Andrés (TDAH) están en dos filas distintas de la tabla, pero tienen algo en común: nadie «lo ve» a primera vista.",
@@ -1619,6 +1650,7 @@ function vizSkeleton(s) {
   if (v === "top5" || v === "qa") return `<ol class="qalist" data-qa></ol><div class="wait" data-qaw>Las respuestas se agruparán por temas y aparecerán aquí las 5 más repetidas.</div>`;
   if (v.startsWith("items") || v === "checklist") return `<div class="items ${s.ix.items.length > 4 ? "dense" : ""}">${s.ix.items.map((it, k) => `<div class="irow" data-item="${k}"><div class="it">${it.text}${it.correct != null ? `<span class="rec">✓ ${s.ix.itemOpts[it.correct]}</span>` : ""}</div><div data-ibar></div></div>`).join("")}</div>`;
   if (v === "commit") return `<div class="race" data-commit></div>`;
+  if (v === "refs") return `<div class="refs">${s.ix.types.map((t, k) => `<div class="rcard c${t.cat}" data-ref="${k}"><div class="rtype">${t.name}</div><div class="rex">${t.ex}</div><div class="rcat"><span data-rc>Categoría: esperando…</span><span class="rok">✓ ${s.ix.cats[t.cat]}</span></div><ol data-rl></ol></div>`).join("")}</div>`;
   return "";
 }
 function tugSVG() {
@@ -1706,7 +1738,7 @@ function renderSlide(s) {
       const chan = s.t === "quiz" ? `Quiz del Tema ${s.th} · ${s.qn} de 5` : s.kind;
       const scene = s.scene ? `<div class="scene"><div class="ctx"><b>${s.scene.perfil}.</b> ${s.scene.contexto}</div>${s.scene.lines.map((l, k) => `<div class="line" style="animation-delay:${.4 + k * .9}s"><span class="who">${l[0]}</span><span class="say">${l[1]}</span></div>`).join("")}</div>` : "";
       const notice = s.notice ? `<div class="notice" data-notice hidden><div class="ncount" data-ncount>60</div><div class="paper"><h4>REQUERIMIENTO DE DOCUMENTACIÓN · Expte. 2026/PRE/004417</h4><p>Examinada la solicitud de prestación por desempleo de nivel contributivo presentada por la persona interesada, y advertida la carencia de la documentación acreditativa de la situación legal de desempleo exigida por el artículo 267 del Texto Refundido de la Ley General de la Seguridad Social, se le requiere, de conformidad con lo dispuesto en el artículo 68 de la Ley 39/2015, de 1 de octubre, para que en el plazo de diez días hábiles, a computar desde el día siguiente al de la notificación del presente requerimiento, cuya fecha de puesta a disposición en sede electrónica consta el 31 de octubre, proceda a la aportación del certificado de empresa o documento equivalente, bien a través de la sede electrónica, bien en cualquiera de los registros previstos en el artículo 16.4 del citado texto legal, con indicación de que, de no hacerlo, se le tendrá por desistida de su petición, previa resolución que deberá ser dictada en los términos previstos en el artículo 21 de la misma ley. Contra la presente, que no pone fin a la vía administrativa, no cabe recurso, sin perjuicio de que pueda alegarse oposición para su consideración en la resolución que ponga fin al procedimiento.</p></div></div>` : "";
-      const tools = `<button class="sbtn primary" type="button" data-reveal>${ico("eye")}${s.ix.correct != null || s.ix.items?.some(x => x.correct != null) ? "Revelar respuesta" : "Mostrar claves"}</button>${s.ix.viz === "cascade" ? `<button class="sbtn go" type="button" data-ya>¡Ya!</button>` : ""}${s.notice ? `<button class="sbtn go" type="button" data-shownotice>Mostrar notificación (60 s)</button>` : ""}${s.t !== "quiz" ? `<button class="sbtn" type="button" data-timer="${s.secs || 60}">${ico("timer")}Temporizador</button>` : ""}<button class="sbtn" type="button" data-hideres>Ocultar resultados</button><button class="sbtn" type="button" data-reset>↺ Reiniciar</button><span class="timer" data-tdisp></span>`;
+      const tools = `<button class="sbtn primary" type="button" data-reveal>${ico("eye")}${s.ix.correct != null || s.ix.types || s.ix.items?.some(x => x.correct != null) ? "Revelar respuesta" : "Mostrar claves"}</button>${s.ix.viz === "cascade" ? `<button class="sbtn go" type="button" data-ya>¡Ya!</button>` : ""}${s.notice ? `<button class="sbtn go" type="button" data-shownotice>Mostrar notificación (60 s)</button>` : ""}${s.t !== "quiz" ? `<button class="sbtn" type="button" data-timer="${s.secs || 60}">${ico("timer")}Temporizador</button>` : ""}<button class="sbtn" type="button" data-hideres>Ocultar resultados</button><button class="sbtn" type="button" data-reset>↺ Reiniciar</button><span class="timer" data-tdisp></span>`;
       const ring = s.t === "quiz" ? `<div class="ring" data-ring><svg viewBox="0 0 92 92"><circle cx="46" cy="46" r="40" fill="none" stroke="#E3EADB" stroke-width="9"/><circle cx="46" cy="46" r="40" fill="none" stroke="var(--accent)" stroke-width="9" stroke-linecap="round" stroke-dasharray="251.3" stroke-dashoffset="0" data-arc/></svg><b data-rnum>${s.secs}</b></div>` : "";
       const core = `${s.situ ? (s.img ? `<div class="situ-img">${pic(s.img)}<p class="situ">${s.situ}</p></div>` : `<p class="situ">${s.situ}</p>`) : ""}<div style="display:flex;gap:16px;align-items:center"><h2 style="flex:1">${s.title}</h2>${ring}</div><div class="vizbox viz-live" data-viz>${vizSkeleton(s)}</div>`;
       h = `${actHead(chan)}<div class="act-body"><div class="act-main">${scene ? `<div class="scene-grid">${scene}<div class="scene-q">${core}</div></div>` : core}<div class="explain">${s.explain || ""}</div>${s.score ? `<div class="minirace"><h4>Clasificación del tema en vivo</h4><div class="race" data-mrace></div></div>` : ""}<div class="act-bar">${tools}</div></div>${qrBox()}</div>${notice}`;
@@ -1854,7 +1886,17 @@ const VIZ = {
     });
     if (kind === "checklist") { const sc = auditScore([s]); const chip = el.closest(".sl").querySelector(".act-min"); chip.textContent = sc == null ? s.min + " min" : "Nota del bloque: " + sc + " %"; }
   },
-  commit(el, s, arr) { drawCommit(el.querySelector("[data-commit]"), s, arr, false); }
+  commit(el, s, arr) { drawCommit(el.querySelector("[data-commit]"), s, arr, false); },
+  refs(el, s, arr) {
+    const by = s.ix.types.map(() => ({ c: Array(s.ix.cats.length).fill(0), tx: [] }));
+    arr.forEach(a => { if (typeof a.v !== "string") return; const m = a.v.match(/^(\d+)\|(-?\d+)\|([\s\S]*)$/); if (!m || !by[+m[1]]) return; const g = by[+m[1]], c = +m[2]; if (c >= 0 && c < g.c.length) g.c[c]++; if (m[3].trim()) g.tx.push(m[3].trim()); });
+    by.forEach((g, k) => {
+      const card = $(`[data-ref="${k}"]`, el); if (!card) return; const tot = g.c.reduce((x, y) => x + y, 0), best = g.c.indexOf(Math.max(...g.c));
+      $("[data-rc]", card).innerHTML = tot ? `Votada: <b>${esc(s.ix.cats[best])}</b> ${Math.round(g.c[best] / tot * 100)} %` : "Categoría: esperando…";
+      const top = cluster(g.tx).slice(0, 3);
+      $("[data-rl]", card).innerHTML = top.length ? top.map(t => `<li><span>${esc(t.rep)}</span><b>${t.n}</b></li>`).join("") : `<li class="w">Sin referentes aún</li>`;
+    });
+  }
 };
 ["items-tug", "items-stack", "items-top", "checklist"].forEach(k => VIZ[k] = (el, s, arr) => VIZ.items(el, s, arr, k));
 
@@ -2088,6 +2130,7 @@ function demoFill(s, n = 34) {
     if (md === "choice") v = bias(Math.random() * s.ix.options.length | 0);
     else if (md === "multi") v = s.ix.options.map((_, k) => k).filter(k => Math.random() < (isOk(s, k) ? .7 : .2));
     else if (md === "items") v = s.ix.items.map(it => it.correct != null && Math.random() < .6 ? it.correct : Math.random() * s.ix.itemOpts.length | 0);
+    else if (md === "refs") { s.ix.types.forEach((ty, k) => { if (Math.random() < .25) return; const c = Math.random() < .7 ? ty.cat : Math.random() * s.ix.cats.length | 0; m.set(dev + "_r" + k, { v: k + "|" + c + "|" + (Math.random() < .85 ? r(ty.demo) : ""), k: team, dev, t, id: dev + "_r" + k }); }); continue; }
     else if (md === "pick") { const all = s.ix.groups.flatMap(g => g[1]).map((_, k) => k), fav = [1, 0, 3, 14, 23, 2, 9]; v = []; while (v.length < 4) { const x = Math.random() < .6 ? r(fav) : r(all); if (!v.includes(x)) v.push(x); } }
     else { const pool = s.ix.viz === "qa" ? DEMO_TXT.qa : md === "words" ? DEMO_TXT.words : DEMO_TXT.open; m.set(dev + "_x", { v: r(pool), k: team, dev, t }); continue; }
     m.set(dev, { v, k: team, dev, t });
@@ -2559,6 +2602,25 @@ async function initParticipant() {
       };
       if (md === "multi" && sel.size) { btn.disabled = false; st.textContent = "✓ Ya respondiste. Puedes cambiar tu selección."; }
       return show(card(th, ...head(s), el("p", { class: "phint", text: md === "pick" ? "Elige " + limit + " conductas." : "Marca todas las que creas." }), wrapG, btn, st, explainBox(s, rev)));
+    }
+    if (md === "refs") {
+      const st = status(), prev = (my && typeof my === "object" && !Array.isArray(my)) ? my : {}, vals = s.ix.types.map((_, k) => ({ c: prev[k] ? prev[k].c : -1, t: prev[k] ? prev[k].t : "" }));
+      const rows = s.ix.types.map((ty, k) => { const fid = "r" + s.sid + "_" + k, inp = el("input", { id: fid, maxlength: 60, autocomplete: "off", value: vals[k].t, placeholder: "Nombre del referente" });
+        inp.addEventListener("focus", () => busy = true); inp.addEventListener("blur", () => { busy = false; vals[k].t = inp.value; if (pending) setTimeout(() => !busy && render(), 300); }); inp.addEventListener("input", () => vals[k].t = inp.value);
+        return el("div", { class: "pitem", role: "group", "aria-label": ty.name }, el("div", { class: "q", text: ty.name }), el("div", { class: "phint", text: ty.ex }),
+          el("div", { class: "row", role: "group", "aria-label": "Categoría de " + ty.name }, s.ix.cats.map((o, j) => { const b = el("button", { type: "button", "aria-pressed": String(vals[k].c === j), onclick: () => { vals[k].c = j; $$("button", b.parentNode).forEach((x, n) => x.setAttribute("aria-pressed", n === j)); } }, o); return b; })),
+          el("label", { for: fid, class: "plab", text: "Referente más famoso" }), inp,
+          rev ? el("div", { class: "pstatus", text: "Categoría: " + s.ix.cats[ty.cat] }) : null); });
+      const btn = el("button", { type: "button", class: "pbtn", text: Object.keys(prev).length ? "Actualizar mis respuestas" : "Enviar mis respuestas" });
+      btn.onclick = async () => {
+        const todo = vals.map((x, k) => ({ k, c: x.c, t: String(x.t || "").trim().replace(/[|\s]+/g, " ").slice(0, 60) })).filter(x => x.c >= 0 || x.t);
+        if (!todo.length) { st.textContent = "Rellena al menos un tipo."; return; }
+        btn.disabled = true; st.textContent = "Enviando…";
+        try { await Promise.all(todo.map(x => send(id0 + "_r" + x.k, { slide: s.sid, v: x.k + "|" + x.c + "|" + x.t }))); const sv = {}; todo.forEach(x => sv[x.k] = { c: x.c, t: x.t }); mine[s.sid] = Object.assign({}, prev, sv); saveMine(); st.textContent = "✓ Enviadas. Puedes cambiarlas mientras siga abierta."; btn.textContent = "Actualizar mis respuestas"; }
+        catch (e) { st.textContent = "No se ha podido enviar. Inténtalo de nuevo."; }
+        btn.disabled = false;
+      };
+      return show(card(th, ...head(s), el("p", { class: "phint", text: "No hace falta rellenarlos todos. Se verá en pantalla sin tu nombre." }), ...rows, btn, st, explainBox(s, rev)));
     }
     if (md === "items") {
       const st = status(), vals = Array.isArray(my) ? my.slice() : s.ix.items.map(() => -1);
