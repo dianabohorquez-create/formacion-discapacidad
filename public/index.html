@@ -1704,16 +1704,6 @@ S({ t: "act", min: 7, kind: "Caso 4 · La reunión de equipo · Cascada", title:
   situ: "Reunión semanal de 30 minutos, de pie, en la zona de paso, sin orden del día y sin acta. Una compañera con hipoacusia y otra con fatiga crónica casi nunca intervienen.",
   ix: { mode: "open", viz: "cascade", limit: 2 }, secs: 90,
   explain: "Orden del día previo, sala tranquila con asientos, turnos, acuerdos por escrito y aportaciones previas. Nada exige saber de la salud de nadie: <b>diseño universal en lo cotidiano</b>." });
-S({ t: "section", min: 0, title: "Mi compromiso con la discapacidad", lead: "¿Qué voy a hacer de forma diferente a partir de mañana?", time: "16:30 · 15 min" });
-S({ t: "act", min: 8, kind: "Plan de acción individual", key: "commit", title: "Elige 4 conductas y ordénalas: la primera será tu compromiso",
-  ix: { mode: "pick", viz: "commit", pick: 4, groups: [
-    ["Mi forma de relacionarme", ["Escuchar antes de actuar", "Preguntar en lugar de suponer", "Respetar la autonomía", "Dirigirme directamente a la persona", "Respetar los tiempos", "Ofrecer ayuda sin imponerla", "Respetar la privacidad"]],
-    ["Mi comunicación", ["Comunicar con claridad", "Adaptar mi comunicación", "Cuidar mis palabras", "No dar por supuesto que me han entendido", "Respetar las formas de comunicarse", "Escuchar sin juzgar"]],
-    ["Mi actitud", ["Revisar mis prejuicios", "No juzgar por las apariencias", "Centrarme en las capacidades", "Evitar la sobreprotección", "No normalizar comentarios discriminatorios", "Reconocer la diversidad"]],
-    ["Mi forma de trabajar", ["No normalizar las barreras", "Prestar atención a la accesibilidad", "Buscar alternativas", "Facilitar la participación", "Respetar los apoyos y adaptaciones", "Actuar ante una barrera", "Comprobar si las soluciones funcionan", "Colaborar sin esperar a que me lo pidan", "Incorporar la inclusión a mis hábitos"]]] }, secs: 240,
-  explain: "Lee de nuevo tu primera conducta: ¿depende, al menos en parte, de tu actitud o actuación? Esa es tu tarjeta de compromiso.",
-  notes: "Pon música suave y el temporizador de 4 minutos. Silencio mientras eligen." });
-S({ t: "muro", min: 5, src: "commit", title: "Muro de compromisos" });
 S({ t: "section", min: 0, title: "Trabajar en red", lead: "No hace falta saberlo todo: basta con saber a quién preguntar.", time: "16:45 · 40 min" });
 S({ t: "videoph", min: 9, kind: "video", title: "Entidades de referencia en discapacidad en España", video: "videos/entidades-referencia.mp4",
   notes: "Vídeo de 8:27 con subtítulos: CERMI, COCEMFE, Plena inclusión, Autismo España, ONCE, CNSE, FIAPAS, SALUD MENTAL ESPAÑA y recursos públicos como el CEAPAT o la OADIS." });
@@ -1736,6 +1726,17 @@ Q("Mejorar una reunión para que todas las personas participen…", ["Exige cono
 Q("Un buen compromiso individual es…", ["Algo que depende solo de otros", "Una conducta concreta que depende, al menos en parte, de mí", "Una intención general"], 1, "Concreto y en mis manos.");
 S({ t: "podium", min: 3, scope: "theme", title: "Podio del Tema 6" });
 S({ t: "qa", min: 5, title: "Preguntas y dudas del Tema 6" });
+
+S({ t: "section", min: 0, title: "Mi compromiso con la discapacidad", lead: "¿Qué voy a hacer de forma diferente a partir de mañana? Al terminar, podrás descargar tu compromiso en PDF.", time: "16:30 · 15 min" });
+S({ t: "act", min: 8, kind: "Plan de acción individual", key: "commit", title: "Elige 4 conductas y ordénalas: la primera será tu compromiso",
+  ix: { mode: "pick", viz: "commit", pick: 4, groups: [
+    ["Mi forma de relacionarme", ["Escuchar antes de actuar", "Preguntar en lugar de suponer", "Respetar la autonomía", "Dirigirme directamente a la persona", "Respetar los tiempos", "Ofrecer ayuda sin imponerla", "Respetar la privacidad"]],
+    ["Mi comunicación", ["Comunicar con claridad", "Adaptar mi comunicación", "Cuidar mis palabras", "No dar por supuesto que me han entendido", "Respetar las formas de comunicarse", "Escuchar sin juzgar"]],
+    ["Mi actitud", ["Revisar mis prejuicios", "No juzgar por las apariencias", "Centrarme en las capacidades", "Evitar la sobreprotección", "No normalizar comentarios discriminatorios", "Reconocer la diversidad"]],
+    ["Mi forma de trabajar", ["No normalizar las barreras", "Prestar atención a la accesibilidad", "Buscar alternativas", "Facilitar la participación", "Respetar los apoyos y adaptaciones", "Actuar ante una barrera", "Comprobar si las soluciones funcionan", "Colaborar sin esperar a que me lo pidan", "Incorporar la inclusión a mis hábitos"]]] }, secs: 240,
+  explain: "Lee de nuevo tu primera conducta: ¿depende, al menos en parte, de tu actitud o actuación? Esa es tu tarjeta de compromiso. <b>Descárgala en PDF desde tu móvil u ordenador</b> con el botón «Descargar mi compromiso».",
+  notes: "Pon música suave y el temporizador de 4 minutos. Silencio mientras eligen. Al enviar, en su pantalla aparece el botón «Descargar mi compromiso (PDF)»; pueden escribir su nombre, que solo aparece en el PDF y no se envía ni se guarda." });
+S({ t: "muro", min: 5, src: "commit", title: "Muro de compromisos", notes: "Recuerda que cada persona puede descargar su compromiso en PDF desde su pantalla, ahora o al cerrar la sesión. Es anónimo: el nombre solo aparece en su PDF." });
 
 /* ---------- Cierre de la formación ---------- */
 TH(0);
@@ -2958,6 +2959,7 @@ async function initParticipant() {
     const key = i + "|" + rev + "|" + lock + "|" + rc + "|" + (s.t === "podium" && state.rank && state.rank[s.sid] ? JSON.stringify(state.rank[s.sid]) : "");
     if (key === rendered) return; rendered = key;
     timerEl = el("p", { class: "ptimer", hidden: true, "aria-live": "off" }); if (s.t === "quiz") timerEl.dataset.lock = 1;
+    if ((s.t === "muro" || s.t === "end" || s.t === "ideas") && myCommit()) return show(card(s.th, el("div", { class: "eyebrow", text: "Mi compromiso" }), el("h1", { text: "Tu compromiso, para llevártelo" }), el("ol", { class: "plf" }, myCommit().map((x, k) => el("li", { html: k === 0 ? "<b>" + esc(x) + "</b>" : esc(x) }))), pdfBox(myCommit())));
     if (s.ix) return renderQ(s, rev, lock);
     if (s.t === "join") { const me = mine["join" + s.day]; if (!me) { mine["join" + s.day] = 1; saveMine(); send(s.sid + "_" + DEV, { slide: s.sid, v: team, k: team }).catch(() => {}); }
       return show(card(0, el("div", { class: "eyebrow", text: "Jornada " + s.day }), el("h1", { text: "¡Ya estás dentro!" }), el("p", {}, "Formas parte del equipo ", el("b", { style: `color:${TEAMS[team].color}`, text: TEAMS[team].shape + " " + TEAMS[team].name }), "."), el("button", { type: "button", class: "pbtn", style: "background:#5A6A70", onclick: () => pickTeam(true) }, "Cambiar de equipo"))); }
@@ -2967,7 +2969,7 @@ async function initParticipant() {
       return show(card(s.th, el("div", { class: "eyebrow", text: "Competición por equipos" }), el("h1", { text: s.title }), rk && rev ? el("div", { class: "prank-team" }, rk.map((r, k) => el("div", { style: `background:${TEAMS[r.team].color}${r.team === team ? ";outline:4px solid #14232C" : ""}` }, `${k + 1}.º ${TEAMS[r.team].shape} ${TEAMS[r.team].name} · ${r.pts} puntos${r.team === team ? " · tu equipo" : ""}`))) : el("p", { text: "Mira la pantalla: ¡vamos a revelar el podio!" }))); }
     show(card(s.th, el("div", { class: "eyebrow", text: s.th ? "Tema " + s.th + " · " + THEMES[s.th].short : "Jornada " + s.day }), el("h1", { text: s.th ? THEMES[s.th].name : "Jornada " + s.day + " · " + DAYS[s.day].title }), el("p", { text: "Mira la pantalla. Cuando toque participar, aquí aparecerán las opciones." })));
   }
-  const head = s => [el("div", { class: "eyebrow", text: s.t === "quiz" ? `Quiz del Tema ${s.th} · ${s.qn} de 5` : s.t === "qa" ? "Preguntas y dudas" : (s.score ? "🏆 " : "") + (s.kind || "") }), s.scene ? el("p", { class: "psitu" }, el("b", { text: s.scene.perfil + ". " }), s.scene.contexto) : null, s.situ ? el("p", { class: "psitu", text: strip(s.situ) }) : null, el("h1", { text: strip(s.title) }), timerEl];
+  const head = s => [el("div", { class: "eyebrow", text: s.t === "quiz" ? (s.flash ? `Quiz relámpago · ${s.qn} de 3` : `Quiz del Tema ${s.th} · ${s.qn} de 5`) : s.t === "qa" ? "Preguntas y dudas" : (s.score ? "🏆 " : "") + (s.kind || "") }), s.scene ? el("p", { class: "psitu" }, el("b", { text: s.scene.perfil + ". " }), s.scene.contexto) : null, s.situ ? el("p", { class: "psitu", text: strip(s.situ) }) : null, el("h1", { text: strip(s.title) }), timerEl];
   const explainBox = (s, rev) => rev && s.explain ? el("div", { class: "pexplain", html: s.explain }) : null;
   const status = () => el("p", { class: "pstatus", role: "status" });
   function pdfBox(items) {
