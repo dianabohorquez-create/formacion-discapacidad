@@ -2731,6 +2731,18 @@ async function initPresenter() {
   const chip = $("#liveChip");
   const setChip = (t, st) => { chip.textContent = t; chip.dataset.state = st; };
   go(cur);
+  // Modo estudio: ?estudio=3 (tema) o ?estudio=dia2. Sin clave, sin servidor: no toca ninguna sesión en directo.
+  const EST = QS.get("estudio");
+  if (EST != null) {
+    const m = /^dia([123])$/.exec(EST), n = parseInt(EST, 10);
+    const i0 = m ? S_.findIndex(x => x.day === +m[1]) : S_.findIndex(x => x.t === "theme" && x.th === n);
+    setChip(m ? "Modo estudio · Jornada " + m[1] : (n ? "Modo estudio · Tema " + n : "Modo estudio"), "demo");
+    document.body.classList.add("study"); buildSession(null);
+    if (i0 >= 0) go(i0);
+    const nb = $("#notesBtn"); if (nb && nb.getAttribute("aria-pressed") !== "true") nb.click();
+    toast("Modo estudio: navegas solo tú. No afecta a ninguna sesión en directo ni se guardan respuestas.", 6000);
+    return;
+  }
   // ¿Hay servidor? (en la vista previa de Claude no lo hay)
   try { await api("state"); } catch (e) { if (!e.status || e.status === 404) { setChip("Modo demostración (sin servidor)", "demo"); buildSession(null); return; } }
   let closed = false;
@@ -2832,6 +2844,7 @@ function buildSession(ctx) {
     <form id="lvForm" class="field"><label for="lvS">Código</label><input id="lvS" value="${esc(SESSION)}" maxlength="40"><button class="btn" type="submit" style="margin-top:6px;align-self:flex-start">Cambiar de sesión</button></form></section>
    ${admin ? `<section class="gsec" id="l-close"><h2>${ctx.closed ? "La sesión está cerrada" : "Cerrar la sesión"}</h2><p>${ctx.closed ? "Los móviles muestran «La sesión ha terminado» y no se aceptan respuestas. Ábrela de nuevo al empezar la siguiente jornada." : "Al terminar, cierra la sesión: la web de participación se desactiva en todos los móviles y deja de aceptar respuestas."}</p>
     <button class="btn" type="button" id="lvClose">${ctx.closed ? "Abrir la sesión de nuevo" : "Cerrar la sesión para los participantes"}</button> <span class="hint" id="lvCloseMsg" role="status"></span></section>` : ""}
+   <section class="gsec" id="l-est"><h2>Enlaces de estudio para ponentes</h2><p>Para preparar un tema mientras otra persona presenta: abre la presentación con sus vídeos y notas, sin clave y sin conectarse a la sesión en directo.</p><ul>${[1, 2, 3, 4, 5, 6].map(t => `<li><a href="${location.origin + location.pathname}?estudio=${t}" target="_blank" rel="noopener">Tema ${t}: ${esc(THEMES[t].name)}</a></li>`).join("")}${[1, 2, 3].map(d => `<li><a href="${location.origin + location.pathname}?estudio=dia${d}" target="_blank" rel="noopener">Jornada ${d} completa</a></li>`).join("")}</ul></section>
    <section class="gsec" id="l-link"><h2>Enlace para participar desde el ordenador</h2><p>Para personas con discapacidad visual o sin cámara: es la misma página que abre el QR, compatible con lector de pantalla y con botones de texto grande y alto contraste. Pégalo en el chat de Teams al empezar cada jornada.</p><p style="word-break:break-all"><code id="lvUrl">${esc(window.PART_URL)}</code></p><button class="btn ghost" type="button" id="lvCopy">Copiar enlace</button> <span class="hint" id="lvMsg" role="status"></span></section>
    <section class="gsec" id="l-del"><h2>Borrar las respuestas</h2><p>Por privacidad, borra las respuestas al terminar con cada grupo. No se puede deshacer.</p>
     <button class="btn" type="button" id="lvClearDay" ${admin ? "" : "disabled"}>Borrar respuestas de hoy</button> <button class="btn" type="button" id="lvClearAll" ${admin ? "" : "disabled"}>Borrar toda la sesión «${esc(SESSION)}»</button> <span class="hint" id="lvClrMsg" role="status"></span></section>
