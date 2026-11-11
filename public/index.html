@@ -659,6 +659,49 @@ body.hc .ppdf label{color:#fff}
 .vcol.pro .tagline{color:#3F6A0B}.vcol.con .tagline{color:#A3361F}
 .vq{margin-top:14px;background:#1B3A4B;color:#fff;border-radius:16px;padding:16px 22px;font-family:var(--display);font-weight:700;font-size:22px;line-height:1.35}
 
+/* ---------- Tipos nuevos (nov. 2026) ---------- */
+.news{display:grid;grid-template-columns:repeat(auto-fit,minmax(0,1fr));grid-auto-flow:column;gap:22px;flex:1;min-height:0;align-items:start;padding-top:6px}
+.clip{margin:0;background:#FBF8EF;border:1px solid #D8D2C0;box-shadow:0 6px 18px rgba(20,35,44,.14);padding:18px 20px 16px;transform:rotate(var(--r,0deg));opacity:0;animation:clipin .5s cubic-bezier(.2,.8,.2,1) both;font-family:Georgia,"Times New Roman",serif;position:relative}
+.clip::before{content:"";position:absolute;left:50%;top:-12px;width:70px;height:22px;margin-left:-35px;background:rgba(245,183,0,.55);transform:rotate(-3deg)}
+@keyframes clipin{from{opacity:0;transform:translateY(18px) rotate(var(--r,0deg))}to{opacity:1;transform:rotate(var(--r,0deg))}}
+.clip-src{font-family:var(--display);font-size:14px;letter-spacing:.08em;text-transform:uppercase;color:#6B6252;border-bottom:2px solid #2B2B2B;padding-bottom:6px;margin-bottom:10px}
+.clip blockquote{margin:0;font-size:27px;line-height:1.18;font-weight:700;color:#141414}
+.clip-sub{margin:8px 0 0;font-size:18px;line-height:1.3;color:#3A3A3A;font-style:italic}
+.clip figcaption{margin-top:12px;font-family:var(--body);font-size:17px;line-height:1.3;color:#14232C}
+.clip-tag{display:inline-block;background:#E0604A;color:#fff;font-family:var(--display);font-weight:600;font-size:14px;border-radius:99px;padding:2px 10px;margin-right:6px}
+.chatq{display:grid;grid-template-columns:120px 1fr;gap:30px;align-items:start;flex:1;min-height:0;padding-top:10px}
+.chatico{width:120px;height:120px;border-radius:30px;background:#5B5FC7;color:#fff;display:grid;place-items:center}
+.chatico svg{width:64px;height:64px}
+.chatq h2{font-size:48px}
+.chatp{margin:8px 0 0;padding:0;list-style:none;display:grid;gap:12px}
+.chatp li{background:#EEF0FB;border-left:8px solid #5B5FC7;border-radius:0 14px 14px 0;padding:12px 18px;font-size:26px}
+.quotes{display:grid;grid-template-columns:1fr 1fr;gap:20px;flex:1;min-height:0;align-content:start}
+.iq{margin:0;background:linear-gradient(135deg,#FFF3C4,#FFE0EC);border-radius:20px;padding:20px 26px;opacity:0;animation:in .5s both;transform:translateY(10px)}
+.iq p{margin:0;font-family:var(--display);font-weight:600;font-size:27px;line-height:1.22;color:#3A2A45}
+.iq cite{display:block;margin-top:8px;font-style:normal;font-size:17px;color:#6A5A70}
+.debate{display:grid;grid-template-columns:1fr 1fr;gap:24px;flex:1;min-height:0}
+.dcol{border-radius:18px;padding:18px 24px;background:#fff;border:2px solid #DCE5D3}
+.dcol.d0{border-top:10px solid #E0604A}.dcol.d1{border-top:10px solid var(--accent)}
+.dcol .tagline{font-family:var(--display);font-weight:700;font-size:22px;color:var(--navy);margin-bottom:8px}
+.dcol ol{margin:0;padding-left:28px;display:grid;gap:10px}
+.dcol li{font-size:24px;line-height:1.28}
+.hist{display:grid;gap:12px;flex:1;min-height:0;align-content:start}
+.hitem{display:grid;grid-template-columns:200px 1fr;gap:20px;align-items:start;background:#fff;border:2px solid #DCE5D3;border-radius:16px;padding:12px 20px;opacity:0;animation:in .5s both;transform:translateX(-14px)}
+.hwhen{font-family:var(--display);font-weight:700;font-size:24px;color:#B5452F}
+.hbody h3{font-size:24px;margin:0 0 2px}
+.hbody p{margin:0;font-size:21px;line-height:1.3}
+.cloud.big{flex:1;min-height:0;font-size:1.25em;background:#fff;border:2px solid #DCE5D3;border-radius:20px;margin-bottom:12px}
+.sim-aud.solo{grid-template-columns:1fr;justify-items:center}
+.sim-aud.solo .sim-player-col{width:min(100%,900px)}
+.hist{grid-template-columns:1fr 1fr;gap:14px}
+.hitem{grid-template-columns:1fr;gap:4px;padding:14px 20px}
+.hwhen{font-size:22px}
+.sim-aud.solo .sim-player-col{width:min(100%,720px)}
+.hitem{gap:0;padding:10px 18px;align-content:start}
+.hbody h3{font-size:22px}
+.hbody p{font-size:18.5px;line-height:1.28}
+.hist{flex:none;margin-bottom:12px}
+
 </style>
 </head>
 <body>
@@ -713,17 +756,7 @@ const IMGS = {"andres_amable": "img/andres_amable.jpg", "andres_concentrado": "i
 /* Las respuestas en directo las gestiona la API de Netlify (/api/*). El PIN de presentadora se configura en Netlify (variable PRESENTER_PIN). */
 /* Vídeos (carpeta public/videos). Si un vídeo tiene subtítulos, sube un .vtt con el mismo nombre (por ejemplo videos/pizarra-normativa.vtt).
    Vídeos: pon aquí el enlace de YouTube o el nombre del archivo .mp4 de cada hueco (ver Guía → Vídeos pendientes). */
-window.VIDEO_URLS = {
-  "v1-1": "videos/pizarra-diversidad-v2.mp4", // Jornada 1 · Vídeo pizarra · Diversidad, equidad e inclusión
-  "v1-2": "videos/pizarra-sesgos.mp4", // Jornada 1 · Vídeo pizarra · Sesgos inconscientes
-  "v2-1": "videos/testimonio-asperger.mp4", // Jornada 2 · Testimonio 1
-  "v2-2": "videos/testimonio-experiencias.mp4", // Jornada 2 · Testimonio 2
-  "v2-3": "videos/pizarra-lectura-facil.mp4", // Jornada 2 · Vídeo pizarra · Lectura fácil y lenguaje claro
-  "v2-4": "videos/pizarra-lenguaje-inclusivo.mp4", // Jornada 2 · Vídeo pizarra · Lenguaje inclusivo
-  "v3-1": "videos/pizarra-pautas-interaccion.mp4", // Jornada 3 · Vídeo pizarra · Pautas de interacción
-  "v3-2": "videos/pizarra-normativa.mp4", // Jornada 3 · Vídeo pizarra · Normativa
-  "v3-3": "videos/incapacidad-vs-certificado.mp4"  // Jornada 3 · Incapacidad laboral y certificado de discapacidad
-};
+window.VIDEO_URLS = {}; // Los vídeos se indican en cada diapositiva (propiedad video).
 
 /* ===================== Parámetros de sesión ===================== */
 const QS = new URLSearchParams(location.search);
@@ -755,11 +788,11 @@ const TEAMS = [
 ];
 const DAYS = {
   1: { title: "Entender", lead: "Qué es la discapacidad, por qué la inclusión es una obligación y cómo nos influyen los sesgos.",
-       agenda: [["9:00", "Bienvenida, accesibilidad de la sesión y presentación de Lucía y Andrés", 0], ["9:20", "Diversidad, equidad e inclusión · Empleo público y cupo de reserva", 1], ["10:15", "Impacto de la inclusión en la calidad del servicio", 1], ["10:50", "Pausa (15 min)", -1], ["11:05", "Sesgos inconscientes", 1], ["12:00", "Tipologías de discapacidad y necesidades en el trabajo", 2], ["13:45", "Cierre del día y clasificación", 0]] },
+       agenda: [["9:00",  "Bienvenida, accesibilidad de la sesión y presentación de Lucía y Andrés",  0], ["9:20",  "Diversidad, equidad e inclusión · Empleo público y cupo de reserva",  1], ["10:50",  "Impacto de la inclusión en la calidad del servicio",  1], ["11:05",  "Pausa (15 min)",  -1], ["11:20",  "Sesgos inconscientes",  1], ["12:20",  "Pausa (15 min)",  -1], ["12:35",  "Tipologías de discapacidad y necesidades en el trabajo",  2], ["13:55",  "Cómo hemos mirado la discapacidad",  2], ["14:25",  "Cierre del día y clasificación",  0]] },
   2: { title: "Detectar", lead: "Mitos, testimonios, barreras, accesibilidad, ajustes razonables y lenguaje inclusivo.",
-       agenda: [["9:00", "Repaso: ¿qué les pasó ayer a Lucía y a Andrés?", 0], ["9:10", "Mitos y realidades · Testimonios", 2], ["10:10", "Barreras", 3], ["11:00", "Pausa (15 min)", -1], ["11:15", "Accesibilidad universal y cognitiva · Lectura fácil y lenguaje claro", 3], ["12:05", "Diseño inclusivo: auditoría de un trámite", 3], ["12:40", "Ajustes razonables y papel de los mandos", 3], ["13:10", "Lenguaje inclusivo y no discriminatorio", 4], ["13:50", "Cierre del día y clasificación", 0]] },
-  3: { title: "Actuar", lead: "Pautas de interacción, situaciones complejas, marco legal y tu plan de acción.",
-       agenda: [["9:00", "Repaso", 0], ["9:10", "Pautas de interacción", 4], ["10:00", "Situaciones complejas", 4], ["11:00", "Pausa (15 min)", -1], ["11:15", "Marco legal, derechos, grado de discapacidad y responsabilidad de la Administración", 5], ["12:45", "Aplicación práctica y plan de acción individual", 6], ["13:45", "Final de la historia, compromisos y cierre", 0]] }
+       agenda: [["9:00",  "Quiz relámpago y nube de palabras del día 1",  0], ["9:30",  "Mitos y realidades · Testimonios",  2], ["11:00",  "Barreras · Vive la barrera",  3], ["11:35",  "Pausa (15 min)",  -1], ["11:50",  "Accesibilidad universal y cognitiva · Lectura fácil",  3], ["12:25",  "Diseño inclusivo: auditoría de un trámite",  3], ["12:55",  "Pausa (15 min)",  -1], ["13:10",  "Ajustes razonables y papel de los mandos",  3], ["13:55",  "Salud mental",  2], ["14:40",  "Lenguaje inclusivo y no discriminatorio",  4], ["15:05",  "Cierre del día y clasificación",  0]] },
+  3: { title: "Actuar", lead: "Barreras y tecnologías de apoyo, pautas de interacción, situaciones complejas, marco legal y trabajo en red.",
+       agenda: [["9:00",  "Quiz relámpago del día 2 y nube del día 1",  0], ["9:15",  "Tipos de barreras en profundidad",  3], ["10:10",  "Tecnologías de apoyo",  3], ["10:30",  "Pausa (15 min)",  -1], ["10:45",  "Pautas de interacción y las 7C",  4], ["12:10",  "Situaciones complejas y emergencias",  4], ["14:05",  "Pausa (15 min)",  -1], ["14:20",  "Marco legal, derechos y grado de discapacidad",  5], ["16:05",  "Casos reales, compromisos y trabajo en red",  6], ["17:25",  "Final de la historia y cierre",  0]] }
 };
 
 /* ======================= Constructor de diapositivas ======================= */
@@ -781,7 +814,7 @@ S({ t: "join", min: 4, notes: "Espera a que la mayoría haya elegido equipo. Peg
 S({ t: "grid", min: 2, kicker: "Antes de empezar", title: "Normas de la sala", cols: 3, cards: [
   ["Cámara y micro", "Cámara opcional. Micro apagado salvo cuando intervengas. Para pedir la palabra, escribe en el chat.", "person"],
   ["Participación", "Todas las dinámicas se responden desde el móvil o el ordenador, de forma anónima.", "phone"],
-  ["Pausas", "Hay una pausa de 15 minutos. Si necesitas otra, tómala: no hace falta avisar.", "clock"],
+  ["Pausas", "Hay dos pausas de 15 minutos. Si necesitas otra, tómala: no hace falta avisar.", "clock"],
   ["Sin datos personales", "No compartas información sobre tu salud ni la de otras personas.", "lock"],
   ["Sin grabación", "La sesión no se graba ni se transcribe. Los subtítulos en directo no se guardan.", "eye"],
   ["Respeto", "Hablamos de situaciones y barreras, nunca de personas concretas.", "heart"]] });
@@ -794,13 +827,39 @@ S({ t: "act", min: 5, kind: "Dinámica de entrada · Nube de palabras", key: "cl
 
 /* ---------- TEMA 1 ---------- */
 S({ t: "theme", min: 1 });
-S({ t: "section", min: 0, title: "Diversidad, equidad e inclusión", lead: "El punto de partida: dónde está la discapacidad.", time: "9:20 · 55 min" });
+S({ t: "section", min: 0, title: "Diversidad, equidad e inclusión", lead: "El punto de partida: dónde está la discapacidad.", time: "9:20 · 65 min" });
 S({ t: "concept", min: 3, title: "La discapacidad no está solo en la persona", layout: "full", diagram: "interaccion",
   lead: "Está en la interacción entre la persona y las barreras del entorno. Es el modelo social que recogen la Convención de la ONU y la ley española, y la base de todo el curso." });
 S({ t: "table", min: 4, title: "Tres maneras de mirar la discapacidad", fs: 21, cols: ["Modelo", "Dónde pone el foco", "Pregunta típica"], rows: [
   ["Médico", "En la condición de salud, su tratamiento y la rehabilitación.", "«¿Qué le pasa a esta persona?»"],
   ["Social", "En cómo las barreras físicas, comunicativas, tecnológicas y actitudinales restringen la participación.", "«¿Qué le impide participar?»"],
   ["Derechos humanos", "En las personas con discapacidad como titulares de derechos, con autonomía y dignidad.", "«¿Qué derecho tiene y cómo garantizamos que lo ejerza?»"]] });
+S({ t: "news", min: 3, title: "Así se ha contado la discapacidad", lead: "Titulares reales. Fíjate en el verbo, en el tono y en dónde ponen el problema.", items: [
+  { src: "Por Esto (México) · 9-11-2025", h: "Don José no se rinde: recorre seis kilómetros en silla de ruedas para ir a sus terapias en Tizimín", tag: "Superación heroica", why: "La noticia es su esfuerzo, no la falta de transporte accesible." },
+  { src: "Última Hora (Mallorca) · 16-6-2020", h: "Ismael, tu abuela vela por ti", sub: "Entradilla: «…padece distrofia muscular de Duchenne»", tag: "Compasión y protección", why: "Padecer, velar: la persona aparece como alguien a quien cuidar." },
+  { src: "El Heraldo (Colombia) · 14-3-2018", h: "¿Qué es la enfermedad de Charcot que padecía Stephen Hawking?", tag: "Padecer", why: "Un científico de referencia, descrito por su enfermedad." },
+  { src: "Diari de Tarragona · 26-2-2026", h: "El calvario de un 'rider' de Salou: en silla de ruedas pero «apto para trabajar»", tag: "Tragedia", why: "Habla de «calvario», pero lo que cuenta es un laberinto burocrático: una barrera." }],
+  note: "Titulares reproducidos tal y como se publicaron, solo para su análisis.",
+  notes: "Lee los titulares en voz alta y pregunta: ¿qué verbo usan?, ¿quién es el protagonista: la persona, la enfermedad o la hazaña?, ¿dónde está el problema? Los cuatro miran la discapacidad desde el modelo médico (algo que se padece, se cura o se supera) o desde la caridad (algo que da pena). Si lo tienes, puedes mostrar también en pantalla la noticia original." });
+S({ t: "table", min: 3, title: "Las palabras que delatan la mirada médica", fs: 19, cols: ["En la prensa se lee…", "Qué transmite", "Mejor decir"], rows: [
+  ["«Sufre» o «padece» una discapacidad", "Enfermedad y sufrimiento permanente.", "Tiene una discapacidad · es una persona con…"],
+  ["«Postrado» o «confinado» en una silla de ruedas", "La silla como cárcel, cuando es lo que da movilidad.", "Usuario o usuaria de silla de ruedas"],
+  ["«Minusválido», «inválido», «discapacitado»", "La persona reducida a lo que «le falta».", "Persona con discapacidad"],
+  ["«A pesar de su discapacidad», «supera su discapacidad»", "Lo cotidiano contado como una hazaña.", "Contar el logro sin convertirlo en heroicidad"],
+  ["«Víctima de», «enfermo», «paciente»", "La persona como caso médico.", "Nombrar a la persona y su contexto"]],
+  note: "La Federación de Asociaciones de Periodistas de España (FAPE, 2016) califica «sufrir, padecer, postrado» de «expresiones caducas que no deben ser empleadas». Aún hoy hay medios con secciones tituladas «Discapacitados».",
+  notes: "Conecta con el modelo médico de la tabla anterior: el lenguaje pone el foco en el cuerpo de la persona. Pregunta si alguna de estas expresiones se usa en documentos o conversaciones de su servicio." });
+S({ t: "news", min: 3, kicker: "Y cuando el foco está en la barrera", title: "Otra forma de titular", lead: "También hay titulares que ponen el foco donde está el problema: en el entorno.", items: [
+  { src: "Diario de Cuyo (Argentina) · 7-10-2012", h: "Casi un año en cama por no tener una silla especial", tag: "Barrera material", why: "El problema no es la persona: es que no tiene el apoyo que necesita." },
+  { src: "El Salto", h: "Tras dos años como interina, Madrid declara no apta para el puesto a una persona con discapacidad", tag: "Barrera administrativa", why: "La noticia es la decisión de la Administración." },
+  { src: "Diari de Tarragona · 26-2-2026 (subtítulo)", h: "Lleva cinco años inmerso en un laberinto burocrático", tag: "Barrera de procedimiento", why: "La misma noticia del «calvario», contada desde la barrera." }],
+  notes: "Compara con la primera diapositiva: aquí el sujeto de la frase es la barrera o quien la pone. Es el modelo social aplicado al periodismo, y también a cómo contamos los casos en nuestro servicio." });
+S({ t: "act", min: 5, kind: "Reflexión · Cambia el foco", title: "Reescribe uno de los titulares poniendo el foco en la barrera, no en la persona",
+  ix: { mode: "open", viz: "wall", limit: 1 }, secs: 150,
+  explain: "Ejemplo: «Don José no se rinde…» → «Tizimín, sin transporte accesible: un vecino recorre seis kilómetros en silla de ruedas para ir a sus terapias».",
+  notes: "Lee en voz alta tres o cuatro propuestas. Preguntas para la reflexión: ¿qué cambia cuando el sujeto de la frase es la barrera?, ¿qué emoción provocaba el titular original (pena, admiración) y cuál provoca el nuevo?, ¿en qué documentos de nuestro servicio describimos a la persona en lugar de la barrera?" });
+S({ t: "videoph", min: 5, kind: "video", title: "El modelo social de la discapacidad", video: "videos/modelo-social.mp4",
+  notes: "Vídeo de 4:54. Empieza con la historia animada de Javier: la misma persona, dos oficinas. Después del vídeo, pregunta: ¿qué ha cambiado entre la oficina A y la B? Solo el entorno." });
 S({ t: "concept", min: 3, title: "Qué dice la ley", lead: "Discapacidad: situación que resulta de la interacción entre las personas con limitaciones o condiciones previsiblemente permanentes y cualquier tipo de barreras que limiten o impidan su participación plena y efectiva, en igualdad de condiciones.",
   cards: [["Sin certificado también", "La condición de persona con discapacidad (LGD, art. 4.1) no depende de tener un certificado."], ["Para medidas concretas", "Para el cupo de reserva y otras medidas sí hay que acreditar un grado ≥ 33 % o una situación equiparada (art. 4.2)."]],
   note: "Fuente: Ley General de derechos de las personas con discapacidad (RDL 1/2013, en adelante LGD), art. 2.a (redacción adaptada)." });
@@ -814,7 +873,7 @@ S({ t: "concept", min: 3, title: "No todas las personas con discapacidad tienen 
   lead: "Las mujeres son el 58,7 %. El tipo más frecuente: problemas de movilidad. Tres de cada cuatro tienen más de 55 años. Muchas discapacidades no se ven." });
 S({ t: "story", min: 2, who: "lucia", img: "lucia_ventana", title: "Lucía está en ese hueco", text: "Tiene una discapacidad auditiva, pero no tiene certificado. Y no lo necesita para que el SEPE la atienda de forma accesible.",
   note: "Lo que se puede cambiar desde un puesto de atención no es la persona, sino las barreras." });
-S({ t: "videoph", min: 6, kind: "pizarra", title: "Diversidad, equidad e inclusión: tres palabras, tres preguntas" });
+S({ t: "videoph", min: 6, kind: "pizarra", title: "Diversidad, equidad e inclusión: tres palabras, tres preguntas", video: "videos/pizarra-diversidad-v3.mp4" });
 S({ t: "vsum", min: 3, title: "Diversidad, equidad e inclusión", diagram: "dei", points: [
   "<b>Diversidad:</b> reconocer que partimos de circunstancias distintas y dejar que cada persona diga qué necesita.",
   "<b>Equidad:</b> identificar las barreras relevantes y corregir desventajas. No es privilegio ni rebajar requisitos. La ley habla de igualdad de oportunidades y acción positiva.",
@@ -838,7 +897,7 @@ S({ t: "act", min: 6, kind: "Dinámica · Cascada", key: "cascada1", title: "Esc
   explain: "Revisar el lenguaje, la accesibilidad de la web, los canales alternativos, la asistencia y los mecanismos de consulta. <b>¿Diseñamos para la ciudadanía real o para una persona usuaria ideal?</b>",
   notes: "Las respuestas quedan ocultas. Cuando la mayoría haya escrito, pulsa «¡Ya!» y caerán todas a la vez. La co-moderadora lee 4 o 5 en voz alta." });
 
-S({ t: "section", min: 0, title: "Empleo público y cupo de reserva", lead: "La Administración es empleadora y prestadora de servicios a la vez.", time: "≈ 25 min" });
+S({ t: "section", min: 0, title: "Empleo público y cupo de reserva", lead: "La Administración es empleadora y prestadora de servicios a la vez.", time: "10:25 · 25 min" });
 S({ t: "concept", min: 3, title: "La reserva de plazas", layout: "full", diagram: "cupo",
   note: "OEP 2026 de la AGE (RD 387/2026): de 27.232 plazas, <b>2.689 reservadas</b> a personas con discapacidad, 538 para discapacidad intelectual. Requisitos: superar el proceso, grado ≥ 33 % y compatibilidad con las funciones." });
 S({ t: "table", min: 3, title: "El marco normativo del empleo público", fs: 18, cols: ["Norma", "Qué establece"], rows: [
@@ -860,7 +919,7 @@ S({ t: "act", min: 4, kind: "Dinámica · Muro", title: "¿Qué barreras siguen 
   ix: { mode: "open", viz: "wall", limit: 2 }, secs: 90,
   explain: "El objetivo no es solo incorporar personas, sino que puedan <b>participar y desempeñar</b> sus funciones en igualdad." });
 
-S({ t: "section", min: 0, title: "Impacto de la inclusión en la calidad del servicio", lead: "Un trámite puede cumplir su objetivo y aun así dejar fuera a parte de la ciudadanía.", time: "10:15 · 35 min" });
+S({ t: "section", min: 0, title: "Impacto de la inclusión en la calidad del servicio", lead: "Un trámite puede cumplir su objetivo y aun así dejar fuera a parte de la ciudadanía.", time: "10:50 · 15 min" });
 S({ t: "concept", min: 4, title: "Cuando el problema está en el diseño", bullets: [
   "Una notificación que no se entiende.", "Un formulario que no funciona con lector de pantalla.", "Información solo por teléfono.", "Instrucciones poco claras.", "Una app sin alternativas para una persona mayor."],
   cards: [["RD 1112/2018", "Webs y apps públicas accesibles y un canal para comunicar problemas."], ["Ley 39/2015, art. 12", "Derecho a ser asistido en el uso de medios electrónicos."]], wide: true });
@@ -877,8 +936,8 @@ S({ t: "act", min: 4, kind: "Dinámica · Tira y afloja", title: "Si publicamos 
   notes: "Comenta sobre todo los «depende»." });
 S({ t: "pause", min: 15 });
 
-S({ t: "section", min: 0, title: "Sesgos inconscientes", lead: "Todas las personas tenemos sesgos. El objetivo es detectarlos para que no se conviertan en trato desigual.", time: "11:05 · 55 min" });
-S({ t: "videoph", min: 6, kind: "pizarra", title: "Sesgos inconscientes en la atención ciudadana" });
+S({ t: "section", min: 0, title: "Sesgos inconscientes", lead: "Todas las personas tenemos sesgos. El objetivo es detectarlos para que no se conviertan en trato desigual.", time: "11:20 · 65 min" });
+S({ t: "videoph", min: 7, kind: "pizarra", title: "Sesgos inconscientes en la atención ciudadana", video: "videos/pizarra-sesgos-v2.mp4" });
 S({ t: "vsum", min: 4, title: "Sesgos inconscientes en la atención", diagram: "sesgo", stack: true, points: [
   "Clasificamos a las personas en segundos y les atribuimos rasgos sin comprobarlos. Aparece con prisa, cansancio y carga de trabajo.",
   "Un sesgo discrimina cuando cambia el trato: el tiempo, la información, el tono o lo que se decide por la persona.",
@@ -911,7 +970,8 @@ ESC(4, "Una compañera teletrabaja dos días más que el resto por un ajuste raz
 S({ t: "ideas", min: 2, title: "Cierre del Tema 1", items: [
   ["La diversidad es la realidad", "De la ciudadanía y de las plantillas."], ["Inclusión ≠ trato idéntico", "Identificar barreras y aplicar medidas, respetando derechos y procedimientos."], ["Los sesgos se gestionan", "Preguntar, comprobar y aplicar criterios coherentes."]] });
 LF("La discapacidad y la inclusión", [["person", "Las personas somos diferentes."], ["wall", "A veces el entorno pone barreras. Por ejemplo, una escalera o un papel difícil."], ["check", "La Administración debe quitar las barreras. Es una obligación."], ["ask", "No pienses cosas sin conocer a la persona. Pregúntale qué necesita."]]);
-const Q = (title, options, correct, explain) => S({ t: "quiz", min: 2, title, ix: { mode: "choice", score: true, options, correct }, secs: 25, explain });
+const Q = (title, options, correct, explain) => S({ t: "quiz", min: 2, title, ix: { mode: "choice", score: true, options, correct }, secs: 60, explain });
+const QF = (title, options, correct, explain) => S({ t: "quiz", flash: true, min: 1.5, title, ix: { mode: "choice", score: true, options, correct }, secs: 60, explain });
 Q("¿Qué afirmación describe mejor la inclusión?", ["Dar la misma respuesta en todas las circunstancias", "Evitar hablar de discapacidad", "Identificar y reducir barreras, respetando derechos y autonomía", "Ayudar siempre, aunque no lo pidan"], 2, "La inclusión transforma el entorno y respeta la autonomía.");
 Q("Según el modelo social, ¿dónde está la discapacidad?", ["Solo en la condición de salud", "En la interacción entre la persona y las barreras", "En el certificado"], 1, "Por eso lo que podemos cambiar son las barreras.");
 Q("¿Qué porcentaje de plazas reserva la Administración General del Estado?", ["2 %", "7 %", "Al menos el 10 %", "33 %"], 2, "Al menos el 10 % desde 2023. El resto de administraciones, al menos el 7 %.");
@@ -920,10 +980,12 @@ Q("Pensar «no tiene interés» porque alguien no completa un trámite digital e
 S({ t: "podium", min: 3, scope: "theme", title: "Podio del Tema 1" });
 S({ t: "qa", min: 8, title: "Preguntas y dudas del Tema 1" });
 
+S({ t: "pause", min: 15 });
+
 /* ---------- TEMA 2 (primera parte) ---------- */
 TH(2);
 S({ t: "theme", min: 1 });
-S({ t: "section", min: 0, title: "Tipologías de discapacidad", lead: "Clasificar sirve para entender barreras y apoyos, no para etiquetar.", time: "12:00 · 105 min" });
+S({ t: "section", min: 0, title: "Tipologías de discapacidad", lead: "Clasificar sirve para entender barreras y apoyos, no para etiquetar.", time: "12:35 · 75 min" });
 S({ t: "concept", min: 3, title: "Cambiamos la pregunta", layout: "full", diagram: "pregunta",
   lead: "Dos personas con el mismo diagnóstico pueden necesitar cosas muy distintas. El grado se valora con el baremo del RD 888/2022, basado en la CIF de la OMS: mira la actividad, la participación y las barreras, no solo el diagnóstico." });
 S({ t: "act", min: 3, kind: "Encuesta de predicción", title: "¿Cuál es el tipo de condición más frecuente entre las personas con discapacidad reconocida?",
@@ -951,6 +1013,8 @@ NEED("Sensorial", "La comunicación también puede ser una barrera", ["Informaci
   "Compatibilidad con lector de pantalla y magnificador · describir lo visual · texto alternativo · instrucciones escritas · subtítulos · bucle magnético · intérprete o videointerpretación",
   "Una empleada sorda en reuniones con intervenciones solapadas y sin acta: turnos, documentación y acuerdos por escrito.",
   "La accesibilidad comunicativa es para el día a día, no para lo excepcional.", ["Disabledandhere-041-hearingaidmirror.jpg", "Persona colocándose un audífono frente al espejo"]);
+S({ t: "videoph", min: 13, kind: "video", title: "Atender a personas sordas, ciegas y sordociegas", video: "videos/sordas-ciegas-sordociegas.mp4",
+  notes: "Vídeo de 13:13 con subtítulos. Recorre la comunicación con personas sordas (lengua de signos, lectura labial, bucle magnético, intérprete), ciegas o con baja visión (guiar, describir el espacio, perros guía) y sordociegas (sistemas táctiles, guía-intérprete). Al terminar, pregunta qué pauta les ha sorprendido más." });
 NEED("Intelectual", "Facilitar la comprensión no es reducir responsabilidades", ["Paternalismo que decide por la persona.", "Instrucciones largas o abstractas.", "Cambios sin explicar y sin tiempo para comprobar."],
   "Lenguaje claro · ejemplos y apoyos visuales · listas de comprobación · tareas paso a paso · preparador laboral · lectura fácil (RD 707/2026 desde 2027)",
   "Un procedimiento lleno de excepciones: el equipo crea una guía operativa con pasos y un «qué hacer si…». Beneficia a todos.",
@@ -983,9 +1047,46 @@ S({ t: "act", min: 3, kind: "Dinámica · La balanza", title: "«Me cuesta segui
   ix: { mode: "choice", viz: "balance", options: ["Necesidad", "Solución"], correct: 0 }, secs: 25,
   explain: "<b>Necesidad:</b> describe la barrera. Las soluciones vienen después (turnos, acta, subtítulos) y la persona elige la que prefiere." });
 
+/* ---------- Reflexión final del día 1: la mirada ---------- */
+TH(0);
+S({ t: "section", min: 0, title: "Cómo hemos mirado la discapacidad", lead: "Antes de cerrar, una reflexión: de dónde viene nuestra mirada y qué hacemos con ella.", time: "13:55 · 30 min" });
+S({ t: "hist", min: 4, title: "Lo diferente nos ha dado miedo", lead: "Durante siglos, la respuesta a la discapacidad fue apartar, esconder o exhibir.", items: [
+  ["Siglos XIX y XX", "Exhibición", "Personas con discapacidad mostradas en ferias y circos como «rarezas» para el público."],
+  ["1867–1974", "Prohibido ser visto", "Ordenanzas de ciudades de EE. UU. (San Francisco, 1867; Chicago, 1881) multaban a las personas «deformes» por mostrarse en la calle. La última se derogó en 1974."],
+  ["1939–1941", "Eugenesia", "El programa nazi Aktion T4 asesinó a más de 70.000 personas con discapacidad en centros sanitarios."],
+  ["Hasta 2020", "Sin consentimiento", "En España, el Código Penal permitía esterilizar a personas con discapacidad incapacitadas judicialmente. Lo prohibió la Ley Orgánica 2/2020."]],
+  note: "No es historia lejana: la última de estas prácticas se eliminó en España hace muy pocos años.",
+  notes: "Ve despacio: es una diapositiva dura. La idea no es culpabilizar, sino entender que el miedo a lo diferente ha llevado a apartar a las personas con discapacidad de la vista y de las decisiones. Ese miedo sigue presente en formas más sutiles: incomodidad, evitar el contacto, no saber qué decir. Si dispones de las imágenes de la presentación de historia, puedes mostrarlas aquí." });
+S({ t: "concept", min: 3, title: "Cosificar: cuando la persona se convierte en objeto", lead: "Cosificar es tratar a alguien como una cosa: algo que se mira, se cuida, se estudia o se usa para inspirar, en lugar de una persona con voz, deseos y derechos.",
+  cards: [["Objeto de mirada", "Curiosidad, exhibición, quedarse mirando."], ["Objeto de cuidado", "Pena, caridad, decidir por la persona «por su bien»."], ["Objeto de estudio", "Ser un caso, un diagnóstico, un expediente."], ["Objeto de inspiración", "Existir para motivar a quienes no tienen discapacidad."]],
+  notes: "Pregunta en cuál de las cuatro formas reconocen situaciones de su día a día, en la calle, en los medios o en la oficina. Enlaza con los titulares de la mañana: la pena y la admiración también cosifican." });
+S({ t: "chat", min: 6, title: "¿Cuál es el primer recuerdo que tienes sobre la discapacidad?", lead: "Escríbelo en el chat de Teams, en una o dos frases.", prompts: ["¿Qué edad tenías?", "¿Qué te dijeron los adultos o qué callaron?", "¿Qué sentiste: curiosidad, miedo, pena, naturalidad?"], secs: 150,
+  note: "No hace falta dar nombres ni datos de salud de nadie.",
+  notes: "Da tiempo y lee algunos recuerdos en voz alta, con permiso implícito del chat. Suelen aparecer el silencio de los adultos («no mires»), el miedo o la pena. Relaciónalo con la historia: aprendimos a mirar así." });
+S({ t: "quotes", min: 3, title: "Frases que se comparten como «inspiradoras»", items: [
+  ["La única discapacidad en la vida es una mala actitud", "Atribuida al patinador Scott Hamilton"],
+  ["Tu excusa no es válida", "Mensaje viral, con fotos de personas con discapacidad haciendo deporte"],
+  ["No hay discapacidad, hay capacidades diferentes", "Eslogan muy extendido"],
+  ["Si él puede, ¿qué excusa tienes tú?", "Cartel motivacional habitual"]],
+  note: "Pregunta antes de pasar: ¿a quién hacen sentir bien estas frases?",
+  notes: "Deja unos segundos en silencio. Recoge alguna respuesta en voz alta o en el chat antes de pasar a la siguiente diapositiva." });
+S({ t: "concept", min: 3, title: "¿Para quién están pensadas estas frases?", bullets: [
+  "Están pensadas para que se sienta mejor <b>quien no tiene discapacidad</b>: «si esa persona puede, mis problemas no son para tanto».",
+  "Usan a la persona con discapacidad como <b>objeto de inspiración</b>, casi nunca le preguntan qué piensa.",
+  "Convierten lo cotidiano (trabajar, estudiar, hacer deporte) en una <b>hazaña</b>.",
+  "Ponen el problema en la actitud individual y <b>ocultan las barreras</b>: ninguna actitud hace aparecer una rampa.",
+  "La periodista y activista Stella Young lo llamó <b>«inspiration porn»</b> (porno inspiracional) en 2012."], note: "<b>La pregunta clave:</b> ¿Esta frase me hace sentir mejor a mí, o cambia algo para la persona con discapacidad?",
+  notes: "Enlaza con la cosificación: la inspiración es otra forma de convertir a la persona en objeto. Presenta el vídeo: Stella Young era una periodista y humorista australiana, usuaria de silla de ruedas, que habló de esto en una charla TEDx en 2014." });
+S({ t: "videoph", min: 4, kind: "video", title: "Stella Young: «No soy tu fuente de inspiración»", video: "videos/stella-young.mp4",
+  notes: "Fragmentos de la charla TEDxSydney de 2014 (3:15). Déjalo terminar sin comentarios." });
+S({ t: "act", min: 6, kind: "Reflexión final · Lo que sentimos", title: "Después de escuchar a Stella Young, ¿qué sientes? Escribe una palabra",
+  ix: { mode: "words", viz: "cloud" }, secs: 90,
+  explain: "No hay respuestas correctas. Incomodidad, sorpresa o vergüenza también son un buen punto de partida.",
+  notes: "Lee la nube en voz alta y abre la palabra a quien quiera (micro o chat). Preguntas para guiar: ¿alguna vez has compartido una de estas frases?, ¿qué te ha removido?, ¿qué te gustaría mirar de otra manera a partir de hoy? Cierra con calidez: no se trata de sentirse culpable, sino de mirar a las personas como personas, con sus derechos, sin miedo, sin pena y sin hacerlas héroes." });
+
 /* ---------- Cierre del día 1 ---------- */
 TH(0);
-S({ t: "section", min: 0, title: "Cierre del día", lead: "Una idea que te llevas y la clasificación de hoy.", time: "13:45 · 15 min" });
+S({ t: "section", min: 0, title: "Cierre del día", lead: "Una idea que te llevas y la clasificación de hoy.", time: "14:25 · 10 min" });
 S({ t: "act", min: 5, kind: "Cascada", title: "Una idea que me llevo de hoy", ix: { mode: "open", viz: "cascade", limit: 1 }, secs: 90, explain: "Gracias. Mañana seguimos con Lucía y Andrés." });
 S({ t: "podium", min: 4, scope: "day", title: "Clasificación del día 1" });
 S({ t: "end", min: 0, title: "Hasta mañana", lead: "Mañana: mitos y realidades, testimonios, barreras, accesibilidad, ajustes razonables y lenguaje inclusivo." });
@@ -998,9 +1099,12 @@ S({ t: "day", min: 1 });
 S({ t: "agenda", min: 2 });
 S({ t: "teamsacc", min: 2 });
 S({ t: "join", min: 2, notes: "Quien ya eligió equipo ayer lo conserva en su móvil. Quien entra por primera vez, que lo elija ahora." });
-S({ t: "act", min: 3, kind: "Repaso · ¿Qué les pasó ayer?", story: "andres", img: "andres_instrucciones", title: "Andrés recibe instrucciones de dos responsables y se bloquea. ¿Qué acordó el equipo?",
-  ix: { mode: "choice", viz: "bars", score: true, options: ["Que Andrés contara su diagnóstico", "Centralizar las instrucciones y escribir las prioridades", "Cambiarle de puesto"], correct: 1 }, secs: 25,
-  explain: "Una medida organizativa que no exige que Andrés cuente nada y que mejora el trabajo de todo el equipo." });
+/* ---------- Quiz relámpago del día 1 ---------- */
+QF("Según el modelo social, ¿qué podemos cambiar para incluir?", ["A la persona", "Las barreras del entorno", "El diagnóstico"], 1, "La discapacidad aparece en la interacción con las barreras: esa es la parte que depende de nosotros.");
+QF("¿Cuántas personas tienen reconocido un grado de discapacidad en España?", ["Menos de 1 millón", "Unos 3,4 millones", "Más de 10 millones"], 1, "3.420.552 a 31-12-2024. Y muchas más tienen discapacidad sin certificado.");
+QF("Llamar «inspiradora» a una persona solo por tener discapacidad es…", ["Un elogio", "Usarla como objeto de inspiración", "Lenguaje claro"], 1, "Stella Young lo llamó «inspiration porn»: pensado para que se sienta bien quien no tiene discapacidad.");
+S({ t: "cloudshow", min: 3, compare: "cloud1", title: "Así empezamos ayer", note: "Comentamos dos o tres palabras que llamen la atención. El último día repetiremos la pregunta.",
+  notes: "Lee la nube del día 1 y elige dos o tres palabras: alguna que hable de la persona («silla», «enfermedad») y alguna que hable del entorno o de derechos. Pregunta: ¿escribiríais hoy la misma palabra?" });
 
 /* ---------- TEMA 2 (segunda parte) ---------- */
 TH(2);
@@ -1032,7 +1136,7 @@ S({ t: "visib", min: 4, kicker: "Conclusión de la actividad", title: "La visibi
   cons: ["<b>El superhéroe:</b> solo «cuenta» quien logra algo extraordinario (sesgo de la inspiración).", "<b>«Si quiere, puede»:</b> el éxito parece depender del esfuerzo, no de las barreras y los apoyos.", "<b>«Si no se ve, no existe»:</b> la discapacidad orgánica y la psicosocial apenas aparecen.", "<b>Genio o tragedia:</b> como si cada persona fuera un talento excepcional o una historia triste."],
   quote: "La visibilidad de la discapacidad ha ayudado a que la sociedad tenga menos miedo, pero también ha fomentado mitos y sesgos. Por eso, ahora vamos a poner a prueba esos mitos.",
   notes: "Esta es la conclusión de la dinámica. Enlaza directamente con «Mitos y realidades»: los mitos que vamos a votar nacen, en parte, de cómo se ha mostrado la discapacidad." });
-S({ t: "section", min: 0, title: "Mitos y realidades", lead: "Primero votas, después ves el resultado de la sala y por último revelamos el dato.", time: "9:10 · 60 min" });
+S({ t: "section", min: 0, title: "Mitos y realidades", lead: "Primero votas, después ves el resultado de la sala y por último revelamos el dato.", time: "9:30 · 25 min" });
 const MITO = (n, text, correct, explain) => S({ t: "act", min: 2.5, kind: "Tira y afloja · Mito " + n + " de 8", title: text,
   ix: { mode: "choice", viz: "tug", score: true, options: ["Verdadero", "Falso"], correct }, secs: 25, explain });
 MITO(1, "Todas las personas con una misma discapacidad necesitan los mismos ajustes.", 1, "<b>Falso.</b> Depende de la persona, de la tarea y del entorno. En la práctica: preguntar qué apoyo necesita cada persona.");
@@ -1046,9 +1150,19 @@ MITO(8, "Adaptar un puesto significa rebajar las exigencias del trabajo.", 1, "<
 S({ t: "podium", min: 2, scope: "since", since: "mitos", title: "¿Qué equipo ha desmontado más mitos?" });
 S({ t: "concept", min: 2, title: "Ni todo es posible siempre, ni nada es imposible", lead: "No se trata de pensar que cualquier persona puede hacerlo todo, ni de asumir que no puede. Se trata de valorar cada situación con criterios objetivos, identificar las barreras y ofrecer los apoyos adecuados.",
   photo: "mitos", photoHint: ["Magnification app - Sherm for Disabled And Here.png", "Persona usando una aplicación de ampliación en el móvil", "Sherm"] });
-S({ t: "section", min: 0, title: "Testimonios en primera persona", lead: "Mirar las condiciones que permiten trabajar, no las historias de «superación».", time: "≈ 25 min" });
-S({ t: "videoph", min: 6, kind: "testimonio", title: "Testimonio: trabajar con síndrome de Asperger" });
-S({ t: "videoph", min: 9, kind: "testimonio", title: "Experiencias de personas con discapacidad" });
+S({ t: "section", min: 0, title: "Testimonios en primera persona", lead: "Mirar las condiciones que permiten trabajar, no las historias de «superación».", time: "9:55 · 65 min" });
+S({ t: "videoph", min: 6, kind: "testimonio", title: "Testimonio: trabajar con síndrome de Asperger", video: "videos/testimonio-asperger.mp4" });
+S({ t: "debate", min: 8, title: "Después del testimonio: trabajar con síndrome de Asperger", cols: [
+  ["Lo que hemos sentido", ["¿Qué es lo primero que has sentido al escucharle?", "¿Qué te ha sorprendido o te ha removido?", "¿Te has reconocido en alguna persona de su entorno: compañeros, jefes, selección?"]],
+  ["Las barreras que aparecen", ["¿Qué barreras ha encontrado: en la selección, en la comunicación, en el equipo?", "¿Cuáles eran de actitud y cuáles de organización del trabajo?", "¿Qué apoyos o ajustes le han funcionado?", "¿Qué podría cambiar tu equipo mañana sin coste?"]]], secs: 150,
+  note: "Responde en voz alta o en el chat de Teams. No hace falta contar nada personal.",
+  notes: "Empieza por las preguntas emocionales (2-3 intervenciones) y pasa después a las barreras. Recoge en voz alta las barreras que salgan y clasifícalas: de actitud (prejuicios, bromas), de comunicación (instrucciones ambiguas), de organización (cambios sin avisar, entornos ruidosos). Cierra con una idea: el talento estaba ahí; lo que cambia el resultado es el entorno." });
+S({ t: "videoph", min: 9, kind: "testimonio", title: "Experiencias de personas con discapacidad", video: "videos/testimonio-experiencias.mp4" });
+S({ t: "debate", min: 8, title: "Después del testimonio: experiencias de personas con discapacidad", cols: [
+  ["Lo que hemos sentido", ["¿Con qué historia te quedas y por qué?", "¿Qué emoción te ha provocado: admiración, rabia, incomodidad, esperanza?", "Si sentiste admiración: ¿era por la persona o por lo que tuvo que superar?"]],
+  ["Las barreras que aparecen", ["¿Qué barreras se repiten en las distintas historias?", "¿Cuáles dependían de una persona concreta y cuáles de cómo está organizado el sistema?", "¿Alguna de esas barreras existe en nuestro servicio?", "¿Qué hizo diferente quien sí puso los apoyos?"]]], secs: 150,
+  note: "Responde en voz alta o en el chat de Teams.",
+  notes: "Si aparece mucha admiración, conecta con la reflexión de ayer sobre la inspiración: admirar el esfuerzo está bien, pero la pregunta útil es por qué hizo falta tanto esfuerzo. Anota las barreras que se repiten: servirán para el tema de barreras." });
 S({ t: "act", min: 4, kind: "Dinámica · Antes pensaba / ahora pienso", title: "Después de los testimonios, ¿qué idea has cambiado? (una o dos palabras)",
   ix: { mode: "words", viz: "cloud" }, secs: 60, explain: "Fíjate en si la nube habla de <b>barreras y apoyos</b> o de <b>héroes</b>.", notes: "Prototipo 52 del Excel." });
 S({ t: "capsula", min: 6, title: "«Un día normal»", videos: [["Un día normal", "videos/un-dia-normal.mp4"]], status: "Vídeo de cierre sobre inserción laboral, discapacidad y sus tópicos.", points: ["Cuenta los tópicos que aparecen.", "¿Cuáles has escuchado en tu entorno?"],
@@ -1067,7 +1181,7 @@ S({ t: "qa", min: 6, title: "Preguntas y dudas del Tema 2" });
 /* ---------- TEMA 3 ---------- */
 TH(3);
 S({ t: "theme", min: 1 });
-S({ t: "section", min: 0, title: "Barreras", lead: "Las barreras se pueden quitar; la discapacidad, no.", time: "10:10 · 50 min" });
+S({ t: "section", min: 0, title: "Barreras", lead: "Las barreras se pueden quitar; la discapacidad, no.", time: "11:00 · 20 min" });
 S({ t: "concept", min: 3, title: "Un trámite disponible no es un trámite accesible", layout: "full", diagram: "tramite",
   note: "La pregunta no es solo si el servicio está disponible, sino si las personas pueden <b>acceder</b>, <b>comprenderlo</b> y <b>usarlo</b>." });
 S({ t: "table", min: 5, title: "Cinco tipos de barreras", fs: 17, cols: ["Barrera", "Qué es", "Ejemplos en una oficina o trámite del SEPE"], rows: [
@@ -1077,15 +1191,18 @@ S({ t: "table", min: 5, title: "Cinco tipos de barreras", fs: 17, cols: ["Barrer
   ["Comunicativa", "Falta de alternativas para comunicarse.", "Cita solo por teléfono; avisos solo sonoros; sin videointerpretación; mampara o ruido."],
   ["Actitudinal", "Prejuicios, estereotipos y conductas que excluyen.", "Hablar al acompañante; dudar de lo que no se ve; meter prisa."]],
   note: "Se solapan: una web difícil (digital) y una respuesta que culpa a la persona (actitudinal)." });
-S({ t: "act", min: 5, kind: "Hilo conductor · El recorrido de Lucía", story: "lucia", img: "lucia_cita", title: "¿Cuántas barreras ha encontrado Lucía?",
-  situ: "Pide cita por teléfono: no entiende la locución automática. Prueba por internet: un captcha visual le cuesta tres intentos. En la oficina, el aviso de turno es solo sonoro y hay mucho ruido: pierde su turno.",
-  ix: { mode: "choice", viz: "bars", score: true, options: ["1 o 2", "3", "4 o más"], correct: 2 }, secs: 30,
-  explain: "<b>Al menos cuatro:</b> comunicativa (locución), digital (captcha), comunicativa (aviso sonoro) y física o ambiental (ruido)." });
-S({ t: "section", min: 0, title: "Vive la barrera", lead: "Tres simulaciones de un par de minutos, sin salir de la sala.", time: "≈ 20 min" });
-S({ t: "simaud", min: 3, title: "¿Qué dice este vídeo?", lead: "Primero lo vemos sin sonido y sin subtítulos. Después respondemos dos preguntas. Al final lo vemos con subtítulos.",
-  steps: ["<b>Pase 1:</b> reproduce el vídeo (40 s) sin decir de qué trata.", "<b>Encuesta:</b> pasa a las dos preguntas siguientes; se responden en el móvil.", "<b>Pase 2:</b> vuelve aquí, elige «Con subtítulos» y reprodúcelo otra vez."],
-  say: "Así recibe la información una persona sorda cuando no hay subtítulos. Ahora pensad en Lucía y en la locución del teléfono de cita previa.",
-  notes: "Pulsa «Pase 1» y reproduce el vídeo (40 s). No digas de qué trata. Pasa a las dos preguntas (1 min): la mayoría responderá al azar. Después vuelve a esta diapositiva, pulsa «Pase 2» y reprodúcelo con subtítulos. Para comentar: sin audio ni subtítulos, el contenido desaparece aunque la imagen sea perfecta. Leer los labios no es una alternativa: solo se capta una parte de los sonidos. Los subtítulos benefician también a quien está en un sitio ruidoso, a quien no domina el idioma o a quien tiene el audio apagado. Guion del vídeo: Hola. En este vídeo le explicamos cómo pedir cita previa para su prestación por desempleo. Puede pedirla de dos formas: por internet, en la sede electrónica, o por teléfono. En la web, elija su provincia, la oficina más cercana y el trámite «Prestaciones». Al terminar, recibirá un justificante con la fecha, la hora y la dirección de la oficina. Guarde ese justificante: tendrá que enseñarlo el día de la cita. Ese día, llegue diez minutos antes y lleve su DNI o NIE. Y si no puede ir, anule la cita. Así otra persona podrá usarla." });
+S({ t: "act", min: 10, kind: "Hilo conductor · Mapa del recorrido de Lucía", title: "Los cinco momentos de Lucía: vota el tipo de barrera de cada uno y propón un arreglo",
+  ix: { mode: "refs", viz: "refs", cols: 5, label: "Tu arreglo", cats: ["Física", "Cognitiva", "Digital", "Comunicativa", "Actitudinal"], types: [
+    { name: "1 · El teléfono", ex: "Llama para pedir cita: una locución automática que no entiende con sus audífonos.", cat: 3, demo: ["Cita por SMS o web", "Opción de hablar con una persona", "Videointerpretación"] },
+    { name: "2 · La cita por internet", ex: "Prueba en la web: un captcha visual le cuesta tres intentos.", cat: 2, demo: ["Captcha accesible", "Alternativa sin captcha", "Web probada con usuarios"] },
+    { name: "3 · El aviso de turno", ex: "En la oficina, el turno solo se anuncia en voz alta y hay mucho ruido: lo pierde.", cat: 3, demo: ["Pantalla de turnos", "Aviso por SMS", "Bucle magnético"] },
+    { name: "4 · La notificación", ex: "Le llega una carta en lenguaje jurídico: no entiende qué tiene que hacer ni cuándo.", cat: 1, demo: ["Lenguaje claro", "Resumen al principio", "Lectura fácil"] },
+    { name: "5 · La segunda visita", ex: "La atienden mirando la pantalla, tras la mampara, y le dicen: «Ya se lo explicamos».", cat: 4, demo: ["Mirar de frente", "Preguntar qué necesita", "Apuntar por escrito"] }] }, secs: 150,
+  explain: "<b>Comunicativa, digital, comunicativa, cognitiva y actitudinal.</b> Casi todas se solapan: el ruido también es una barrera física del entorno. Cada arreglo beneficia a muchas más personas que Lucía.",
+  notes: "Sustituye a la pregunta de cuántas barreras había. Deja 2:30 para votar y escribir. Al revelar, recorre los cinco momentos de izquierda a derecha: categoría más votada y los arreglos más repetidos. Pregunta en cuál de los cinco momentos su servicio está mejor y en cuál peor. Recuerda que las categorías se solapan (el ruido es físico y comunicativo; la segunda visita es actitudinal y comunicativa)." });
+S({ t: "section", min: 0, title: "Vive la barrera", lead: "Tres simulaciones de un par de minutos, sin salir de la sala.", time: "11:20 · 20 min" });
+S({ t: "simaud", min: 3, title: "¿Qué dice este vídeo?",
+  notes: "Instrucciones (no se ven en pantalla). Pase 1: reproduce el vídeo (40 s) sin decir de qué trata. Encuesta: pasa a las dos preguntas siguientes; se responden en el móvil. Pase 2: vuelve aquí, elige «Con subtítulos» y reprodúcelo otra vez. Frase para cerrar: «Así recibe la información una persona sorda cuando no hay subtítulos. Ahora pensad en Lucía y en la locución del teléfono de cita previa». Detalle: pulsa «Pase 1» y reproduce el vídeo (40 s). No digas de qué trata. Pasa a las dos preguntas (1 min): la mayoría responderá al azar. Después vuelve a esta diapositiva, pulsa «Pase 2» y reprodúcelo con subtítulos. Para comentar: sin audio ni subtítulos, el contenido desaparece aunque la imagen sea perfecta. Leer los labios no es una alternativa: solo se capta una parte de los sonidos. Los subtítulos benefician también a quien está en un sitio ruidoso, a quien no domina el idioma o a quien tiene el audio apagado. Guion del vídeo: Hola. En este vídeo le explicamos cómo pedir cita previa para su prestación por desempleo. Puede pedirla de dos formas: por internet, en la sede electrónica, o por teléfono. En la web, elija su provincia, la oficina más cercana y el trámite «Prestaciones». Al terminar, recibirá un justificante con la fecha, la hora y la dirección de la oficina. Guarde ese justificante: tendrá que enseñarlo el día de la cita. Ese día, llegue diez minutos antes y lleve su DNI o NIE. Y si no puede ir, anule la cita. Así otra persona podrá usarla." });
 S({ t: "act", min: 1, kind: "Vive la barrera · Auditiva · Pregunta 1 de 2", title: "¿Con cuánta antelación recomienda llegar a la cita?",
   ix: { mode: "choice", viz: "bars", options: ["5 minutos", "10 minutos", "15 minutos", "30 minutos"], correct: 1 }, secs: 30,
   explain: "Diez minutos antes. Sin sonido ni subtítulos, casi nadie podía saberlo." });
@@ -1105,14 +1222,14 @@ S({ t: "act", min: 3, kind: "Una palabra", title: "¿Qué has sentido?", ix: { m
   explain: "Frustración, prisa, inseguridad… Esa emoción es la que lleva a muchas personas a la ventanilla." });
 S({ t: "pause", min: 15 });
 
-S({ t: "section", min: 0, title: "Accesibilidad universal y cognitiva", lead: "Que todo se pueda usar… y también entender.", time: "11:15 · 50 min" });
+S({ t: "section", min: 0, title: "Accesibilidad universal y cognitiva", lead: "Que todo se pueda usar… y también entender.", time: "11:50 · 35 min" });
 S({ t: "capsula", min: 5, title: "¿Qué es la accesibilidad universal?", videos: [["¿Qué es la accesibilidad universal?", "videos/accesibilidad-universal.mp4"]], status: "Vídeo de #MaratonEmpleo.", points: ["Comprensible, utilizable y practicable por todas las personas.", "Con seguridad, comodidad y la mayor autonomía posible."],
   links: [["¿Qué es la accesibilidad universal? | #MaratonEmpleo", "https://www.youtube.com/watch?v=L2zilQjbTa0"]] });
 S({ t: "concept", min: 3, title: "El camino y el resultado", layout: "full", diagram: "audu", lead: "La LGD (art. 2) distingue los dos conceptos." });
 S({ t: "concept", min: 3, title: "Accesibilidad cognitiva: que se pueda entender", lead: "Desde la Ley 6/2022 forma parte de la accesibilidad universal: lenguaje claro, lectura fácil, pictogramas, señalización comprensible, comunicación aumentativa y apoyos humanos.",
   bullets: ["Beneficia a personas mayores, con poca formación, que no dominan el castellano, con daño cerebral… y a quien lee con prisa o estrés.", "RD 707/2026 (desde el 2-1-2027): formularios, solicitudes y guías en lectura fácil, apoyos y trámites electrónicos comprensibles."],
   photo: "cognitiva", photoHint: ["https://images.pexels.com/photos/4058218/pexels-photo-4058218.jpeg?auto=compress&cs=tinysrgb&w=900", "Joven con síndrome de Down leyendo en su ordenador portátil", "", "Foto: Cliff Booth / Pexels", "img/down_lectura.jpg"] });
-S({ t: "videoph", min: 7, kind: "pizarra", title: "Lectura fácil y lenguaje claro" });
+S({ t: "videoph", min: 6, kind: "pizarra", title: "Lectura fácil y lenguaje claro", video: "videos/pizarra-lectura-facil-v2.mp4" });
 S({ t: "vsum", min: 4, title: "Lectura fácil y lenguaje claro", points: [
   "<b>Lectura fácil</b> (UNE 153101 EX): metodología para personas con dificultades de comprensión. Validación obligatoria con personas lectoras. Complementa al original.",
   "<b>Lenguaje claro</b> (UNE-ISO 24495-1): para toda la ciudadanía. Responde a: ¿de qué trata?, ¿qué tengo que hacer?, ¿qué necesito?, ¿plazo?, ¿dónde?, ¿qué pasa después?",
@@ -1128,7 +1245,7 @@ S({ t: "act", min: 8, kind: "Reto de reescritura · Cascada", title: "Reescribe 
   notes: "Pide también un voluntario que lea su versión en voz alta antes de pulsar «¡Ya!»." });
 S({ t: "story", min: 2, who: "lucia", img: "lucia_notif", title: "Lucía recibió justo una carta así", text: "¿Qué habría cambiado para ella con la versión clara?", note: "Probablemente no habría tenido que volver a la oficina." });
 
-S({ t: "section", min: 0, title: "Diseño inclusivo: auditoría de un trámite", lead: "Recorrer el trámite preguntando en cada paso: «¿quién se quedaría fuera aquí?».", time: "12:05 · 35 min" });
+S({ t: "section", min: 0, title: "Diseño inclusivo: auditoría de un trámite", lead: "Recorrer el trámite preguntando en cada paso: «¿quién se quedaría fuera aquí?».", time: "12:25 · 30 min" });
 S({ t: "grid", min: 3, title: "Seis principios del diseño inclusivo", cards: [
   ["Desde el principio", "La accesibilidad está en los requisitos iniciales.", "bulb"], ["Sin complejidad innecesaria", "Cada paso extra suma dificultad.", "arrow"], ["Información coherente", "Web, documentos, teléfono y oficina dicen lo mismo.", "doc"],
   ["Autonomía", "Gestionar sin depender de terceros.", "person"], ["Con las personas usuarias", "Pruebas con personas con distintas necesidades.", "people"], ["Revisar y mejorar", "Una actualización puede romper la accesibilidad.", "check"]] });
@@ -1144,7 +1261,8 @@ S({ t: "nota", min: 2, src: "audit", title: "La nota del trámite" });
 S({ t: "act", min: 4, kind: "Top 5 · Mejoras prioritarias", title: "Propón una mejora prioritaria para este trámite", ix: { mode: "open", viz: "top5", limit: 1 }, secs: 90,
   explain: "Priorizar: efecto sobre los derechos, urgencia, personas afectadas, alternativas, viabilidad y obligaciones legales. Pero priorizar no puede servir para aplazar indefinidamente." });
 
-S({ t: "section", min: 0, title: "Ajustes razonables", lead: "Individuales, obligatorios salvo carga desproporcionada, y nunca un privilegio.", time: "12:40 · 30 min" });
+S({ t: "pause", min: 15 });
+S({ t: "section", min: 0, title: "Ajustes razonables", lead: "Individuales, obligatorios salvo carga desproporcionada, y nunca un privilegio.", time: "13:10 · 45 min" });
 S({ t: "concept", min: 3, title: "Qué es un ajuste razonable", lead: "Modificaciones y adaptaciones necesarias y adecuadas del ambiente físico, social y actitudinal a las necesidades de una persona con discapacidad, que no impongan una carga desproporcionada, cuando se requieran en un caso particular (LGD, art. 2.m).",
   cards: [["Individual", "Responde a una persona en una situación concreta."], ["Obligatorio", "Denegarlo sin justificación es discriminación (LGD, art. 63; Ley 15/2022)."], ["No es un privilegio", "No da ventaja: elimina una desventaja."]] });
 S({ t: "concept", min: 3, title: "Accesibilidad universal y ajustes: complementarios", layout: "full", diagram: "auar",
@@ -1174,6 +1292,51 @@ Q("Ante una petición de ajuste, el mando debe…", ["Decidir solo y rápido", "
 S({ t: "podium", min: 3, scope: "theme", title: "Podio del Tema 3" });
 S({ t: "qa", min: 6, title: "Preguntas y dudas del Tema 3" });
 
+/* ---------- Salud mental ---------- */
+TH(2);
+S({ t: "section", min: 0, title: "Salud mental", lead: "La discapacidad que menos se ve y más se calla.", time: "13:55 · 40 min" });
+S({ t: "concept", min: 3, title: "Salud mental: de qué hablamos", bullets: [
+  "<b>Todas las personas tenemos salud mental</b>, igual que salud física. Puede estar mejor o peor a lo largo de la vida.",
+  "<b>Un problema de salud mental</b> (ansiedad, depresión, trastorno bipolar, esquizofrenia…) es muy distinto de otro y muchas veces es temporal.",
+  "<b>Discapacidad psicosocial:</b> cuando ese problema, al encontrarse con barreras, limita la participación. Puede reconocerse con certificado, aunque muchas personas no lo tienen."],
+  cards: [["315.200", "personas de 16 a 64 años con certificado de discapacidad por salud mental"], ["19 %", "tiene empleo: la tasa más baja de todos los tipos de discapacidad"]],
+  note: "Fuente: INE, recogido en Fundación Adecco, «Discapacidad, salud mental y empleo» (2025).",
+  notes: "Diferencia salud mental, problema de salud mental y discapacidad psicosocial. Recuerda que intelectual y psicosocial no son lo mismo (mito 5)." });
+S({ t: "concept", min: 3, title: "El estigma es la barrera principal", bullets: [
+  "<b>«Son peligrosas»:</b> la gran mayoría no es violenta; es más frecuente que sean víctimas.",
+  "<b>«No pueden trabajar»:</b> con apoyos y un entorno que no excluye, trabajan y rinden como cualquiera.",
+  "<b>«Es falta de voluntad»:</b> es una cuestión de salud, no de carácter.",
+  "<b>Autoestigma:</b> la persona acaba creyendo el prejuicio y deja de pedir lo que necesita."],
+  cards: [["44 % / 7 %", "El 44 % dice necesitar ajustes en su puesto; solo el 7 % los consigue (Fundación Adecco, 2025)."]],
+  notes: "Enlaza con el lenguaje: «estoy fatal, soy bipolar» o «qué obsesivo eres» banalizan situaciones serias." });
+S({ t: "grid", min: 3, title: "Qué ayuda, en el trabajo y en la atención", cols: 3, cards: [
+  ["Contarlo es su decisión", "Nadie está obligado a revelar un diagnóstico. En la vigilancia de la salud, la organización solo recibe la aptitud (LPRL, art. 22.4).", "lock"],
+  ["Ajustes sencillos", "Flexibilidad horaria, tareas claras y por escrito, pausas, reincorporación progresiva.", "tool"],
+  ["Si alguien te lo cuenta", "Escucha sin juzgar, agradece la confianza, pregunta qué necesita y no lo compartas.", "heart"],
+  ["Persona muy alterada", "Calma, voz baja, espacio, escuchar, validar la emoción y ofrecer una o dos opciones.", "hand"],
+  ["Ideas de suicidio", "Tomarlo en serio, no dejar sola a la persona, informar de la línea 024; si el riesgo es inminente, 112.", "phone"],
+  ["Cuidar a quien cuida", "Hablar con el equipo tras una situación difícil y usar los recursos de la organización.", "people"]],
+  notes: "La línea 024 de atención a la conducta suicida es gratuita, confidencial y funciona las 24 horas." });
+S({ t: "videoph", min: 11, kind: "video", title: "Salud mental en el trabajo y en la atención", video: "videos/salud-mental.mp4",
+  notes: "Vídeo de 10:40 con subtítulos. Después, cinco diapositivas de reflexión." });
+S({ t: "act", min: 4, kind: "Reflexión · Salud mental 1 de 5", title: "¿Qué palabra asocias ahora con «salud mental»?", ix: { mode: "words", viz: "cloud" }, secs: 60,
+  explain: "Fíjate en si la nube habla de enfermedad o de salud, de miedo o de cuidado.",
+  notes: "Lee la nube y compárala con lo que suele decirse en la calle." });
+S({ t: "act", min: 4, kind: "Reflexión · Salud mental 2 de 5", title: "Si tuvieras un problema de salud mental, ¿lo contarías en tu trabajo?", ix: { mode: "choice", viz: "tug", options: ["Sí", "No", "Depende"], correct: null }, secs: 60,
+  explain: "Lo que nos frena al contarlo es lo mismo que frena a nuestras compañeras y compañeros: el miedo al estigma.",
+  notes: "No pidas a nadie que explique su voto. Pregunta en general: ¿de qué depende? (de la confianza en el mando, de cómo se habla en el equipo, de la confidencialidad). Esa respuesta es la lista de lo que el equipo puede mejorar." });
+S({ t: "act", min: 5, kind: "Reflexión · Salud mental 3 de 5", situ: "Una compañera vuelve tras tres meses de baja por ansiedad. En el café alguien comenta: «Ya ha vuelto la frágil».", title: "¿Qué haces?",
+  ix: { mode: "choice", viz: "bars", options: ["Nada: no es asunto mío", "Le sigo la broma para no crear tensión", "Digo con calma que ese comentario no ayuda y cambio de tema", "Se lo cuento a la compañera"], correct: 2 }, secs: 60,
+  explain: "<b>Frenar el comentario sin hacer un drama.</b> Contárselo a ella solo la expone más. Si se repite, se comunica al mando por los cauces previstos." });
+S({ t: "act", min: 5, kind: "Reflexión · Salud mental 4 de 5", title: "Una cosa que tu equipo podría hacer para que hablar de salud mental sea más fácil", ix: { mode: "open", viz: "wall", limit: 1 }, secs: 150,
+  explain: "Muchas ideas no cuestan dinero: cómo hablamos, cómo repartimos el trabajo, cómo recibimos a quien vuelve.",
+  notes: "Lee en voz alta las que se repitan y las más concretas." });
+S({ t: "debate", min: 4, kicker: "Reflexión · Salud mental 5 de 5", title: "Para pensar en silencio (o compartir en el chat)", cols: [
+  ["Sobre mí", ["¿Qué hago cuando he tenido una atención difícil?", "¿A quién acudo cuando no estoy bien?"]],
+  ["Sobre mi equipo", ["¿Cómo recibimos a quien vuelve de una baja?", "¿Qué palabras deberíamos dejar de usar?"]]], secs: 90,
+  note: "Si tú o alguien de tu entorno lo necesita: línea 024 de atención a la conducta suicida, gratuita y 24 horas. En una emergencia, 112.",
+  notes: "Cierra el bloque con calma. No obligues a compartir: la reflexión individual es suficiente." });
+
 /* ---------- TEMA 4 (primera parte) ---------- */
 TH(4);
 S({ t: "theme", min: 1 });
@@ -1183,7 +1346,7 @@ S({ t: "act", min: 8, kind: "Dinámica de entrada · ¿Lo dirías así?", title:
     { text: "sordomudo", correct: 1 }, { text: "persona ciega", correct: 0 }, { text: "diversidad funcional" }] }, secs: 90,
   explain: "El resultado es nuestro mapa: dedicamos más tiempo a las expresiones donde la sala está dividida.",
   notes: "«Diversidad funcional» no tiene respuesta única: la usan algunos colectivos, pero no es el término legal." });
-S({ t: "videoph", min: 6, kind: "pizarra", title: "Lenguaje inclusivo y no discriminatorio" });
+S({ t: "videoph", min: 5, kind: "pizarra", title: "Lenguaje inclusivo y no discriminatorio", video: "videos/pizarra-lenguaje-inclusivo-v2.mp4" });
 S({ t: "vsum", min: 4, title: "Lenguaje inclusivo", points: [
   "El lenguaje no es neutral. La Constitución (art. 49, reforma de 2024) cambió «disminuidos» por «personas con discapacidad».",
   "<b>Principios:</b> la persona primero · la discapacidad no se sufre · ni víctimas ni héroes · respetar cómo quiere ser nombrada cada persona · coherencia entre palabra y trato.",
@@ -1201,7 +1364,7 @@ S({ t: "act", min: 4, kind: "Dinámica · Cambia una palabra", title: "¿Cuál d
   notes: "Prototipo 25 del Excel. Perspectiva de género: las mujeres son el 58,7 % de las personas con discapacidad; usar fórmulas inclusivas («la ciudadanía», «personas usuarias»)." });
 
 TH(0);
-S({ t: "section", min: 0, title: "Cierre del día", time: "13:50 · 10 min" });
+S({ t: "section", min: 0, title: "Cierre del día", time: "15:05 · 5 min" });
 S({ t: "podium", min: 4, scope: "day", title: "Clasificación del día 2" });
 S({ t: "end", min: 0, title: "Hasta mañana", lead: "Mañana: pautas de interacción, situaciones complejas, marco legal y tu plan de acción." });
 
@@ -1213,13 +1376,96 @@ S({ t: "day", min: 1 });
 S({ t: "agenda", min: 2 });
 S({ t: "teamsacc", min: 2 });
 S({ t: "join", min: 2 });
-S({ t: "act", min: 3, kind: "Repaso", title: "¿Qué es un ajuste razonable?", ix: { mode: "choice", viz: "bars", score: true, options: ["Un privilegio para quien lo pide", "Una adaptación individual que elimina una desventaja", "Una medida general para toda la plantilla"], correct: 1 }, secs: 25,
-  explain: "Individual, obligatorio salvo carga desproporcionada, y no es un privilegio." });
+/* ---------- Quiz relámpago del día 2 ---------- */
+QF("Una discapacidad grave…", ["Siempre se ve", "Puede no verse: muchas son invisibles", "Siempre tiene certificado"], 1, "Mito 3: la ausencia de signos visibles no dice nada de las necesidades.");
+QF("En el recorrido de Lucía, un aviso de turno solo sonoro es una barrera…", ["Física", "Comunicativa", "Cognitiva"], 1, "Solución: pantalla de turnos o aviso por SMS.");
+QF("Para hablar de alguien que usa silla de ruedas, lo adecuado es…", ["Está postrado en una silla de ruedas", "Es usuario de silla de ruedas", "Sufre una minusvalía"], 1, "La silla da movilidad; no es una cárcel.");
+S({ t: "cloudshow", min: 3, compare: "cloud1", title: "La nube del primer día", note: "Comentamos dos o tres palabras que llamen la atención. Al final de hoy repetiremos la pregunta.",
+  notes: "Vuelve a la nube del día 1. Elige dos o tres palabras y pregunta qué escribirían ahora, después de dos días." });
+
+/* ---------- TEMA 3 (continuación) · Tipos de barreras en profundidad ---------- */
+TH(3);
+S({ t: "section", min: 0, title: "Tipos de barreras, en profundidad", lead: "Para cada tipo: un vídeo, la teoría y una actividad.", time: "9:15 · 55 min" });
+S({ t: "videoph", min: 4, kind: "video", title: "Barreras arquitectónicas", hint: "Espacio reservado para el vídeo sobre barreras arquitectónicas." });
+S({ t: "concept", min: 4, title: "Barreras arquitectónicas y del entorno físico", bullets: [
+  "<b>Qué son:</b> elementos del edificio, del mobiliario o del espacio urbano que impiden llegar, entrar, moverse, orientarse o usar algo con seguridad y autonomía.",
+  "<b>Ejemplos:</b> escalones sin rampa, puertas pesadas, mostradores altos, pasillos estrechos, aseos no adaptados, señalización poco legible, falta de contraste, ruido.",
+  "<b>Marco legal:</b> Código Técnico de la Edificación (DB SUA), Orden TMA/851/2021 de espacios públicos urbanizados y RD 193/2023 de accesibilidad a bienes y servicios.",
+  "<b>No solo silla de ruedas:</b> también afectan a personas mayores, con carrito, con baja visión, con discapacidad cognitiva o con problemas de salud que causan fatiga."], note: "<b>Cadena de accesibilidad:</b> Llegar · entrar · moverse · usar · salir. Si un eslabón falla, falla todo.",
+  notes: "Insiste en la cadena: de nada sirve un mostrador bajo si la puerta no se puede abrir." });
+S({ t: "act", min: 6, kind: "Actividad · Barreras arquitectónicas", title: "Piensa en tu oficina: ¿tiene cada uno de estos elementos?",
+  ix: { mode: "items", viz: "items-stack", itemOpts: ["✅ Sí", "❌ No", "🤷 No lo sé"], items: [
+    { text: "Entrada sin escalones o con rampa" }, { text: "Mostrador con una parte baja" }, { text: "Aseo adaptado" },
+    { text: "Señalización con buen contraste y pictogramas" }, { text: "Zona de espera tranquila, sin ruido" }] }, secs: 150,
+  explain: "Los «no lo sé» también son información: nadie lo ha comprobado. Es la primera tarea del plan de acción.",
+  notes: "Comenta los elementos con más «no» y más «no lo sé». Pregunta quién podría comprobarlo en su servicio." });
+S({ t: "videoph", min: 4, kind: "video", title: "Barreras de comunicación", hint: "Espacio reservado para el vídeo sobre barreras de comunicación." });
+S({ t: "concept", min: 4, title: "Barreras de comunicación", bullets: [
+  "<b>Qué son:</b> obstáculos que impiden recibir, entender o transmitir información: un único canal, un formato inaccesible o un lenguaje difícil.",
+  "<b>Auditivas:</b> cita solo por teléfono, avisos solo sonoros, vídeos sin subtítulos, sin intérprete ni bucle magnético.",
+  "<b>Visuales y digitales:</b> PDF escaneados, imágenes sin texto alternativo, webs que no funcionan con lector de pantalla.",
+  "<b>Cognitivas:</b> lenguaje jurídico, instrucciones largas, plazos poco claros.",
+  "<b>Marco legal:</b> Ley 27/2007 y RD 674/2023 (lenguas de signos y apoyos orales), RD 1112/2018 (accesibilidad web), Ley 6/2022 y RD 707/2026 (accesibilidad cognitiva)."], note: "<b>La regla:</b> Al menos dos canales para todo: oír y ver, hablar y escribir." });
+S({ t: "act", min: 6, kind: "Actividad · Barreras de comunicación", situ: "Una persona sorda recibe un SMS: «Para continuar su trámite, llame al 900…».", title: "¿Cuál es la mejor alternativa?",
+  ix: { mode: "choice", viz: "bars", options: ["Que llame un familiar", "Añadir al SMS un enlace a web, correo o videointerpretación", "Que vaya a la oficina sin cita"], correct: 1 }, secs: 60,
+  explain: "<b>Un segundo canal desde el principio.</b> La persona no tiene que depender de nadie ni desplazarse." });
+S({ t: "videoph", min: 4, kind: "video", title: "Barreras actitudinales", hint: "Espacio reservado para el vídeo sobre barreras actitudinales." });
+S({ t: "concept", min: 4, title: "Barreras actitudinales", bullets: [
+  "<b>Qué son:</b> prejuicios, estereotipos y conductas que tratan a la persona como menos capaz, como un caso o como un héroe.",
+  "<b>Cómo se ven:</b> paternalismo, infantilizar, hablar al acompañante, dudar de lo que no se ve, meter prisa, compasión o admiración excesiva.",
+  "<b>Por qué importan:</b> son las más difíciles de ver y suelen estar detrás de las demás: si no se piensa en todas las personas, se diseñan escaleras, webs y cartas que excluyen.",
+  "<b>Se corrigen</b> con formación, contacto con personas con discapacidad y procedimientos que no dependan de la buena voluntad."], note: "<b>Pregunta de control:</b> ¿Trataría igual a esta persona si no tuviera discapacidad?" });
+S({ t: "act", min: 6, kind: "Actividad · Barreras actitudinales", title: "¿Es una barrera actitudinal? Vota cada situación",
+  ix: { mode: "items", viz: "items-tug", itemOpts: ["👍 Sí", "👎 No"], items: [
+    { text: "Decir «qué valiente eres» a una persona por hacer un trámite.", correct: 0 },
+    { text: "Preguntar «¿cómo prefiere que le dé la información?».", correct: 1 },
+    { text: "Explicarle el trámite al acompañante porque «así es más rápido».", correct: 0 },
+    { text: "Pedir un certificado que el trámite no exige «por si acaso».", correct: 0 }] }, secs: 150,
+  explain: "Tres de cuatro lo son. La admiración excesiva también es una barrera: convierte lo cotidiano en hazaña." });
+S({ t: "videoph", min: 4, kind: "video", title: "Barreras normativas y políticas", hint: "Espacio reservado para el vídeo sobre barreras normativas y políticas." });
+S({ t: "concept", min: 4, title: "Barreras normativas y políticas", bullets: [
+  "<b>Qué son:</b> normas, requisitos, procedimientos o decisiones de gestión que, aunque parezcan neutros, excluyen o ponen en desventaja.",
+  "<b>Ejemplos:</b> exigir presencia física sin alternativa, plazos rígidos sin posibilidad de ampliación, pedir certificado cuando el trámite no lo exige, pruebas de selección sin adaptación, falta de datos o de presupuesto para accesibilidad.",
+  "<b>Discriminación indirecta:</b> una norma aparentemente neutra que perjudica a las personas con discapacidad es discriminación si no está justificada (Ley 15/2022, art. 6).",
+  "<b>También hay normas que derriban barreras:</b> LGD, Ley 15/2022, Ley 8/2021, RD 193/2023, RD 707/2026."], note: "<b>Lo que sí podemos hacer:</b> Detectarlas, registrarlas y proponer el cambio por los cauces." });
+S({ t: "act", min: 6, kind: "Actividad · Barreras normativas", situ: "Una convocatoria de ayudas exige presentar la solicitud en persona en una oficina, de 9:00 a 11:00, durante diez días.", title: "¿Qué barrera crea y qué propondrías?",
+  ix: { mode: "open", viz: "wall", limit: 1 }, secs: 150,
+  explain: "Excluye a quien no puede desplazarse, trabaja en ese horario o necesita apoyos. Propuestas: presentación electrónica asistida, por correo, ampliación de horario y de plazo.",
+  notes: "Clasifica las propuestas: alternativas de canal, de horario y de plazo." });
+
+/* ---------- Tecnologías de apoyo ---------- */
+S({ t: "section", min: 0, title: "Tecnologías de apoyo", lead: "Herramientas que eliminan barreras, si el entorno es compatible con ellas.", time: "10:10 · 20 min" });
+S({ t: "grid", min: 3, title: "Para ver y para oír", cols: 3, cards: [
+  ["Lector de pantalla", "Lee en voz alta lo que hay en pantalla: NVDA (gratuito), JAWS, VoiceOver, TalkBack.", "eye"],
+  ["Magnificador y alto contraste", "Amplía y mejora el contraste para personas con baja visión.", "eye"],
+  ["Línea braille", "Muestra el texto de la pantalla en braille.", "hand"],
+  ["Audífonos e implantes", "Con la posición T captan directamente el bucle magnético.", "ear"],
+  ["Subtítulos y transcripción", "Subtítulos en directo, apps de transcripción del habla a texto.", "chat"],
+  ["Videointerpretación", "Intérprete de lengua de signos a distancia, por ejemplo el servicio SVIsual.", "people"]] });
+S({ t: "grid", min: 3, title: "Para moverse, comunicarse y comprender", cols: 3, cards: [
+  ["Control por voz", "Dictado y manejo del ordenador o del móvil hablando.", "chat"],
+  ["Ratones y teclados adaptados", "Joysticks, conmutadores, teclados ampliados.", "tool"],
+  ["Control con la mirada", "Manejar el ordenador con los ojos.", "eye"],
+  ["Comunicación aumentativa", "Pictogramas (por ejemplo, ARASAAC) y comunicadores.", "doc"],
+  ["Apoyos cognitivos", "Agendas visuales, recordatorios, lectura fácil.", "brain"],
+  ["Productos de apoyo", "El CEAPAT asesora y tiene un catálogo de referencia.", "build"]] });
+S({ t: "concept", min: 3, title: "La tecnología solo funciona si el entorno es compatible", bullets: [
+  "Un lector de pantalla no puede leer un PDF escaneado ni un botón sin etiqueta.",
+  "La <b>accesibilidad web</b> es obligatoria en el sector público (RD 1112/2018, norma UNE-EN 301 549).",
+  "Comprueba que la sede electrónica se puede usar <b>solo con teclado</b> y con <b>lector de pantalla</b>.",
+  "Los mostradores pueden tener <b>bucle magnético</b>, y las salas, <b>turnos visuales</b>.",
+  "La tecnología no sustituye la atención: siempre debe haber una <b>alternativa con una persona</b> (Ley 39/2015, art. 12)."],
+  notes: "Pregunta si alguien ha probado alguna vez su sede electrónica solo con el teclado." });
+S({ t: "videoph", min: 3, kind: "video", title: "Accesibilidad", video: "videos/accesibilidad.mp4", notes: "Vídeo de 2:50." });
+S({ t: "chat", min: 6, title: "¿Qué te ha llamado la atención del vídeo?", lead: "Coméntalo en el chat de Teams.", prompts: ["¿Qué tecnología no conocías?", "¿Cuál podría usar (o ya usa) una persona en tu servicio?", "¿Es compatible vuestra web o vuestra oficina con ella?"], secs: 150,
+  notes: "Lee algunas respuestas en voz alta. Si aparecen tecnologías que la oficina no tiene, apúntalas para el plan de acción." });
+
+S({ t: "pause", min: 15 });
 
 /* ---------- TEMA 4 (segunda parte) ---------- */
 TH(4);
-S({ t: "section", min: 0, title: "Pautas de interacción", lead: "Cinco pautas que valen para todas las personas.", time: "9:10 · 50 min" });
-S({ t: "videoph", min: 8, kind: "pizarra", title: "Pautas de interacción con personas con discapacidad" });
+S({ t: "section", min: 0, title: "Pautas de interacción", lead: "Cinco pautas que valen para todas las personas.", time: "10:45 · 85 min" });
+S({ t: "videoph", min: 8, kind: "pizarra", title: "Pautas de interacción con personas con discapacidad", video: "videos/pizarra-pautas-interaccion-v2.mp4" });
 S({ t: "vsum", min: 4, title: "Cinco pautas para todas las personas", diagram: "pautas", points: [] });
 S({ t: "table", min: 6, title: "Pautas por tipo de discapacidad", fs: 15.5, cols: ["Situación", "En la atención presencial", "Por teléfono o por escrito"], rows: [
   ["Física", "Ponerse a su altura si la conversación es larga. No apoyarse en la silla. Si hay dificultad en el habla, pedir que repita.", "Dar tiempo para coger el teléfono o anotar."],
@@ -1230,6 +1476,39 @@ S({ t: "table", min: 6, title: "Pautas por tipo de discapacidad", fs: 15.5, cols
   ["Salud mental", "Tono tranquilo, un único interlocutor. No discutir ni minimizar.", "Escuchar sin interrumpir. Resumir lo acordado."],
   ["Autismo", "Lenguaje literal. Anticipar pasos y esperas. El contacto visual no indica interés.", "Instrucciones escritas y estructuradas."],
   ["Orgánica o invisible", "Si pide sentarse, pasar antes o una pausa, no pedir pruebas.", "Facilitar cambios de cita por tratamiento."]] });
+S({ t: "concept", min: 4, kicker: "Lo que dice la investigación", title: "Por qué importan las pautas de interacción", bullets: [
+  "En una encuesta a 714 médicos de EE. UU., el <b>82,4 %</b> creía que las personas con discapacidad significativa tienen peor calidad de vida; solo el <b>40,7 %</b> se sentía muy seguro para darles la misma calidad de atención y el <b>56,5 %</b> decía recibirlas sin reservas (Iezzoni y otros, <i>Health Affairs</i>, 2021).",
+  "Una revisión sistemática sobre formación del personal concluye que la más eficaz es la que <b>incluye a personas con discapacidad</b> y combina métodos prácticos (Rotenberg y otros, 2021).",
+  "En España, el <b>82,4 %</b> de las personas con discapacidad encuestadas prefiere un responsable formado en diversidad e inclusión, y el <b>81,5 %</b> pone la empatía como la cualidad más deseada (Fundación Adecco, 2025)."],
+  note: "La actitud y la forma de tratar a la persona influyen directamente en la calidad del servicio que recibe.",
+  notes: "Insiste en que no son datos de «malos profesionales»: son sesgos de personas con buena intención y mucha formación técnica. Por eso las pautas se entrenan." });
+S({ t: "concept", min: 3, kicker: "Lo que dice la investigación", title: "La OMS: la actitud del personal también es una barrera", bullets: [
+  "Unos <b>1.300 millones</b> de personas, 1 de cada 6, tienen una discapacidad significativa.",
+  "Algunas viven <b>hasta 20 años menos</b>, en buena parte por barreras evitables en los servicios.",
+  "Entre esas barreras: <b>actitudes negativas</b> y falta de conocimientos del personal, información en formatos inaccesibles y falta de tiempo en la atención.",
+  "Recomienda <b>formar al personal</b> de los servicios públicos con la participación de personas con discapacidad."],
+  note: "Fuente: OMS, Informe mundial sobre la equidad sanitaria para las personas con discapacidad (2022)." });
+S({ t: "grid", min: 3, title: "Seis principios que valen para todas las personas", cols: 3, cards: [
+  ["Habla con la persona", "No con quien la acompaña ni con el intérprete.", "person"], ["Pregunta antes de ayudar", "Y acepta un «no, gracias».", "ask"], ["No supongas", "Ni capacidades ni necesidades a partir de lo que ves.", "eye"],
+  ["Respeta su espacio", "La silla, el bastón o el perro guía forman parte de él.", "hand"], ["Da tiempo", "Para hablar, entender, moverse o decidir.", "clock"], ["Comprueba", "«¿Me cuentas qué vas a hacer ahora?».", "check"]] });
+S({ t: "concept", min: 3, title: "Ofrecer ayuda sin imponerla", bullets: [
+  "Pregunta: «¿Te puedo ayudar?» o «¿Cómo te ayudo?».", "Si la respuesta es sí, sigue sus indicaciones: la persona sabe lo que le funciona.", "Si es no, respétalo sin insistir ni ofenderte.",
+  "Nunca toques, empujes o muevas la silla, el bastón o el brazo de alguien sin preguntar.", "Ayudar de más también es una barrera: quita autonomía."],
+  cards: [["Ejemplo", "En lugar de coger a una persona ciega del brazo, ofrece el tuyo: ella se coge de tu codo."]] });
+S({ t: "concept", min: 3, title: "Comunicación verbal: claro, concreto y comprobado", bullets: [
+  "Frases cortas, una idea por frase, palabras de uso común.", "Datos concretos: fechas, horas, lugares, documentos.", "Habla con ritmo natural: sin gritar ni exagerar.",
+  "Evita expresiones ambiguas («en breve», «pásese otro día»), sobre todo con personas que interpretan de forma literal.", "Comprueba: no «¿lo ha entendido?», sino «¿me cuentas qué vas a hacer?»."],
+  notes: "Aquí enlazan las 7C de la comunicación, que veremos en el vídeo pizarra." });
+S({ t: "concept", min: 3, title: "Comunicación no verbal y espacio", bullets: [
+  "Mira de frente y con la cara iluminada: ayuda a quien lee los labios.", "En una conversación larga con una persona usuaria de silla de ruedas, ponte a su altura (siéntate).",
+  "Describe lo que señalas o entregas: «el formulario que te doy tiene dos hojas».", "Cuida la distancia y evita el contacto físico brusco, sobre todo ante sobrecarga sensorial.", "El contacto visual no siempre indica interés: muchas personas autistas escuchan mejor sin mirar."] });
+S({ t: "concept", min: 3, title: "Por teléfono y por escrito", bullets: [
+  "Ofrece siempre otro canal: correo, SMS, chat, videointerpretación.", "Por teléfono: preséntate, habla despacio, repite fechas y cifras y ofrece enviarlas por escrito.",
+  "Por escrito: lenguaje claro, lo importante al principio, pasos numerados, plazos visibles.", "Documentos accesibles: texto real, títulos, contraste, sin depender del color.", "Da tiempo para responder y no cierres la conversación con prisas."] });
+S({ t: "concept", min: 3, title: "Errores frecuentes con buena intención", bullets: [
+  "<b>Gritar</b> a una persona con audífonos: distorsiona el sonido.", "<b>Completar sus frases</b> a una persona con dificultades en el habla.", "<b>Hablar al acompañante</b> «para ir más rápido».",
+  "<b>Infantilizar:</b> tutear sin confianza, diminutivos, tono de niño.", "<b>Admirar en exceso:</b> «qué valiente», por algo cotidiano.", "<b>Decidir por la persona</b> «por su bien»."],
+  cards: [["La clave", "Tratar a cada persona como la adulta que es, con los apoyos que necesite."]] });
 S({ t: "act", min: 8, kind: "Dinámica · Semáforo", title: "¿Verde, ámbar o rojo? Vota cada conducta",
   ix: { mode: "items", viz: "items-stack", itemOpts: ["🟢 Adecuada", "🟡 Dudosa", "🔴 Problemática"], items: [
     { text: "Hablar más alto a una persona con audífonos para que oiga mejor.", correct: 2 },
@@ -1241,13 +1520,67 @@ S({ t: "act", min: 8, kind: "Dinámica · Semáforo", title: "¿Verde, ámbar o 
   notes: "Prototipo 5 del Excel (Semáforo)." });
 S({ t: "story", min: 3, who: "lucia", img: "lucia_amable", title: "Lucía vuelve a la oficina", text: "La funcionaria la mira de frente, le pregunta si oye bien con la mampara y le apunta en un papel la fecha y los documentos.", ask: "¿Cuánto tiempo extra le ha costado eso a la funcionaria?",
   note: "Normalmente, menos de un minuto. Y Lucía no tendrá que volver." });
+S({ t: "videoph", min: 9, kind: "pizarra", title: "Las 7C de la comunicación", video: "videos/pizarra-7c.mp4",
+  notes: "Vídeo pizarra: clara, concisa, concreta, correcta, coherente, completa y cortés, con ejemplos de la Administración. Después, siete escenas para practicarlas." });
+const SIETEC = (n, c, situ, title, options, correct, explain) => S({ t: "act", min: 3, keepSecs: true, kind: "Practica las 7C · Escena " + n + " de 7 · " + c, situ, title, ix: { mode: "choice", viz: "bars", score: true, options, correct }, secs: 120, explain });
+SIETEC(1, "Clara", "Una notificación dice: «Proceda a la subsanación de la documentación preceptiva en el plazo de diez días hábiles».", "¿Cuál es la versión más clara?",
+  ["Subsane la documentación preceptiva en diez días hábiles", "Falta un documento obligatorio. Tráelo en los próximos diez días hábiles", "Documentación incompleta: plazo de subsanación diez días"], 1, "<b>Clara:</b> palabras de uso común y una idea por frase.");
+SIETEC(2, "Concisa", "En la ventanilla: «Bueno, pues le comento que, como ya sabrá, en relación con lo que me pregunta, en principio tendría que pedir una cita, si le parece».", "¿Cuál es la versión más concisa?",
+  ["Para eso necesitas pedir cita. Te explico cómo", "Le comento que tendría que pedir una cita", "En principio, si le parece, pida una cita"], 0, "<b>Concisa:</b> lo necesario, sin rodeos, y ofrecer el siguiente paso.");
+SIETEC(3, "Concreta", "Por teléfono: «Le llamaremos en breve con la resolución».", "¿Cuál es la versión más concreta?",
+  ["Le llamaremos lo antes posible", "Le llamaremos el jueves 19 por la mañana", "Le llamaremos cuando esté la resolución"], 1, "<b>Concreta:</b> fecha y hora. Las expresiones vagas generan ansiedad, sobre todo a quien interpreta de forma literal.");
+SIETEC(4, "Correcta", "Un correo dice: «Estimado minusválido: su cita es el 31 de noviembre a las 9:00».", "¿Qué falla?",
+  ["Solo el saludo", "El saludo y la fecha, que no existe", "Nada, el mensaje se entiende"], 1, "<b>Correcta:</b> datos exactos y vocabulario respetuoso («persona con discapacidad» o, mejor, su nombre).");
+SIETEC(5, "Coherente", "Unas instrucciones: «Firma el formulario. Antes, revisa tus datos. Ah, y primero descárgalo de la web».", "¿Cuál es la versión coherente?",
+  ["La misma, pero en negrita", "1. Descarga el formulario. 2. Revisa tus datos. 3. Fírmalo", "Descarga, revisa y firma el formulario como prefieras"], 1, "<b>Coherente:</b> en orden lógico y usando siempre la misma palabra para lo mismo.");
+SIETEC(6, "Completa", "Un SMS: «Tiene cita el lunes».", "¿Qué le falta para estar completo?",
+  ["Nada", "La hora y el lugar", "La hora, el lugar, qué traer, la entrada accesible y cómo cambiar la cita"], 2, "<b>Completa:</b> qué, cuándo, dónde y cómo. La entrada accesible y otro canal de contacto no son un extra.");
+SIETEC(7, "Cortés", "Una carta: «Debe usted aportar obligatoriamente la documentación requerida; en caso contrario, se archivará su solicitud».", "¿Cuál es la versión más cortés?",
+  ["Aporte la documentación o se archivará", "Para continuar con tu solicitud necesitamos un documento más. Si tienes dudas, te ayudamos", "Rogamos aporte documentación"], 1, "<b>Cortés:</b> misma información, otro tono. La cortesía también es accesibilidad.");
 
-S({ t: "section", min: 0, title: "Situaciones complejas", lead: "La discapacidad no suele ser la causa del conflicto; lo es la barrera que no se ha resuelto.", time: "10:00 · 60 min" });
+S({ t: "section", min: 0, title: "Situaciones complejas", lead: "La discapacidad no suele ser la causa del conflicto; lo es la barrera que no se ha resuelto.", time: "12:10 · 115 min" });
 S({ t: "grid", min: 5, title: "Siete claves para reconducir una situación difícil", cols: 4, cards: [
   ["1 · Pausar", "Respirar y bajar el ritmo propio."], ["2 · Escuchar", "Hasta el final, sin preparar la respuesta."], ["3 · Reconocer la emoción", "«Entiendo que es frustrante esperar tanto»."], ["4 · ¿Hay barrera?", "¿Me entiende? ¿Le entiendo? ¿Otro formato, tiempo o canal?"],
   ["5 · Ofrecer opciones", "«Hoy no puedo X, pero sí puedo Y»."], ["6 · Límites con respeto", "«Quiero ayudarle, y para eso necesito que hablemos sin gritos»."], ["7 · Pedir apoyo", "Pedir ayuda no es fracasar."], ["Seguridad", "Si hay riesgo, se aplica el protocolo de la oficina."]] });
-const ESCENA = (n, perfil, contexto, lines, options, correct, explain) => S({ t: "act", min: 8, kind: "Congelar y votar · Escena " + n, scene: { perfil, contexto, lines }, title: "¿Qué haces?",
-  ix: { mode: "choice", viz: "bars", options, correct }, secs: 40, explain });
+S({ t: "concept", min: 3, title: "¿Qué hace que una situación sea compleja?", bullets: [
+  "<b>Emociones intensas:</b> miedo, frustración, prisa o angustia, en la persona y en quien atiende.", "<b>Una barrera sin resolver:</b> no oye, no entiende, no encuentra el canal, lleva demasiado tiempo esperando.",
+  "<b>Mucho en juego:</b> una prestación, un plazo, el alquiler.", "<b>El entorno:</b> ruido, cola, mampara, falta de privacidad.", "<b>Urgencia o riesgo:</b> una emergencia, una crisis de salud o una amenaza."],
+  notes: "La idea fuerza: la discapacidad no suele ser la causa del conflicto; lo es la barrera que no se ha resuelto." });
+S({ t: "table", min: 3, title: "La barrera detrás del conflicto", fs: 19, cols: ["Lo que vemos", "Lo que puede estar pasando", "Qué ayuda"], rows: [
+  ["Grita o se enfada", "No oye bien y se siente humillado.", "Mirar de frente, bajar el ritmo, escribir."],
+  ["Repite la misma frase", "Sobrecarga sensorial o ansiedad ante un cambio.", "Pocas palabras, sitio tranquilo, anticipar."],
+  ["«No me entera de nada»", "Lenguaje difícil o demasiada información.", "Lenguaje claro, pasos por escrito."],
+  ["Se va sin terminar", "Cansancio, dolor, vergüenza.", "Pausa, asiento, otra cita sin penalizar."]] });
+S({ t: "concept", min: 3, title: "Desescalar: la voz, el cuerpo y el espacio", bullets: [
+  "Voz baja y ritmo lento: el tono propio marca el de la conversación.", "Postura abierta, manos visibles, sin cruzar los brazos.", "Distancia: ni demasiado cerca ni bloqueando la salida.",
+  "Una sola persona hablando con quien está alterado.", "Si hay ruido o público, ofrecer un espacio más tranquilo."] });
+S({ t: "table", min: 3, title: "Frases que ayudan y frases que no", fs: 20, cols: ["Mejor evitar", "Mejor decir"], rows: [
+  ["«Cálmese»", "«Entiendo que esto le preocupa. Vamos a verlo juntos»"], ["«Eso no es cosa mía»", "«Esto no lo resuelvo yo, pero le digo quién y cómo»"], ["«Ya se lo he explicado»", "«Se lo explico de otra manera»"], ["«No se puede hacer nada»", "«Hoy no puedo X, pero sí puedo Y»"]] });
+S({ t: "concept", min: 3, title: "Sobrecarga sensorial", bullets: [
+  "Puede ocurrir a personas autistas y a otras personas ante ruido, luz, cola o cambios inesperados.", "<b>Señales:</b> taparse los oídos, repetir frases, balancearse, no responder o querer irse.",
+  "<b>No es un enfado</b> contra nadie y no se resuelve con más palabras.", "<b>Qué hacer:</b> hablar poco y con calma, ofrecer un lugar tranquilo, decir qué va a pasar y cuándo, no tocar sin permiso.",
+  "<b>Prevenir:</b> anticipar esperas, evitar cambios de mesa sin avisar, turnos visuales."] });
+S({ t: "concept", min: 3, title: "Crisis emocional o de salud mental", bullets: [
+  "Escuchar sin interrumpir y sin discutir.", "Reconocer la emoción, aunque no puedas darle lo que pide.", "Ofrecer una o dos opciones concretas: demasiadas agobian.",
+  "Si expresa ideas de hacerse daño: tomarlo en serio, no dejar sola a la persona e informar de la línea 024.", "Si hay riesgo inmediato: protocolo de seguridad y 112."] });
+S({ t: "concept", min: 3, title: "Cuando la persona viene acompañada", bullets: [
+  "La persona interesada es quien decide; quien acompaña es un apoyo (Ley 8/2021).", "Saluda a ambos y dirígete a la persona.", "Si el acompañante responde por ella, agradece y vuelve a preguntarle a ella.",
+  "Si hay intérprete o guía-intérprete, habla a la persona: su función es neutral.", "Si sospechas presión o abuso, comunícalo por el canal previsto."] });
+S({ t: "concept", min: 3, title: "Límites, seguridad y apoyo", bullets: [
+  "Puedes poner límites con respeto: «Quiero ayudarle, y para eso necesito que hablemos sin gritos».", "Conoce el protocolo de seguridad de tu oficina y a quién avisar.",
+  "Pedir apoyo a un compañero o al mando no es fracasar.", "Registra la incidencia y, si había una barrera, comunícala para que se corrija."] });
+S({ t: "concept", min: 3, title: "Después de la situación", bullets: [
+  "Habla con tu equipo o tu responsable: compartirlo ayuda a procesarlo.", "Revisa qué barrera había detrás y propón una mejora.", "Cuida tu salud: pausa, recursos de prevención, apoyo psicológico si existe.",
+  "Una situación difícil es también información para mejorar el servicio."] });
+S({ t: "act", min: 6, kind: "Ejemplo · Una emergencia en la oficina", situ: "Son las 11:00 y suena la alarma de incendios. En la sala de espera hay un hombre usuario de silla de ruedas; Lucía, en el mostrador, no oye la alarma; en la segunda planta, el ascensor no se puede usar.", title: "¿Qué es lo primero que deberías saber hacer?",
+  ix: { mode: "choice", viz: "bars", options: ["Bajar al hombre en brazos por la escalera", "Saber quién avisa a cada persona, cuál es la ruta y dónde está la zona de refugio, según el plan de emergencia", "Esperar a que lleguen los bomberos"], correct: 1 }, secs: 150,
+  explain: "<b>El plan de emergencia debe prever a las personas de alta vulnerabilidad</b> (Directriz Básica de autoprotección, 2026): aviso accesible, persona de apoyo titular y suplente, ruta y zona de refugio. Nunca se carga a nadie sin formación.",
+  notes: "Comentad en el chat de Teams: ¿sabéis dónde está la zona de refugio de vuestro edificio? Después, el vídeo." });
+S({ t: "videoph", min: 13, kind: "video", title: "Emergencias y prevención: que nadie se quede atrás", video: "videos/emergencias-prevencion.mp4",
+  notes: "Vídeo de 12:25 con subtítulos. Después, las escenas de «congelar y votar»." });
+const ESCENA = (n, perfil, contexto, lines, options, correct, explain) => S({ t: "act", min: 8, kind: "Congelar y votar · Escena " + n, scene: { perfil, contexto, lines }, title: "¿Qué haces? Vota y coméntalo en el chat de Teams",
+  ix: { mode: "choice", viz: "bars", options, correct }, secs: 150, explain,
+  notes: "Temporizador de 2:30. Mientras votan, pide que expliquen su elección en el chat de Teams; lee dos o tres comentarios antes de revelar." });
 ESCENA(1, "La mampara · persona con hipoacusia", "Oficina llena. Un hombre de unos 60 años, con audífonos, pregunta por qué le han suspendido la prestación. Hay mampara y ruido.",
   [["Funcionaria", "(rápido, mirando la pantalla) Es por la falta de documentación del mes pasado…"], ["Hombre", "¿Cómo?"], ["Funcionaria", "(más alto) ¡LA DOCUMENTACIÓN DEL MES PASADO!"], ["Hombre", "¡No me grite, que no soy tonto!"]],
   ["Pedirle que se calme y repetirlo más alto", "Disculparse, preguntar qué le ayuda a oír mejor, mirarle de frente y escribirle la causa y qué hacer", "Decirle que vuelva con alguien que le ayude a entender"], 1,
@@ -1283,14 +1616,28 @@ S({ t: "pause", min: 15 });
 /* ---------- TEMA 5 ---------- */
 TH(5);
 S({ t: "theme", min: 1 });
-S({ t: "videoph", min: 10, kind: "pizarra", title: "Normativa: de proteger a la persona a eliminar barreras" });
+S({ t: "videoph", min: 13, kind: "pizarra", title: "Normativa: de proteger a la persona a eliminar barreras", video: "videos/pizarra-normativa-v2.mp4" });
 S({ t: "vsum", min: 5, title: "Veinte años de normativa", diagram: "timeline", points: [] });
+S({ t: "concept", min: 4, kicker: "Personas con discapacidad intelectual", title: "Lo que ha cambiado en la ley", bullets: [
+  "<b>Derecho de voto (2018):</b> la Ley Orgánica 2/2018 devolvió el derecho de sufragio a cerca de 100.000 personas a las que se les había retirado por una sentencia.",
+  "<b>Capacidad jurídica (2021):</b> la Ley 8/2021 eliminó la incapacitación judicial y la tutela de personas adultas: deciden con los apoyos que elijan.",
+  "<b>Esterilización forzosa (2020):</b> la Ley Orgánica 2/2020 la prohibió.",
+  "<b>Entender es un derecho (2022):</b> la Ley 6/2022 incorporó la accesibilidad cognitiva; el RD 707/2026 la concreta desde 2027.",
+  "<b>Constitución (2024):</b> el artículo 49 dejó de hablar de «disminuidos»."],
+  notes: "Subraya que muchas de estas normas son muy recientes: buena parte de las personas con discapacidad intelectual adultas vivió con menos derechos que hoy." });
+S({ t: "concept", min: 4, kicker: "Personas con discapacidad intelectual", title: "Lo que la ley exige en la práctica", bullets: [
+  "<b>Presumir la capacidad:</b> no pedir sentencias, tutores ni acompañantes si la persona viene sola.",
+  "<b>Ofrecer apoyos:</b> lectura fácil, explicaciones con ejemplos, tiempo, persona de confianza si la elige.",
+  "<b>Respetar la voluntad:</b> la persona decide, aunque no elija lo que a nosotros nos parece mejor.",
+  "<b>Ajustes en los procedimientos:</b> la Ley de Enjuiciamiento Civil (art. 7 bis) prevé ajustes y la figura de la persona facilitadora; es un buen modelo para la Administración.",
+  "<b>Detectar abusos:</b> si hay presión o engaño, se comunica por el canal previsto."], note: "<b>La pregunta:</b> ¿Qué apoyo necesitas para hacer este trámite?" });
+S({ t: "videoph", min: 14, kind: "video", title: "Capacidad jurídica y apoyos", video: "videos/capacidad-juridica.mp4",
+  notes: "Vídeo de 13:48 con subtítulos. Cuenta el caso de Carmen: la misma ayuda, la misma oficina, dos formas de atender." });
 S({ t: "concept", min: 3, title: "Lo que llega y lo que está en camino", bullets: [
   "<b>RD 707/2026</b> (accesibilidad cognitiva), en vigor el 2 de enero de 2027: formularios y guías en lectura fácil, apoyos para comprender los trámites y formación del personal.",
   "<b>RD 606/2026:</b> Estatuto de la Autoridad Independiente para la Igualdad de Trato. Nueva vía de reclamación.",
   "<b>En tramitación:</b> nuevo real decreto de acceso al empleo público (sustituirá al RD 2271/2004) y Tarjeta Europea de Discapacidad (Directiva UE 2024/2841).",
-  "<b>Estrategia Española sobre Discapacidad 2022-2030:</b> inclusión, autonomía, igualdad y diversidad, accesibilidad universal."],
-  note: "Comprueba el estado de las normas en tramitación justo antes de impartir el curso." });
+  "<b>Estrategia Española sobre Discapacidad 2022-2030:</b> inclusión, autonomía, igualdad y diversidad, accesibilidad universal."] });
 S({ t: "table", min: 6, title: "Los mismos derechos, sin barreras", fs: 18, cols: ["Derecho", "Base legal", "En la atención y el trabajo"], rows: [
   ["Igualdad y no discriminación", "Convención art. 5 · Ley 15/2022 · LGD", "Mismo servicio y oportunidades. Denegar un ajuste es discriminación."],
   ["Accesibilidad universal", "Convención art. 9 · RD 193/2023 · RD 1112/2018 · RD 366/2007", "Entrar, usar la sede, entender documentos y comunicarse."],
@@ -1304,20 +1651,20 @@ const DER = (n, situ, explain) => S({ t: "act", min: 3, kind: "¿Tiene derecho? 
 DER(1, "Una persona con discapacidad intelectual acude sola. ¿Podemos pedirle que vuelva con un familiar?", "<b>No.</b> Tiene derecho a hacerlo por sí misma (Ley 8/2021), con los apoyos que elija.");
 DER(2, "Una persona ciega no puede abrir un certificado en PDF no accesible. ¿Tiene derecho a pedirlo en otro formato y a quejarse?", "<b>Sí</b> (RD 1112/2018).");
 DER(3, "Una persona sorda solo puede pedir cita por teléfono. ¿Tiene derecho a un canal alternativo?", "<b>Sí</b> (RD 193/2023 y RD 674/2023: videointerpretación en la atención no presencial).");
-S({ t: "section", min: 0, title: "El reconocimiento del grado de discapacidad", lead: "Procedimiento común (RD 888/2022), gestionado por cada comunidad autónoma.", time: "≈ 25 min" });
+S({ t: "section", min: 0, title: "El reconocimiento del grado de discapacidad", lead: "Procedimiento común (RD 888/2022), gestionado por cada comunidad autónoma.", time: "15:15 · 45 min" });
 S({ t: "grid", min: 3, title: "No es lo mismo", cols: 3, cards: [
   ["Grado de discapacidad", "Valora la discapacidad conforme a los baremos. Lo reconoce la comunidad autónoma.", "scale"],
   ["Dependencia", "Valora la necesidad de apoyo para las actividades básicas de la vida diaria.", "people"],
   ["Incapacidad laboral", "Permanente total, absoluta o gran invalidez. La reconoce el INSS.", "law"]],
   note: "Una persona puede solicitar discapacidad, dependencia o ambas. Son figuras distintas, con efectos diferentes." });
-S({ t: "videoph", min: 4, kind: "video", title: "Diferencias entre incapacidad laboral y certificado de discapacidad" });
+S({ t: "videoph", min: 4, kind: "video", title: "Diferencias entre incapacidad laboral y certificado de discapacidad", video: "videos/incapacidad-vs-certificado.mp4" });
 S({ t: "concept", min: 4, title: "El procedimiento en cinco pasos", layout: "full", diagram: "grado",
   note: "Urgente por salud, esperanza de vida, violencia de género o razones humanitarias (plazos a la mitad). Revisión si la situación cambia. Los pensionistas de incapacidad permanente se equiparan al 33 %; desde 2027 lo acreditan con su resolución." });
 S({ t: "table", min: 3, title: "Dónde se solicita", fs: 15, cols: ["Comunidad", "Organismo", "Comunidad", "Organismo"], rows: [
   ["Andalucía", "Centros de Valoración y Orientación", "Comunitat Valenciana", "CVOD"], ["Aragón", "IASS", "Extremadura", "Junta de Extremadura"], ["Asturias", "Centros de valoración", "Galicia", "Xunta (Política Social)"],
   ["Illes Balears", "Govern balear", "Comunidad de Madrid", "Centros base"], ["Canarias", "Gobierno de Canarias", "Región de Murcia", "IMAS"], ["Cantabria", "ICASS", "Navarra", "Gobierno de Navarra"],
   ["Castilla-La Mancha", "Centros base", "País Vasco", "Diputaciones forales"], ["Castilla y León", "Gerencias territoriales", "La Rioja", "Gobierno de La Rioja"], ["Cataluña", "Generalitat", "Ceuta y Melilla", "IMSERSO"]],
-  note: "La vía más fiable: buscar «reconocimiento del grado de discapacidad» en la sede electrónica de la comunidad. Comprobar antes del curso." });
+  note: "La vía más fiable: buscar «reconocimiento del grado de discapacidad» en la sede electrónica de la comunidad." });
 S({ t: "story", min: 2, who: "lucia", img: "lucia_carta", title: "Lucía no tiene certificado", text: "¿Le corresponde que la atiendan con apoyos a la comunicación? Sí. ¿Debería informarse sobre el reconocimiento del grado? Quizá le interese para otras medidas.",
   note: "Se le puede orientar sobre dónde pedirlo, sin presionarla. La protección frente a la discriminación no depende del certificado." });
 S({ t: "grid", min: 4, title: "Responsabilidad de la Administración", cols: 3, cards: [
@@ -1340,7 +1687,7 @@ S({ t: "qa", min: 5, title: "Preguntas y dudas del Tema 5" });
 /* ---------- TEMA 6 ---------- */
 TH(6);
 S({ t: "theme", min: 1 });
-S({ t: "section", min: 0, title: "Casos reales", lead: "Encuesta de primera reacción, ideas en cascada y respuesta de referencia.", time: "12:45 · 60 min" });
+S({ t: "section", min: 0, title: "Casos reales", lead: "Encuesta de primera reacción, ideas en cascada y respuesta de referencia.", time: "16:05 · 30 min" });
 const CASO = (n, title, situ, options, correct, explain, story, img) => S({ t: "act", min: 6, kind: "Caso " + n + " · " + title, story, img, title: "¿Qué haces primero?", situ, ix: { mode: "choice", viz: "bars", options, correct }, secs: 30, explain });
 CASO(1, "La notificación que nadie entiende", "Un hombre de 45 años llega con una notificación arrugada. Dice que «le van a quitar el paro», está muy nervioso, lee con dificultad y no trae la documentación. Detrás hay cola.",
   ["Le explico el artículo que se aplica", "Le tranquilizo, le pregunto qué ha entendido y le explico con mis palabras qué hacer y antes de cuándo", "Le digo que pida cita y vuelva con la documentación"], 1,
@@ -1357,7 +1704,7 @@ S({ t: "act", min: 7, kind: "Caso 4 · La reunión de equipo · Cascada", title:
   situ: "Reunión semanal de 30 minutos, de pie, en la zona de paso, sin orden del día y sin acta. Una compañera con hipoacusia y otra con fatiga crónica casi nunca intervienen.",
   ix: { mode: "open", viz: "cascade", limit: 2 }, secs: 90,
   explain: "Orden del día previo, sala tranquila con asientos, turnos, acuerdos por escrito y aportaciones previas. Nada exige saber de la salud de nadie: <b>diseño universal en lo cotidiano</b>." });
-S({ t: "section", min: 0, title: "Mi compromiso con la discapacidad", lead: "¿Qué voy a hacer de forma diferente a partir de mañana?", time: "≈ 15 min" });
+S({ t: "section", min: 0, title: "Mi compromiso con la discapacidad", lead: "¿Qué voy a hacer de forma diferente a partir de mañana?", time: "16:30 · 15 min" });
 S({ t: "act", min: 8, kind: "Plan de acción individual", key: "commit", title: "Elige 4 conductas y ordénalas: la primera será tu compromiso",
   ix: { mode: "pick", viz: "commit", pick: 4, groups: [
     ["Mi forma de relacionarme", ["Escuchar antes de actuar", "Preguntar en lugar de suponer", "Respetar la autonomía", "Dirigirme directamente a la persona", "Respetar los tiempos", "Ofrecer ayuda sin imponerla", "Respetar la privacidad"]],
@@ -1367,6 +1714,20 @@ S({ t: "act", min: 8, kind: "Plan de acción individual", key: "commit", title: 
   explain: "Lee de nuevo tu primera conducta: ¿depende, al menos en parte, de tu actitud o actuación? Esa es tu tarjeta de compromiso.",
   notes: "Pon música suave y el temporizador de 4 minutos. Silencio mientras eligen." });
 S({ t: "muro", min: 5, src: "commit", title: "Muro de compromisos" });
+S({ t: "section", min: 0, title: "Trabajar en red", lead: "No hace falta saberlo todo: basta con saber a quién preguntar.", time: "16:45 · 40 min" });
+S({ t: "videoph", min: 9, kind: "video", title: "Entidades de referencia en discapacidad en España", video: "videos/entidades-referencia.mp4",
+  notes: "Vídeo de 8:27 con subtítulos: CERMI, COCEMFE, Plena inclusión, Autismo España, ONCE, CNSE, FIAPAS, SALUD MENTAL ESPAÑA y recursos públicos como el CEAPAT o la OADIS." });
+S({ t: "concept", min: 3, title: "Por qué trabajar en red", bullets: [
+  "<b>Conocimiento experto:</b> las entidades conocen las barreras de primera mano.", "<b>Nada sobre nosotros sin nosotros:</b> la Convención de la ONU obliga a consultar a las personas con discapacidad y a sus organizaciones (art. 4.3).",
+  "<b>Recursos que ya existen:</b> validación de lectura fácil, intérpretes, asesoría en accesibilidad, empleo con apoyo.", "<b>Derivar bien:</b> orientar a la ciudadanía hacia el apoyo adecuado.",
+  "<b>Mejorar el servicio:</b> probar trámites y documentos con personas usuarias antes de publicarlos."] });
+S({ t: "grid", min: 3, title: "Cómo empezar a trabajar en red", cols: 3, cards: [
+  ["Haz tu mapa", "Qué entidades hay en tu provincia: federaciones de COCEMFE, Plena inclusión, personas sordas, salud mental, autismo…", "web"],
+  ["Una persona de contacto", "En tu servicio y en cada entidad.", "person"], ["Empieza por algo concreto", "Validar una carta, revisar la accesibilidad de la oficina, formar al equipo.", "check"],
+  ["Consulta antes de decidir", "Planes, protocolos y cambios de procedimiento: pregunta al CERMI de tu comunidad.", "ask"], ["Deriva con datos", "Teléfono, web y qué hace cada entidad, a mano en el mostrador.", "doc"],
+  ["Evalúa y agradece", "Comprueba si funcionó y reconoce la colaboración.", "star"]] });
+S({ t: "act", min: 5, kind: "Trabajo en red · Cascada", title: "¿Con qué entidad podría colaborar tu servicio, y para qué?", ix: { mode: "open", viz: "cascade", limit: 1 }, secs: 150,
+  explain: "Una colaboración concreta vale más que un convenio genérico.", notes: "Lee las propuestas y anima a incluir una en el plan de acción." });
 LF("Mi compromiso", [["ask", "Pregunto en lugar de suponer."], ["person", "Hablo con la persona y respeto sus decisiones."], ["wall", "Si veo una barrera, aviso a quien corresponde."], ["check", "Compruebo que la solución funciona."]]);
 Q("Ante una persona nerviosa que no entiende su notificación, ¿qué haces primero?", ["Explicar el artículo", "Tranquilizar, preguntar qué ha entendido y explicar con mis palabras", "Darle cita"], 1, "Y darle por escrito los pasos y la fecha.");
 Q("Una compañera pregunta por el ajuste de Andrés. La jefa…", ["Explica su diagnóstico", "Mantiene la confidencialidad y escucha si hay otra barrera", "Retira el ajuste"], 1, "El dato de salud es confidencial.");
@@ -1378,7 +1739,7 @@ S({ t: "qa", min: 5, title: "Preguntas y dudas del Tema 6" });
 
 /* ---------- Cierre de la formación ---------- */
 TH(0);
-S({ t: "section", min: 0, title: "Cierre de la formación", time: "13:45 · 15 min" });
+S({ t: "section", min: 0, title: "Cierre de la formación", time: "17:25 · 15 min" });
 S({ t: "story", min: 3, who: "both", img: ["lucia_amable", "andres_amable"], title: "Final de la historia", text: "Seis semanas después, Lucía cobra su prestación. La oficina ya tiene una pantalla de turnos y su carta se está reescribiendo en lenguaje claro. Andrés sigue en su puesto: desde que las prioridades se envían por escrito, el equipo comete menos errores, y no solo él.",
   note: "Ninguno de los dos cambios exigió que Lucía o Andrés «se adaptaran». Cambió el entorno." });
 S({ t: "act", min: 5, kind: "Dinámica de cierre · La nube, otra vez", compare: "cloud1", title: "Escribe la primera palabra que te viene a la cabeza al oír «discapacidad»",
@@ -1632,7 +1993,8 @@ const KEY = {};
     if (s.t === "section") block = s.title; if (s.t === "day") block = "Apertura"; if (s.t === "theme") block = THEMES[s.th].short;
     s.block = block;
     if (s.t === "qa") s.ix = { mode: "open", viz: "qa", limit: 3 };
-    if (s.t === "quiz") { s.ix.viz = "quiz"; s.qn = qn[s.th] = (qn[s.th] || 0) + 1; }
+    if (s.t === "quiz") { s.ix.viz = "quiz"; const qk = s.flash ? "f" + s.day : s.th; s.qn = qn[qk] = (qn[qk] || 0) + 1; s.secs = 60; }
+    if (s.t === "act" && s.secs && !s.keepSecs) s.secs = s.secs < 60 ? 60 : s.secs < 150 ? 150 : s.secs;
     if (s.t === "videoph") s.vid = "v" + s.day + "-" + (++vc[s.day]);
     s.score = !!(s.ix && s.ix.score);
     if (s.key) (KEY[s.key] = KEY[s.key] || []).push(i);
@@ -1681,7 +2043,7 @@ function vizSkeleton(s) {
   if (v === "top5" || v === "qa") return `<ol class="qalist" data-qa></ol><div class="wait" data-qaw>Las respuestas se agruparán por temas y aparecerán aquí las 5 más repetidas.</div>`;
   if (v.startsWith("items") || v === "checklist") return `<div class="items ${s.ix.items.length > 4 ? "dense" : ""}">${s.ix.items.map((it, k) => `<div class="irow" data-item="${k}"><div class="it">${it.text}${it.correct != null ? `<span class="rec">✓ ${s.ix.itemOpts[it.correct]}</span>` : ""}</div><div data-ibar></div></div>`).join("")}</div>`;
   if (v === "commit") return `<div class="race" data-commit></div>`;
-  if (v === "refs") return `<div class="refs">${s.ix.types.map((t, k) => `<div class="rcard c${t.cat}" data-ref="${k}"><div class="rtype">${t.name}</div><div class="rex">${t.ex}</div><div class="rcat"><span data-rc>Categoría: esperando…</span><span class="rok">✓ ${s.ix.cats[t.cat]}</span></div><ol data-rl></ol></div>`).join("")}</div>`;
+  if (v === "refs") return `<div class="refs"${s.ix.cols ? ` style="grid-template-columns:repeat(${s.ix.cols},minmax(0,1fr))"` : ""}>${s.ix.types.map((t, k) => `<div class="rcard c${t.cat}" data-ref="${k}"><div class="rtype">${t.name}</div><div class="rex">${t.ex}</div><div class="rcat"><span data-rc>Categoría: esperando…</span><span class="rok">✓ ${s.ix.cats[t.cat]}</span></div><ol data-rl></ol></div>`).join("")}</div>`;
   return "";
 }
 function tugSVG() {
@@ -1721,6 +2083,18 @@ function renderSlide(s) {
       h = `${kick(s.kicker || "Ejemplos")}<h2>${s.title}</h2><div class="rgal">${s.cards.map((c, k) => `<div class="rg c${c.cat}" style="animation:in .45s ${k * .06}s both"><div class="rgph"><span aria-hidden="true">${esc(c.name.split(" ").map(w => w[0]).slice(0, 2).join(""))}</span><img src="img/referentes/${c.slug}.jpg" alt="${esc(c.name)}" onerror="this.remove()"></div><div class="rgtx"><div class="rgcat">${esc(c.type)} · ${esc(CATS_REF[c.cat])}</div><h3>${esc(c.name)}</h3><p>${c.txt}</p></div></div>`).join("")}</div>${s.note ? `<div class="note">${s.note}</div>` : ""}${foot(s)}`; break;
     case "visib":
       h = `${kick(s.kicker)}<h2>${s.title}</h2><div class="vis"><div class="vcol pro"><div class="tagline">Lo que ha ganado la sociedad</div><ul>${s.pros.map(x => `<li>${x}</li>`).join("")}</ul></div><div class="vcol con"><div class="tagline">Mitos y sesgos que ha fomentado</div><ul>${s.cons.map(x => `<li>${x}</li>`).join("")}</ul></div></div><div class="quote vq">${s.quote}</div>${foot(s)}`; break;
+    case "news":
+      h = `${kick(s.kicker || "La mirada médica en la prensa")}<h2>${s.title}</h2>${s.lead ? `<p class="lead">${s.lead}</p>` : ""}<div class="news">${s.items.map((n, k) => `<figure class="clip" style="--r:${[-1.6, 1.2, -.8, 1.8][k % 4]}deg;animation-delay:${k * .2}s"><div class="clip-src">${n.src}</div><blockquote>${n.h}</blockquote>${n.sub ? `<p class="clip-sub">${n.sub}</p>` : ""}<figcaption>${n.tag ? `<span class="clip-tag">${n.tag}</span>` : ""}${n.why || ""}</figcaption></figure>`).join("")}</div>${s.note ? `<div class="note">${s.note}</div>` : ""}${foot(s)}`; break;
+    case "chat":
+      cls = "chatsl"; h = `${kick(s.kicker || "Participa en el chat de Teams")}<div class="chatq"><div class="chatico">${ico("chat")}</div><div><h2>${s.title}</h2>${s.lead ? `<p class="lead">${s.lead}</p>` : ""}${s.prompts ? `<ul class="chatp">${s.prompts.map(x => `<li>${x}</li>`).join("")}</ul>` : ""}</div></div><div class="act-bar"><button class="sbtn" type="button" data-timer="${s.secs || 150}">${ico("timer")}Temporizador</button><span class="timer" data-tdisp></span></div>${s.note ? `<div class="note">${s.note}</div>` : ""}`; break;
+    case "quotes":
+      h = `${kick(s.kicker || "Frases «inspiradoras»")}<h2>${s.title}</h2><div class="quotes">${s.items.map((q, k) => `<blockquote class="iq" style="animation-delay:${k * .25}s"><p>«${q[0]}»</p><cite>${q[1]}</cite></blockquote>`).join("")}</div>${s.note ? `<div class="note">${s.note}</div>` : ""}${foot(s)}`; break;
+    case "debate":
+      h = `${kick(s.kicker || "Debate guiado")}<h2>${s.title}</h2><div class="debate">${s.cols.map((c, k) => `<div class="dcol d${k}"><div class="tagline">${c[0]}</div><ol>${c[1].map(q => `<li>${q}</li>`).join("")}</ol></div>`).join("")}</div><div class="act-bar"><button class="sbtn" type="button" data-timer="${s.secs || 150}">${ico("timer")}Temporizador</button><span class="timer" data-tdisp></span></div>${s.note ? `<div class="note">${s.note}</div>` : ""}`; break;
+    case "hist":
+      h = `${kick(s.kicker || "De dónde venimos")}<h2>${s.title}</h2>${s.lead ? `<p class="lead">${s.lead}</p>` : ""}<div class="hist">${s.items.map((x, k) => `<div class="hitem" style="animation-delay:${k * .2}s"><div class="hwhen">${x[0]}</div><div class="hbody"><h3>${x[1]}</h3><p>${x[2]}</p></div></div>`).join("")}</div>${s.note ? `<div class="note">${s.note}</div>` : ""}${foot(s)}`; break;
+    case "cloudshow":
+      h = `${kick(s.kicker || "Nube de palabras del día 1")}<h2>${s.title}</h2><div class="cloud big" data-cloud1></div>${s.note ? `<div class="note">${s.note}</div>` : ""}${foot(s)}`; break;
     case "duo":
       h = `${kick("Hilo conductor")}<h2>${s.title}</h2><div class="duo">
         <div class="person">${pic("lucia_amable", "duo")}<div><h3>Lucía</h3><div class="age">52 años · ciudadana</div><p>Ha perdido su empleo tras 20 años. Tiene hipoacusia y usa audífonos; no tiene certificado. Necesita pedir la prestación: le cuesta el teléfono, la cita online le da problemas y no entiende la notificación.</p></div></div>
@@ -1733,11 +2107,11 @@ function renderSlide(s) {
     case "section":
       cls = "section"; h = `${seeds()}<div class="bignum"><i></i>${s.th ? "Tema " + s.th : "Jornada " + s.day}</div><h2>${s.title}</h2>${s.lead ? `<p class="lead">${s.lead}</p>` : ""}<p class="time">${s.time || ""}</p>`; break;
     case "simaud":
-      h = `${kick("Vive la barrera · Barrera auditiva · " + s.min + " min")}<h2>${s.title}</h2><p class="lead sim-lead">${s.lead}</p>
-        <div class="sim-aud" data-simaud><div class="sim-player-col"><div class="sim-modes" role="group" aria-label="Modo de reproducción"><button type="button" class="sbtn primary" data-simmode="0" aria-pressed="true">Pase 1 · Sin sonido ni subtítulos</button><button type="button" class="sbtn" data-simmode="1" aria-pressed="false">Pase 2 · Con subtítulos</button></div>
+      h = `${kick("Vive la barrera · Barrera auditiva · " + s.min + " min")}<h2>${s.title}</h2>${s.lead ? `<p class="lead sim-lead">${s.lead}</p>` : ""}
+        <div class="sim-aud${s.steps ? "" : " solo"}" data-simaud><div class="sim-player-col"><div class="sim-modes" role="group" aria-label="Modo de reproducción"><button type="button" class="sbtn primary" data-simmode="0" aria-pressed="true">Pase 1 · Sin sonido ni subtítulos</button><button type="button" class="sbtn" data-simmode="1" aria-pressed="false">Pase 2 · Con subtítulos</button></div>
         <div class="sim-player"><canvas data-simcv width="960" height="540" aria-label="Vídeo informativo simulado: una presentadora habla a cámara"></canvas><div class="sim-cc" data-simcc hidden></div>
         <div class="sim-bar"><button type="button" data-simplay aria-label="Reproducir"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path data-simicon d="M7 4l13 8-13 8z"/></svg></button><div class="sim-prog"><i data-simpg></i></div><span class="sim-t" data-simt>0:00 / 0:40</span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-label="Sin sonido"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/><path d="M17 9l5 6M22 9l-5 6"/></svg><span class="sim-tag" data-simtag>CC</span></div></div></div>
-        <div class="sim-side"><ol class="sim-steps">${s.steps.map(x => `<li>${x}</li>`).join("")}</ol><p class="sim-say">${s.say}</p></div></div>${foot(s)}`;
+        ${s.steps ? `<div class="sim-side"><ol class="sim-steps">${s.steps.map(x => `<li>${x}</li>`).join("")}</ol><p class="sim-say">${s.say}</p></div>` : ""}</div>${foot(s)}`;
       label = strip(s.title); break;
     case "simdig":
       h = `${kick("Vive la barrera · Barrera digital · " + s.min + " min")}<h2>${s.title}</h2><p class="lead sim-lead">${s.lead}</p>
@@ -1770,7 +2144,7 @@ function renderSlide(s) {
       h = `${kick("Vídeo · " + s.min + " min")}<h2>${s.title}</h2><div class="vid" style="display:grid;grid-template-columns:220px 1fr;gap:30px;padding:30px 40px;align-items:center;place-items:center start"><div class="play" style="width:170px;height:170px;border-radius:50%;background:var(--accent);display:grid;place-items:center;justify-self:center">${ico("play").replace('stroke="currentColor"', 'stroke="#fff"').replace('fill="currentColor"', 'fill="#fff"').replace("<svg", '<svg width="70" height="70"')}</div><div><p style="margin:0 0 10px;font-size:22px;color:#DCE8DE">${s.status}</p>${bullets(s.points)}<div class="links">${(s.links || []).map(l => `<a href="${l[1]}" target="_blank" rel="noopener">${l[0]} ↗</a>`).join("")}</div></div></div><p style="font-size:17px;color:#C9D8DE;margin:10px 0 0">En Teams: comparte la ventana del vídeo con «Incluir sonido del ordenador» y activa los subtítulos.</p>`; break;
     case "act": case "quiz": {
       cls = "act";
-      const chan = s.t === "quiz" ? `Quiz del Tema ${s.th} · ${s.qn} de 5` : s.kind;
+      const chan = s.t === "quiz" ? (s.flash ? `Quiz relámpago · ${s.qn} de 3` : `Quiz del Tema ${s.th} · ${s.qn} de 5`) : s.kind;
       const scene = s.scene ? `<div class="scene"><div class="ctx"><b>${s.scene.perfil}.</b> ${s.scene.contexto}</div>${s.scene.lines.map((l, k) => `<div class="line" style="animation-delay:${.4 + k * .9}s"><span class="who">${l[0]}</span><span class="say">${l[1]}</span></div>`).join("")}</div>` : "";
       const notice = s.notice ? `<div class="notice" data-notice hidden><div class="ncount" data-ncount>60</div><div class="paper"><h4>REQUERIMIENTO DE DOCUMENTACIÓN · Expte. 2026/PRE/004417</h4><p>Examinada la solicitud de prestación por desempleo de nivel contributivo presentada por la persona interesada, y advertida la carencia de la documentación acreditativa de la situación legal de desempleo exigida por el artículo 267 del Texto Refundido de la Ley General de la Seguridad Social, se le requiere, de conformidad con lo dispuesto en el artículo 68 de la Ley 39/2015, de 1 de octubre, para que en el plazo de diez días hábiles, a computar desde el día siguiente al de la notificación del presente requerimiento, cuya fecha de puesta a disposición en sede electrónica consta el 31 de octubre, proceda a la aportación del certificado de empresa o documento equivalente, bien a través de la sede electrónica, bien en cualquiera de los registros previstos en el artículo 16.4 del citado texto legal, con indicación de que, de no hacerlo, se le tendrá por desistida de su petición, previa resolución que deberá ser dictada en los términos previstos en el artículo 21 de la misma ley. Contra la presente, que no pone fin a la vía administrativa, no cabe recurso, sin perjuicio de que pueda alegarse oposición para su consideración en la resolución que ponga fin al procedimiento.</p></div></div>` : "";
       const tools = `<button class="sbtn primary" type="button" data-reveal>${ico("eye")}${s.ix.correct != null || s.ix.types || s.ix.items?.some(x => x.correct != null) ? "Revelar respuesta" : "Mostrar claves"}</button>${s.ix.viz === "cascade" ? `<button class="sbtn go" type="button" data-ya>¡Ya!</button>` : ""}${s.notice ? `<button class="sbtn go" type="button" data-shownotice>Mostrar notificación (60 s)</button>` : ""}${s.t !== "quiz" ? `<button class="sbtn" type="button" data-timer="${s.secs || 60}">${ico("timer")}Temporizador</button>` : ""}<button class="sbtn" type="button" data-hideres>Ocultar resultados</button><button class="sbtn" type="button" data-reset>↺ Reiniciar</button><span class="timer" data-tdisp></span>`;
@@ -2004,6 +2378,7 @@ function renderLive(i) {
     $("[data-nota]", el).innerHTML = src.map(b => { const p = auditScore([b]); return `<div class="lane" style="grid-template-columns:270px 1fr 70px;font-size:19px"><span>${esc(b.kind.split("· ")[1])} · ${esc(b.title)}</span><div class="tr" style="height:30px"><div class="fill" style="width:${p || 0}%;background:${p >= 75 ? "#3F6A0B" : p >= 50 ? "#B07A00" : "#B3261E"}"></div></div><b>${p == null ? "–" : p + " %"}</b></div>`; }).join("");
     const p = auditScore(src); $("[data-gauge]", el).innerHTML = p == null ? `<div class="wait">Aún no hay votos de la auditoría.</div>` : gaugeSVG(p);
   }
+  if (s.t === "cloudshow") { const src = KEY[s.compare] ? S_[KEY[s.compare][0]] : null; if (src) drawCloud($("[data-cloud1]", el), answersOf(src.sid)); }
   if (s.t === "muro") { const src = KEY[s.src] ? S_[KEY[s.src][0]] : null; if (src) drawCommit($("[data-muro]", el), src, answersOf(src.sid), true); }
   if (s.t === "podium") drawPodium(el, s);
 }
@@ -2083,7 +2458,7 @@ function startTimer(el, secs, isQuiz) {
     if (d) { d.textContent = `${String(Math.floor(left / 60)).padStart(2, "0")}:${String(left % 60).padStart(2, "0")}`; d.classList.toggle("low", left <= 10); }
     if (rn) rn.textContent = left;
     if (arc) { const L = +arc.getAttribute("stroke-dasharray"); arc.setAttribute("stroke-dashoffset", (L * (1 - left / secs)).toFixed(1)); }
-    if (left <= 0) { stopTimer(); $("#live").textContent = "Tiempo terminado"; if (isQuiz && !el.classList.contains("revealed")) $("[data-reveal]", el)?.click(); }
+    if (left <= 0) { stopTimer(); $("#live").textContent = "Tiempo terminado: pulsa «Revelar respuesta»"; }
   };
   tick(); tId = setInterval(tick, 250);
 }
@@ -2174,6 +2549,7 @@ function demoFill(s, n = 34) {
 function demoFor(s) {
   if (s.t === "nota") (KEY[s.src] || []).forEach(k => demoFill(S_[k]));
   else if (s.t === "muro") (KEY[s.src] || []).forEach(k => demoFill(S_[k]));
+  else if (s.t === "cloudshow") (KEY[s.compare] || []).forEach(k => demoFill(S_[k]));
   else if (s.t === "podium") S_.filter(x => x.score && x.day === s.day).forEach(x => demoFill(x));
   else if (s.ix && s.ix.viz === "compare") { (KEY[s.compare] || []).forEach(k => demoFill(S_[k])); demoFill(s); }
   else if (s.ix) demoFill(s, 0);
