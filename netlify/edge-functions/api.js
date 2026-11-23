@@ -3,7 +3,7 @@ import { getStore } from "@netlify/blobs";
 import { handle } from "../lib/core.js";
 
 export default async (request) => {
-  const store = getStore({ name: "formacion", consistency: "strong" });
+  const store = getStore({ name: "formacion-g2", consistency: "strong" });
   try {
     return await handle(request, store, { keys: Netlify.env.get("PRESENTER_KEYS") || Netlify.env.get("PRESENTER_KEY"), pin: Netlify.env.get("PRESENTER_PIN") });
   } catch (e) {
